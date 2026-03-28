@@ -1,0 +1,16 @@
+# docker-compose.yml
+services:
+  postgres:
+    container_name: mercado_semilivre
+    image: bitnami/postgresql:latest
+    environment:
+      POSTGRESQL_USERNAME: docker
+      POSTGRESQL_PASSWORD: docker
+      POSTGRESQL_DATABASE: mercado_semilivre
+    ports:
+      - 5433:5432        # ← host:container
+    volumes:
+      - postgres_data:/bitnami/postgresql/
+
+volumes:
+  postgres_data:
