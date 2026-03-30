@@ -11,8 +11,8 @@ interface UserSchema {
 }
 
 export class User {
-    props: UserSchema;
-    _id: string;
+    private props: UserSchema;
+    private _id: string;
 
     /*  
         Usando Replace aqui pq caso for usado user para criar um usuário novo não vai ser passado o 
