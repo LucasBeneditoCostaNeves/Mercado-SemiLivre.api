@@ -17,4 +17,8 @@ export class UserRepositoryInMemory implements UserRepository {
 
         return user
     }
+
+    async listManyUser(): Promise<User[] | null> {
+        return this.users
+    }
 }

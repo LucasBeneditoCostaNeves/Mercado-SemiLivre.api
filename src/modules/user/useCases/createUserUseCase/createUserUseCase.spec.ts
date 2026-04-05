@@ -1,4 +1,4 @@
-import { compare, hash } from "bcrypt"
+import { compare } from "bcrypt"
 import { UserRepositoryInMemory } from "../../reposiories/UserRepositoryInMemory"
 import { CreateUserUseCase } from "./createUserUseCase"
 

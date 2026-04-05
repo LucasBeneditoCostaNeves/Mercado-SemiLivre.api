@@ -69,6 +69,6 @@ export class User {
     }
 
     get updatedAt(): Date {
-        return this.props.createdAt
+        return this.props.updatedAt
     }
 }
