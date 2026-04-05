@@ -4,6 +4,16 @@ import { PrismaUserMapper } from "../mappers/PrismaUserMapper";
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma.service";
 
+interface UserDTO {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    status: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
 
@@ -18,11 +28,22 @@ export class PrismaUserRepository implements UserRepository {
         })
     }
 
-    async findByEmail(email: String): Promise<User | null> {
-        // const result = await this.prisma.user.findFirst({
-        //     where: { email: email }
-        // })
+    async listManyUser(): Promise<UserDTO[]> {
+        const users = this.prisma.user.findMany()
+        return users
+    }
 
-        return null
+    async findByEmail(email: string): Promise<User | null> {
+        const user = await this.prisma.user.findUnique({
+            where: {
+                email
+            }
+        })
+
+        if (!user) {
+            return null
+        }
+
+        return PrismaUserMapper.toDomain(user)
     }
 }
