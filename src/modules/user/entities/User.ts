@@ -1,5 +1,5 @@
-import { randomUUID } from "crypto";
-import { Replace } from "src/utils/replace";
+import { randomUUID } from "crypto"
+import { Replace } from "../../../utils/replace"
 
 interface UserSchema {
     name: string,
@@ -11,8 +11,8 @@ interface UserSchema {
 }
 
 export class User {
-    private props: UserSchema;
-    private _id: string;
+    private props: UserSchema
+    private _id: string
 
     /*  
         Usando Replace aqui pq caso for usado user para criar um usuário novo não vai ser passado o 
@@ -25,7 +25,7 @@ export class User {
             createdAt: props.createdAt || new Date(),
             updatedAt: props.updatedAt || new Date()
         }
-        this._id = id || randomUUID();
+        this._id = id || randomUUID()
     }
 
     get id(): string {
