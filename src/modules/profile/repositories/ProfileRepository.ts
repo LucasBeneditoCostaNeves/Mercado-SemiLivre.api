@@ -1,6 +1,6 @@
 import { Profile } from "../entities/Profile"
 
-interface ProfileDTO {
+export interface ProfileDTO {
     id: string
     name: string,
     createdAt: Date,
@@ -9,5 +9,5 @@ interface ProfileDTO {
 
 export abstract class ProfileRepository {
     abstract create(profile: Profile): Promise<void>
-    abstract listMany(): Promise<any>
+    abstract listMany(): Promise<ProfileDTO[] | null>
 }
