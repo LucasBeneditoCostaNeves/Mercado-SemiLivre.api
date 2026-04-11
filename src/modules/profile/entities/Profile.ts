@@ -21,7 +21,7 @@ export class Profile {
     }
 
     get id(): string {
-        return this.id
+        return this._id
     }
 
     get name(): string {

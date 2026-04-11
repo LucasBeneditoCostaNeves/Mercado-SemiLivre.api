@@ -1,24 +1,28 @@
-import { IsBoolean, IsEmail, isNotEmpty, IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
+import { IsBoolean, IsEmail, isNotEmpty, IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator"
 
 export class CreateUserBody {
     @IsString()
     @IsEmail()
     @IsNotEmpty()
-    email: string;
+    email: string
 
     @IsString()
     @IsNotEmpty()
-    name: string;
+    name: string
 
     @IsString()
     @IsNotEmpty()
     @MinLength(5, {
         message: 'Password is too short',
     })
-    password: string;
+    password: string
 
 
     @IsBoolean()
     @IsNotEmpty()
-    status: boolean;
+    status: boolean
+
+    @IsNotEmpty()
+    @IsString()
+    profileId: string
 }

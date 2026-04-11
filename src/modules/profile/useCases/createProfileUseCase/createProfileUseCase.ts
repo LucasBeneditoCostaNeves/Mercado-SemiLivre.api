@@ -16,5 +16,7 @@ export class CreateProfileUseCase {
         })
 
         await this.profileRepository.create(profile)
+
+        return profile
     }
 }
