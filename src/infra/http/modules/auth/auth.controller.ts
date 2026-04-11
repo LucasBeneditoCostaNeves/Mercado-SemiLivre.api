@@ -1,8 +1,8 @@
-import { Controller, Get, HttpCode, HttpStatus, Post, Request, UseGuards } from "@nestjs/common";
-import type { AuthRequestModel } from "./models/authRequestModel";
-import { LoginUseCase } from "src/modules/auth/useCases/loginUseCase/loginUseCase";
-import { LocalAuthGuard } from "./guards/localAuth.Guard";
-import { Public } from "./decorators/isPublic";
+import { Controller, Get, HttpCode, HttpStatus, Post, Request, UseGuards } from "@nestjs/common"
+import type { AuthRequestModel } from "./models/authRequestModel"
+import { LoginUseCase } from "src/modules/auth/useCases/loginUseCase/loginUseCase"
+import { LocalAuthGuard } from "./guards/localAuth.Guard"
+import { Public } from "./decorators/isPublic"
 
 
 @Controller()
@@ -21,8 +21,9 @@ export class AuthController {
         return { acess_token }
     }
 
-    @Get("teste")
-    async teste(@Request() request: any) {
-        return "teste"
+    @Get("health")
+    @Public()
+    async health() {
+        return "ok!"
     }
 }

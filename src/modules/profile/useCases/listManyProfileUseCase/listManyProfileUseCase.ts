@@ -5,7 +5,7 @@ import { ProfileRepository } from "../../repositories/ProfileRepository"
 export class ListManyProfrileUseCase {
     constructor(private profileRepository: ProfileRepository) { }
 
-    async execute({ }: any) {
+    async execute({ }) {
         const profiles = await this.profileRepository.listMany()
         return profiles
     }
