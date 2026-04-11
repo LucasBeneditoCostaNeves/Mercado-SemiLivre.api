@@ -8,6 +8,12 @@ generator client {
   output   = "../generated/prisma"
 }
 
+// Mesmo schema em node_modules para @prisma/client (runtime Nest em dist/ não resolve prisma/generated).
+generator client_node_modules {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client"
+}
+
 datasource db {
   provider = "postgresql"
 }

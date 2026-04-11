@@ -5,7 +5,8 @@ interface UserSchema {
     name: string,
     email: string,
     password: string,
-    status: boolean
+    status: boolean,
+    profileId: string,
     createdAt: Date,
     updatedAt: Date,
 }
@@ -62,6 +63,14 @@ export class User {
 
     set status(status: boolean) {
         this.props.status = status
+    }
+
+    get profileId(): string {
+        return this.props.profileId
+    }
+
+    set profileId(profileId: string) {
+        this.props.profileId = profileId
     }
 
     get createdAt(): Date {
