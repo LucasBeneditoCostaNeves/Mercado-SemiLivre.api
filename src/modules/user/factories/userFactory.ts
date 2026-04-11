@@ -8,6 +8,8 @@ export const makeUser = ({ id, ...override }: Override) => {
         email: "user.teste@gmail.com",
         password: "123456",
         status: true,
+        // substituir por um profile válido
+        profileId: "sasassa",
         ...override
     }, id)
 }

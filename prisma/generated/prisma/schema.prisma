@@ -8,8 +8,24 @@ generator client {
   output   = "../generated/prisma"
 }
 
+// Mesmo schema em node_modules para @prisma/client (runtime Nest em dist/ não resolve prisma/generated).
+generator client_node_modules {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client"
+}
+
 datasource db {
   provider = "postgresql"
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  User      User[]
+
+  @@map("profiles")
 }
 
 model User {
@@ -18,8 +34,8 @@ model User {
   email     String   @unique
   password  String
   status    Boolean
+  profile   Profile  @relation(fields: [profileId], references: [id])
+  profileId String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-
-  @@map("users")
 }
