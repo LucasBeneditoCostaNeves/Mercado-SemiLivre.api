@@ -1,7 +1,12 @@
 import { Injectable } from "@nestjs/common"
+import {
+    type ActorContext,
+    UserAuthorizationPolicyImpl,
+} from "../../policies/user-authorization.policy"
 import { UserRepository } from "../../reposiories/UserRepository"
 
 export interface IUpdateUserUseCase {
+    actor: ActorContext
     id: string
     name?: string
     email?: string
@@ -10,9 +15,14 @@ export interface IUpdateUserUseCase {
 
 @Injectable()
 export class UpdateUserUseCase {
-    constructor(private UserRepository: UserRepository) { }
+    constructor(
+        private UserRepository: UserRepository,
+        private userAuthorization: UserAuthorizationPolicyImpl,
+    ) {}
 
-    async execute({ id, name, email, status }: IUpdateUserUseCase) {
+    async execute({ actor, id, name, email, status }: IUpdateUserUseCase) {
+        this.userAuthorization.assertCanUpdate(actor, id)
+
         await this.UserRepository.updateUser({ id, name, email, status })
     }
 }
