@@ -3,12 +3,13 @@ import { CreateProfileUseCase } from "src/modules/profile/useCases/createProfile
 import { ProfileViewModel } from "./viewModel/profileViewModel"
 import { CreateUserBody } from "./dtos/createProfileBody"
 import { Public } from "../auth/decorators/isPublic"
+import { ListManyProfrileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
 
 
 @Controller('profile')
 export class ProfileController {
 
-    constructor(private CreateProfileUseCase: CreateProfileUseCase) { }
+    constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfrileUseCase: ListManyProfrileUseCase) { }
 
     @Post()
     @Public()
@@ -21,6 +22,13 @@ export class ProfileController {
         })
 
         return ProfileViewModel.toHttp(profile)
+    }
+
+    @Get()
+    async listManyProfiles() {
+        const profiles = await this.ListManyProfrileUseCase.execute({})
+
+        return profiles
     }
 
     // @Get()

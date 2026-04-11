@@ -7,4 +7,8 @@ export class ProfileRepositoryInMemory implements ProfileRepository {
     async create(profile: Profile): Promise<void> {
         this.profiles.push(profile)
     }
+
+    async listMany(): Promise<Profile[]> {
+        return this.profiles
+    }
 }
