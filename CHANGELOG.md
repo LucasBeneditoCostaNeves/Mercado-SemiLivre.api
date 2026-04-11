@@ -5,6 +5,7 @@
 ### Added
 - Rota de criação de usuários
 - Rota de listagem de usuários
+- Rota de atualizar usuários
 - Rota de criação de perfis
 - Rota de listagem de perfis
 - Autenticação com JWT (login)
