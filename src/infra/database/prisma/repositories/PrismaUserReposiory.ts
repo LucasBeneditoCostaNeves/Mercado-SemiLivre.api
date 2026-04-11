@@ -41,11 +41,16 @@ export class PrismaUserRepository implements UserRepository {
     }
 
     async findByEmail(email: string): Promise<User | null> {
-        const user = await this.prisma.user.findUnique({
+        const user = await this.prisma.user.findFirst({
             where: {
+                email,
                 status: true,
-                email
-            }
+            },
+            include: {
+                profile: {
+                    select: { name: true },
+                },
+            },
         })
 
         if (!user) {
