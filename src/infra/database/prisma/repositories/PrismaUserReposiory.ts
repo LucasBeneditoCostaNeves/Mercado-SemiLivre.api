@@ -1,5 +1,5 @@
 import { User } from "src/modules/user/entities/User"
-import { UserRepository } from "src/modules/user/reposiories/UserRepository"
+import { IUserUpdateDTO, UserRepository } from "src/modules/user/reposiories/UserRepository"
 import { PrismaUserMapper } from "../mappers/PrismaUserMapper"
 import { Injectable } from "@nestjs/common"
 import { PrismaService } from "src/infra/database/prisma/prisma.service"
@@ -13,6 +13,12 @@ interface UserDTO {
     profileId: string
     createdAt: Date
     updatedAt: Date
+}
+
+interface UserUpdateInput {
+    name?: string
+    email?: string
+    status?: boolean
 }
 
 @Injectable()
@@ -46,5 +52,17 @@ export class PrismaUserRepository implements UserRepository {
         }
 
         return PrismaUserMapper.toDomain(user)
+    }
+
+    async updateUser(dataUser: IUserUpdateDTO): Promise<void> {
+        const { id, name, email, status } = dataUser
+        const dataToUpdate: UserUpdateInput = { name, email, status }
+
+        if (Object.keys(dataToUpdate).length > 0) {
+            await this.prisma.user.update({
+                where: { id },
+                data: dataToUpdate,
+            })
+        }
     }
 }
