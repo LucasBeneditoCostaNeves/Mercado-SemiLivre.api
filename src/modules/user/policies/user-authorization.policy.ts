@@ -22,7 +22,7 @@ export class UserAuthorizationPolicyImpl implements UserAuthorizationPolicy {
         }
 
         throw new ForbiddenException(
-            "Sem permissão para atualizar este utilizador.",
+            "Sem permissão para atualizar essa rota.",
         )
     }
 }
