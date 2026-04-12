@@ -120,6 +120,14 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CategoryProductsScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -150,6 +158,7 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
+  CategoryProducts: 'CategoryProducts',
   Profile: 'Profile',
   User: 'User'
 };
