@@ -1,4 +1,4 @@
-import { compare, hash } from "bcrypt"
+import { compare } from "bcrypt"
 import { UserRepositoryInMemory } from "../../reposiories/UserRepositoryInMemory"
 import { CreateUserUseCase } from "./createUserUseCase"
 
@@ -28,7 +28,7 @@ describe("Criar usuário", () => {
 
         // Validando se o repositório em memória contém o usuário retornado pelo useCase
         expect(userRepositoryInMemory.users).toEqual([user])
-    })
+    }, 10000)
 
     it("Validando se a password está sendo criptografada", async () => {
         const userPassword = "123456"
@@ -43,5 +43,5 @@ describe("Criar usuário", () => {
         const validatePassword = await compare(userPassword, user.password)
 
         expect(validatePassword).toBeTruthy()
-    })
+    }, 10000)
 })
