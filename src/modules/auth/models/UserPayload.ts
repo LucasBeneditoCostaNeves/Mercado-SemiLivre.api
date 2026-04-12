@@ -3,4 +3,5 @@ export interface UserPaylaod {
     email: string;
     name: string;
     createdAt: string;
+    profileId: string;
 }
