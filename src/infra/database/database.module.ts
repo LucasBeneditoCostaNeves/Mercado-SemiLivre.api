@@ -4,6 +4,8 @@ import { PrismaUserRepository } from "./prisma/repositories/PrismaUserReposiory"
 import { PrismaService } from "./prisma/prisma.service"
 import { ProfileRepository } from "src/modules/profile/repositories/ProfileRepository"
 import { PrismaProfileRepository } from "./prisma/repositories/PrismaProfilerReposiory"
+import { CategoryProductRepository } from "src/modules/categoryProducts/repositories/categoryProduct"
+import { PrismaCategoryProductRepository } from "./prisma/repositories/PrismaCategoryProductRespository"
 
 @Module({
     providers: [
@@ -15,10 +17,14 @@ import { PrismaProfileRepository } from "./prisma/repositories/PrismaProfilerRep
         {
             provide: ProfileRepository,
             useClass: PrismaProfileRepository
+        },
+        {
+            provide: CategoryProductRepository,
+            useClass: PrismaCategoryProductRepository
         }
     ],
 
-    exports: [UserRepository, ProfileRepository]
+    exports: [UserRepository, ProfileRepository, CategoryProductRepository]
 })
 
 export class DatabaseModule { }
