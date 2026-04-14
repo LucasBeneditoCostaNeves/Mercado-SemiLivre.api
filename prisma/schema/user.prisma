@@ -9,13 +9,14 @@ model Profile {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
+  email     String    @unique
   password  String
   status    Boolean
-  profile   Profile  @relation(fields: [profileId], references: [id])
+  profile   Profile   @relation(fields: [profileId], references: [id])
   profileId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  Product   Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
