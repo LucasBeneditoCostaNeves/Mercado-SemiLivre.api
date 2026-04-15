@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto"
 import { Replace } from "../../../utils/replace"
 
-interface ICategoryProductSchema {
+interface IProductSchema {
     name: string
     seller_user_id: string
     category_product_id: string
@@ -10,8 +10,8 @@ interface ICategoryProductSchema {
     updatedAt: Date
 }
 
-export class CategoryProduct {
-    private props: ICategoryProductSchema
+export class Product {
+    private props: IProductSchema
     private _id: string
 
     /*  
@@ -19,7 +19,7 @@ export class CategoryProduct {
         createdAt e o updatedAt, então estamos falando que caso não seja passado será um new Date()
     */
 
-    constructor(props: Replace<ICategoryProductSchema, { createdAt?: Date, updatedAt?: Date }>, id?: string) {
+    constructor(props: Replace<IProductSchema, { createdAt?: Date, updatedAt?: Date }>, id?: string) {
         this.props = {
             ...props,
             createdAt: props.createdAt || new Date(),
@@ -46,6 +46,22 @@ export class CategoryProduct {
 
     set status(status: boolean) {
         this.props.status = status
+    }
+
+    get category_product_id(): string {
+        return this.props.category_product_id
+    }
+
+    set category_product_id(category_product_id: string) {
+        this.props.category_product_id = category_product_id
+    }
+
+    get seller_user_id(): string {
+        return this.props.seller_user_id
+    }
+
+    set seller_user_id(seller_user_id: string) {
+        this.props.seller_user_id = seller_user_id
     }
 
     get createdAt(): Date {
