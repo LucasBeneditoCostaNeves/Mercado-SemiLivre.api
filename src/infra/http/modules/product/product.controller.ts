@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from "@nestjs/common"
 import { CreateProductUseCase } from "src/modules/product/useCases/createProductUseCase"
 import { CreateProductBody } from "./dtos/createProduct"
+import { productViewModel } from "./viewModel/ProductViewModel"
 
 @Controller('product')
 export class ProductController {
@@ -8,8 +9,8 @@ export class ProductController {
 
     @Post()
     async create(@Body() body: CreateProductBody) {
-        const product = this.CreateProductUseCase.execute(body)
+        const product = await this.CreateProductUseCase.execute(body)
 
-        return product
+        return productViewModel.toHttp(product)
     }
 }
