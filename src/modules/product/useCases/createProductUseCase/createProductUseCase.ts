@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common"
-import { Product } from "../entities/Product"
-import { ProductRepository } from "../repositories/ProductRepository"
+import { Product } from "../../entities/Product"
+import { ProductRepository } from "../../repositories/ProductRepository"
 
 interface IProductRequest {
     name: string
@@ -14,7 +14,7 @@ export class CreateProductUseCase {
     constructor(private productRepository: ProductRepository) { }
 
     async execute({ name, seller_user_id, category_product_id, status }: IProductRequest) {
-        const product = new Product({
+        const product = await new Product({
             name,
             seller_user_id,
             status,
