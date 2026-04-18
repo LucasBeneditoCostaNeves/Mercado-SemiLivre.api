@@ -18,6 +18,7 @@ export interface IProductUpdateDTO {
 
 export abstract class ProductRepository {
     abstract create(product: Product): Promise<void>
-    abstract listMany(): Promise<IProductDTO[]>
-    abstract updateProduct(dataProduct: IProductUpdateDTO): Promise<void>
+    abstract findMany(): Promise<IProductDTO[]>
+    abstract update(dataProduct: IProductUpdateDTO): Promise<void>
+    abstract findById(id: string): Promise<Product | null>
 }

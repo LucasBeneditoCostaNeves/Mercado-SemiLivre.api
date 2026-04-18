@@ -26,20 +26,29 @@ export class PrismaProductRepository implements ProductRepository {
         })
     }
 
-    async listMany(): Promise<IProductDTO[]> {
+    async findMany(): Promise<IProductDTO[]> {
         const products = await this.prisma.product.findMany({})
         return products
     }
 
-    async updateProduct(dataProduct: IProductUpdateDTO): Promise<void> {
+    async update(dataProduct: IProductUpdateDTO): Promise<void> {
         const { id, name, status } = dataProduct
-        const dataToUpdate = { name, status }
 
-        if (Object.keys(dataToUpdate).length > 0) {
-            await this.prisma.product.update({
-                where: { id },
-                data: dataProduct
-            })
+        await this.prisma.product.update({
+            where: { id },
+            data: { name, status }
+        })
+    }
+
+    async findById(id: string): Promise<Product | null> {
+        const product = await this.prisma.product.findUnique({
+            where: { id }
+        })
+
+        if (!product) {
+            return null
         }
+
+        return PrismaProductMapper.toDomain(product)
     }
 }

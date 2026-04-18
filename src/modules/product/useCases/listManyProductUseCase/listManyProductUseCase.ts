@@ -6,7 +6,7 @@ export class ListManyProductUseCase {
     constructor(private productRepository: ProductRepository) { }
 
     async execute({ }) {
-        const products = await this.productRepository.listMany()
+        const products = await this.productRepository.findMany()
 
         return products
     }

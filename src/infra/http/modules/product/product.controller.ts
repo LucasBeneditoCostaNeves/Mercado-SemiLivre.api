@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common"
+import { BadRequestException, Body, Controller, Get, InternalServerErrorException, NotFoundException, Param, Patch, Post } from "@nestjs/common"
 import { CreateProductUseCase } from "src/modules/product/useCases/createProductUseCase/createProductUseCase"
 import { CreateProductBody } from "./dtos/createProduct"
 import { productViewModel } from "./viewModel/ProductViewModel"
 import { ListManyProductUseCase } from "src/modules/product/useCases/listManyProductUseCase/listManyProductUseCase"
-import { UpdateProductBody } from "./dtos/updateProduct"
+import { UpdateProductBody, UpdateProductParams } from "./dtos/updateProduct"
 import { UpdateProductUseCase } from "src/modules/product/useCases/updateProductUseCase/updateProductUseCase"
+import { NoFieldsToUpdateError } from "src/domain/errors/NoFieldsToUpdateError"
+import { ProductNotFoundError } from "src/domain/errors/product/ProductNotFoundError"
 
 @Controller('product')
 export class ProductController {
@@ -27,9 +29,9 @@ export class ProductController {
     @Patch("/:id")
     async updateProduct(
         @Body() body: UpdateProductBody,
-        @Param("id") id: string,
+        @Param() params: UpdateProductParams,
     ) {
-        const dataProduct = { ...body, id }
-        await this.UpdateProductUseCase.execute({ dataProduct })
+        await this.UpdateProductUseCase.execute({ dataProduct: { ...body, id: params.id } })
+        return { message: "Produto atualizado com sucesso", status: 200 }
     }
 }
