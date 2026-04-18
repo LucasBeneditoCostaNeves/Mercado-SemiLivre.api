@@ -4,11 +4,11 @@ import { CreateProductBody } from "./dtos/createProduct"
 import { productViewModel } from "./viewModel/ProductViewModel"
 import { ListManyProductUseCase } from "src/modules/product/useCases/listManyProductUseCase/listManyProductUseCase"
 import { UpdateProductBody } from "./dtos/updateProduct"
-import { updateProductUseCase } from "src/modules/product/useCases/updateProductUseCase/updateProductUseCase"
+import { UpdateProductUseCase } from "src/modules/product/useCases/updateProductUseCase/updateProductUseCase"
 
 @Controller('product')
 export class ProductController {
-    constructor(private CreateProductUseCase: CreateProductUseCase, private ListManyProductUseCase: ListManyProductUseCase, private UpdateProductUseCase: updateProductUseCase) { }
+    constructor(private CreateProductUseCase: CreateProductUseCase, private ListManyProductUseCase: ListManyProductUseCase, private UpdateProductUseCase: UpdateProductUseCase) { }
 
     @Post()
     async create(@Body() body: CreateProductBody) {
