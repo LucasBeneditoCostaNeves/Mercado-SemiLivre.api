@@ -23,6 +23,6 @@ export class UpdateUserUseCase {
     async execute({ actor, id, name, email, status }: IUpdateUserUseCase) {
         this.userAuthorization.assertCanUpdate(actor, id)
 
-        await this.UserRepository.updateUser({ id, name, email, status })
+        await this.UserRepository.update({ id, name, email, status })
     }
 }

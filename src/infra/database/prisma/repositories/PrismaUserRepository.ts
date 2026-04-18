@@ -35,7 +35,7 @@ export class PrismaUserRepository implements UserRepository {
         })
     }
 
-    async listManyUser(): Promise<UserListDTO[]> {
+    async findMany(): Promise<UserListDTO[]> {
         const users = await this.prisma.user.findMany()
         return users
     }
@@ -60,7 +60,7 @@ export class PrismaUserRepository implements UserRepository {
         return PrismaUserMapper.toDomain(user)
     }
 
-    async updateUser(dataUser: IUserUpdateDTO): Promise<void> {
+    async update(dataUser: IUserUpdateDTO): Promise<void> {
         const { id, name, email, status } = dataUser
         const dataToUpdate: UserUpdateInput = { name, email, status }
 
