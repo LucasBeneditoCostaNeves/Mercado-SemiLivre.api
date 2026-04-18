@@ -1,13 +1,13 @@
-import { makeUser } from "../../factories/userFactory";
-import { UserRepositoryInMemory } from "../../reposiories/UserRepositoryInMemory"
-import { ListUserCase } from "./listUserUseCase";
+import { makeUser } from "../../factories/userFactory"
+import { UserRepositoryInMemory } from "../../repositories/UserRepositoryInMemory"
+import { ListUserCase } from "./listUserUseCase"
 
 let listUserCase: ListUserCase
 let userRepositoryInMemory: UserRepositoryInMemory
 
 describe("Listar Usuários", () => {
     beforeEach(() => {
-        userRepositoryInMemory = new UserRepositoryInMemory();
+        userRepositoryInMemory = new UserRepositoryInMemory()
 
         listUserCase = new ListUserCase(userRepositoryInMemory)
     })

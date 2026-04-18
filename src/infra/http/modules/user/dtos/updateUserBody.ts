@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, isNotEmpty, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator"
+import { IsBoolean, IsEmail, IsOptional, IsString } from "class-validator"
 
 export class UpdateUserBody {
     @IsOptional()

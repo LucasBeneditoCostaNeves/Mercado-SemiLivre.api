@@ -1,4 +1,4 @@
-import { UserRepositoryInMemory } from "src/modules/user/reposiories/UserRepositoryInMemory"
+import { UserRepositoryInMemory } from "src/modules/user/repositories/UserRepositoryInMemory"
 import { LoginUseCase } from "./loginUseCase"
 import { JwtService } from "@nestjs/jwt"
 import { makeUser } from "src/modules/user/factories/userFactory"
