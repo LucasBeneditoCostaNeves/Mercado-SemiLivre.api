@@ -1,5 +1,5 @@
 import { compare } from "bcrypt"
-import { UserRepositoryInMemory } from "../../reposiories/UserRepositoryInMemory"
+import { UserRepositoryInMemory } from "../../repositories/UserRepositoryInMemory"
 import { CreateUserUseCase } from "./createUserUseCase"
 
 let createUserUseCase: CreateUserUseCase
@@ -9,7 +9,7 @@ describe("Criar usuário", () => {
 
     beforeEach(() => {
         // Declarando qual repositório vamos usar nesse teste
-        userRepositoryInMemory = new UserRepositoryInMemory();
+        userRepositoryInMemory = new UserRepositoryInMemory()
 
         // Declarando o use case que será testado e qual repositório ele vai usar
         createUserUseCase = new CreateUserUseCase(userRepositoryInMemory)

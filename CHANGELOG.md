@@ -9,3 +9,7 @@
 - Rota de criação de perfis
 - Rota de listagem de perfis
 - Autenticação com JWT (login)
+
+## [0.2.0] - 2026-04-12
+- Rota de criação de categorias produto
+- Rota de listagem de categorias produto

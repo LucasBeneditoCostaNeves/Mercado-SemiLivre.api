@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common"
-import { UserRepository } from "../../reposiories/UserRepository"
+import { UserRepository } from "../../repositories/UserRepository"
 
 
 @Injectable()
@@ -7,7 +7,7 @@ export class ListUserCase {
     constructor(private UserRepository: UserRepository) { }
 
     async execute({ }) {
-        const users = await this.UserRepository.listManyUser()
+        const users = await this.UserRepository.findMany()
 
         return users
     }

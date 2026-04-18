@@ -18,11 +18,11 @@ export class UserRepositoryInMemory implements UserRepository {
         return user
     }
 
-    async listManyUser(): Promise<User[] | null> {
+    async findMany(): Promise<User[]> {
         return this.users
     }
 
-    async updateUser() {
+    async update() {
 
     }
 }

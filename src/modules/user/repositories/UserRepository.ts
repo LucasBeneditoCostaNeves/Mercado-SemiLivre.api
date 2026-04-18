@@ -22,6 +22,6 @@ export interface IUserUpdateDTO {
 export abstract class UserRepository {
     abstract create(user: User): Promise<void>
     abstract findByEmail(email: string): Promise<User | null>
-    abstract listManyUser(): Promise<IUserDTO[] | null>
-    abstract updateUser(user: IUserUpdateDTO): Promise<void>
+    abstract findMany(): Promise<IUserDTO[]>
+    abstract update(user: IUserUpdateDTO): Promise<void>
 }

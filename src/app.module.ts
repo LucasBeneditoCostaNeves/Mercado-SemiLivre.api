@@ -1,13 +1,15 @@
-import { Module } from '@nestjs/common';
-import { userModule } from './infra/http/modules/user/user.module';
-import { DatabaseModule } from './infra/database/database.module';
-import { AuthModule } from './infra/http/modules/auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.Guard';
-import { ProfileModule } from './infra/http/modules/profile/profile.module';
+import { Module } from '@nestjs/common'
+import { UserModule } from './infra/http/modules/user/user.module'
+import { DatabaseModule } from './infra/database/database.module'
+import { AuthModule } from './infra/http/modules/auth/auth.module'
+import { APP_GUARD } from '@nestjs/core'
+import { JwtAuthGuard } from './infra/http/modules/auth/guards/jwtAuth.Guard'
+import { ProfileModule } from './infra/http/modules/profile/profile.module'
+import { CategoryProductModule } from './infra/http/modules/categoryProduct/categoryProduct.module'
+import { ProductModule } from './infra/http/modules/product/product.module'
 
 @Module({
-  imports: [DatabaseModule, userModule, AuthModule, ProfileModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule],
   controllers: [],
   providers: [
     {
