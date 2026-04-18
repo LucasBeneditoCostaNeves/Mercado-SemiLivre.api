@@ -1,4 +1,4 @@
-import { ProductRepository } from "src/modules/product/repositories/ProductRepository"
+import { IProductUpdateDTO, ProductRepository } from "src/modules/product/repositories/ProductRepository"
 import { PrismaProductMapper } from "../mappers/PrismaProduct"
 import { Product } from "src/modules/product/entities/Product"
 import { PrismaService } from "../prisma.service"
@@ -29,5 +29,17 @@ export class PrismaProductRepository implements ProductRepository {
     async listMany(): Promise<IProductDTO[]> {
         const products = await this.prisma.product.findMany({})
         return products
+    }
+
+    async updateProduct(dataProduct: IProductUpdateDTO): Promise<void> {
+        const { id, name, status } = dataProduct
+        const dataToUpdate = { name, status }
+
+        if (Object.keys(dataToUpdate).length > 0) {
+            await this.prisma.product.update({
+                where: { id },
+                data: dataProduct
+            })
+        }
     }
 }
