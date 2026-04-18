@@ -9,5 +9,5 @@ export interface ProfileDTO {
 
 export abstract class ProfileRepository {
     abstract create(profile: Profile): Promise<void>
-    abstract listMany(): Promise<ProfileDTO[] | null>
+    abstract listMany(): Promise<ProfileDTO[]>
 }

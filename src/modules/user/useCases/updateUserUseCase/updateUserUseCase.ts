@@ -3,7 +3,7 @@ import {
     type ActorContext,
     UserAuthorizationPolicyImpl,
 } from "../../policies/user-authorization.policy"
-import { UserRepository } from "../../reposiories/UserRepository"
+import { UserRepository } from "../../repositories/UserRepository"
 
 export interface IUpdateUserUseCase {
     actor: ActorContext
@@ -18,7 +18,7 @@ export class UpdateUserUseCase {
     constructor(
         private UserRepository: UserRepository,
         private userAuthorization: UserAuthorizationPolicyImpl,
-    ) {}
+    ) { }
 
     async execute({ actor, id, name, email, status }: IUpdateUserUseCase) {
         this.userAuthorization.assertCanUpdate(actor, id)

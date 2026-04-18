@@ -1,4 +1,3 @@
-import { Injectable } from "@nestjs/common"
 import { Product } from "../entities/Product"
 
 export interface IProductDTO {
@@ -17,9 +16,8 @@ export interface IProductUpdateDTO {
     status?: boolean
 }
 
-@Injectable()
 export abstract class ProductRepository {
     abstract create(product: Product): Promise<void>
-    abstract listMany(): Promise<IProductDTO[] | null>
+    abstract listMany(): Promise<IProductDTO[]>
     abstract updateProduct(dataProduct: IProductUpdateDTO): Promise<void>
 }

@@ -1,17 +1,8 @@
 import { CategoryProduct } from "src/modules/categoryProducts/entities/categoryProducts"
-import { CategoryProductRepository } from "src/modules/categoryProducts/repositories/categoryProduct"
+import { CategoryProductRepository, ICategoryProductDTO } from "src/modules/categoryProducts/repositories/categoryProduct"
 import { PrismaService } from "../prisma.service"
 import { PrismaCategoryProductMapper } from "../mappers/PrismaCategoryProduct"
 import { Injectable } from "@nestjs/common"
-
-export interface ICategoryProductDTO {
-    id: string
-    name: string
-    status: boolean
-    createdAt: Date
-    updatedAt: Date
-}
-
 
 @Injectable()
 export class PrismaCategoryProductRepository implements CategoryProductRepository {

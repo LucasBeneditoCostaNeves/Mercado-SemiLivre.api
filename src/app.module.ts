@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common'
-import { userModule } from './infra/http/modules/user/user.module'
+import { UserModule } from './infra/http/modules/user/user.module'
 import { DatabaseModule } from './infra/database/database.module'
 import { AuthModule } from './infra/http/modules/auth/auth.module'
 import { APP_GUARD } from '@nestjs/core'
@@ -9,7 +9,7 @@ import { CategoryProductModule } from './infra/http/modules/categoryProduct/cate
 import { ProductModule } from './infra/http/modules/product/product.module'
 
 @Module({
-  imports: [DatabaseModule, userModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule],
   controllers: [],
   providers: [
     {

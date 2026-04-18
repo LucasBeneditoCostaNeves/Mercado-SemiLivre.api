@@ -1,10 +1,10 @@
 import { User } from "src/modules/user/entities/User"
-import { IUserUpdateDTO, UserRepository } from "src/modules/user/reposiories/UserRepository"
+import { IUserUpdateDTO, UserRepository } from "src/modules/user/repositories/UserRepository"
 import { PrismaUserMapper } from "../mappers/PrismaUserMapper"
 import { Injectable } from "@nestjs/common"
 import { PrismaService } from "src/infra/database/prisma/prisma.service"
 
-interface UserDTO {
+interface UserListDTO {
     id: string
     name: string
     email: string
@@ -35,7 +35,7 @@ export class PrismaUserRepository implements UserRepository {
         })
     }
 
-    async listManyUser(): Promise<UserDTO[]> {
+    async listManyUser(): Promise<UserListDTO[]> {
         const users = await this.prisma.user.findMany()
         return users
     }

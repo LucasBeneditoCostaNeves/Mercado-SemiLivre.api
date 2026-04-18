@@ -17,4 +17,4 @@ import { UserAuthorizationPolicyImpl } from "src/modules/user/policies/user-auth
     ],
 })
 
-export class userModule { }
+export class UserModule { }
