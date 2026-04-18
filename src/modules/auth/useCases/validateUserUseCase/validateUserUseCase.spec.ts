@@ -1,9 +1,7 @@
 import { UserRepositoryInMemory } from "src/modules/user/repositories/UserRepositoryInMemory"
-import { ValidateUserUseCase } from "./validadeUserUseCase"
-import { User } from "src/modules/user/entities/User"
 import { hash } from "bcrypt"
-import { dmmfToRuntimeDataModel } from "@prisma/client/runtime/client"
 import { makeUser } from "src/modules/user/factories/userFactory"
+import { ValidateUserUseCase } from "./validateUserUseCase"
 
 let validateUserUseCase: ValidateUserUseCase
 let userRepositoryInMemory: UserRepositoryInMemory

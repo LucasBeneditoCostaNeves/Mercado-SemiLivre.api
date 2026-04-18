@@ -4,6 +4,7 @@ import { CreateUserUseCase } from "./createUserUseCase"
 
 let createUserUseCase: CreateUserUseCase
 let userRepositoryInMemory: UserRepositoryInMemory
+const TEST_PROFILE_ID = "00000000-0000-4000-8000-000000000001"
 
 describe("Criar usuário", () => {
 
@@ -21,6 +22,7 @@ describe("Criar usuário", () => {
         // Chamando o metódo execute da nossa classe createUserUseCase com os dados para cadastrar um usuário
         const user = await createUserUseCase.execute({
             email: "lucasbene03@gmail.com",
+            profileId: TEST_PROFILE_ID,
             name: "Lucas",
             password: "123456",
             status: true
@@ -35,6 +37,7 @@ describe("Criar usuário", () => {
 
         const user = await createUserUseCase.execute({
             email: "lucasbene03@gmail.com",
+            profileId: TEST_PROFILE_ID,
             name: "Lucas",
             password: userPassword,
             status: true
