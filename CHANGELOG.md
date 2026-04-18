@@ -11,5 +11,8 @@
 - Autenticação com JWT (login)
 
 ## [0.2.0] - 2026-04-12
-- Rota de criação de categorias produto
-- Rota de listagem de categorias produto
+- Rota de criação de categorias produtos
+- Rota de listagem de categorias produtos
+- Rota de criação de produtos
+- Rota de listagem de produtos
+- Rota de atualizar de produto
