@@ -1,6 +1,7 @@
 import { ArgumentsHost, Catch, ExceptionFilter } from "@nestjs/common"
 import { ProductNotFoundError } from "src/domain/errors/product/ProductNotFoundError"
 import { NoFieldsToUpdateError } from "src/domain/errors/NoFieldsToUpdateError"
+import { EmailAlreadyInUseError } from "src/domain/errors/user/EmailAlreadyInUseError"
 
 @Catch()
 export class DomainExceptionFilter implements ExceptionFilter {
@@ -13,6 +14,9 @@ export class DomainExceptionFilter implements ExceptionFilter {
         }
         if (error instanceof NoFieldsToUpdateError) {
             return response.status(400).json({ message: error.message })
+        }
+        if (error instanceof EmailAlreadyInUseError) {
+            return response.status(409).json({ message: error.message })
         }
 
         return response.status(500).json({ message: "Erro interno do servidor" })

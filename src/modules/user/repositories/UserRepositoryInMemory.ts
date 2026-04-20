@@ -25,4 +25,8 @@ export class UserRepositoryInMemory implements UserRepository {
     async update() {
 
     }
+
+    async exisByEmail(email: string): Promise<boolean> {
+        return this.users.some((user) => user.email === email)
+    }
 }

@@ -71,4 +71,16 @@ export class PrismaUserRepository implements UserRepository {
             })
         }
     }
+
+    async exisByEmail(email: string): Promise<boolean> {
+        const user = await this.prisma.user.findFirst({
+            where: { email },
+        })
+
+        if (!user) {
+            return false
+        }
+
+        return true
+    }
 }
