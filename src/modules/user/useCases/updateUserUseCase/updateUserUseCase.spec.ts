@@ -1,3 +1,4 @@
+import { makeUser } from "../../factories/userFactory"
 import { UserRepositoryInMemory } from "../../repositories/UserRepositoryInMemory"
 
 
