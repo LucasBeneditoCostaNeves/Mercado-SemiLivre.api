@@ -5,7 +5,7 @@ import { EmailAlreadyInUseError } from "src/domain/errors/user/EmailAlreadyInUse
 
 @Catch()
 export class DomainExceptionFilter implements ExceptionFilter {
-    catch(error: Error, host: ArgumentsHost) {
+    catch(error: Error | any, host: ArgumentsHost) {
         const ctx = host.switchToHttp()
         const response = ctx.getResponse()
 
@@ -17,6 +17,10 @@ export class DomainExceptionFilter implements ExceptionFilter {
         }
         if (error instanceof EmailAlreadyInUseError) {
             return response.status(409).json({ message: error.message })
+        }
+
+        if (error?.status == 401) {
+            return response.status(401).json({ message: "Token inválido ou expirado" })
         }
 
         return response.status(500).json({ message: "Erro interno do servidor" })
