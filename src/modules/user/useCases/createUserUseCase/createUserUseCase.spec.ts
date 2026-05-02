@@ -135,4 +135,56 @@ describe("Criar usuário", () => {
         await expect(createUserUseCase.execute(input)).rejects.toBeInstanceOf(EmailAlreadyInUseError)
     }, 10000)
 
+    it("Não persiste novo usuário quando email já existe", async () => {
+        const input = {
+            email: "duplicado2@example.com",
+            profileId: TEST_PROFILE_ID,
+            name: "Duplicado 2",
+            password: "123456",
+            status: true
+        }
+
+        await createUserUseCase.execute(input)
+        expect(userRepositoryInMemory.users).toHaveLength(1)
+
+        await expect(createUserUseCase.execute(input)).rejects.toBeInstanceOf(EmailAlreadyInUseError)
+
+        // Garante que não inseriu um segundo registro
+        expect(userRepositoryInMemory.users).toHaveLength(1)
+    }, 10000)
+
+    it("Retorna EmailAlreadyInUseError com mensagem esperada", async () => {
+        const input = {
+            email: "duplicado3@example.com",
+            profileId: TEST_PROFILE_ID,
+            name: "Duplicado 3",
+            password: "123456",
+            status: true
+        }
+
+        await createUserUseCase.execute(input)
+
+        await expect(createUserUseCase.execute(input)).rejects.toMatchObject({
+            name: "EmailAlreadyInUseError",
+            message: "Esse email já existe no sistema"
+        })
+    }, 10000)
+
+    it("Propaga erro quando o repositório falha ao criar", async () => {
+        const createSpy = jest
+            .spyOn(userRepositoryInMemory, "create")
+            .mockRejectedValueOnce(new Error("Falha ao salvar no repositório"))
+
+        await expect(
+            createUserUseCase.execute({
+                email: "repofail@example.com",
+                profileId: TEST_PROFILE_ID,
+                name: "Repo Fail",
+                password: "123456",
+                status: true
+            })
+        ).rejects.toThrow("Falha ao salvar no repositório")
+
+        expect(createSpy).toHaveBeenCalledTimes(1)
+    }, 10000)
 })
