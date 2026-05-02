@@ -21,7 +21,7 @@ export class CreateProductUseCase {
             category_product_id
         })
 
-        this.productRepository.create(product)
+        await this.productRepository.create(product)
 
         return product
     }

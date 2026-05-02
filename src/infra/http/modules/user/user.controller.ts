@@ -1,31 +1,25 @@
-import { Body, Controller, Get, Param, Patch, Post, Request } from "@nestjs/common"
+import { Body, Controller, Get, Param, Patch, Post, Request, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateUserUseCase } from "src/modules/user/useCases/createUserUseCase/createUserUseCase"
-import { CreateUserBody } from "./dtos/createUserBody"
 import { userViewModel } from "./viewModel/userViewModel"
 import { ListUserCase } from "src/modules/user/useCases/listUserUseCase/listUserUseCase"
 import { Public } from "../auth/decorators/isPublic"
 import { UpdateUserUseCase } from "src/modules/user/useCases/updateUserUseCase/updateUserUseCase"
-import { UpdateUserBody } from "./dtos/updateUserBody"
 import type { AuthRequestModel } from "../auth/models/authRequestModel"
+import { ZodValidationPipe } from "nestjs-zod"
+import { CreateUserBodyDto, UpdateUserBodyDto, UpdateUserParamsDto } from "./dtos/user.dto"
 
 
 @Controller('users')
+@UsePipes(ZodValidationPipe)
 export class UserController {
 
     constructor(private CreateUserUseCase: CreateUserUseCase, private ListUserCase: ListUserCase, private UpdateUserUseCase: UpdateUserUseCase) { }
 
     @Post()
     @Public()
-    async createPost(@Body() body: CreateUserBody) {
-
-        const { name, email, password, status, profileId } = body
-
+    async createPost(@Body() body: CreateUserBodyDto) {
         const user = await this.CreateUserUseCase.execute({
-            name,
-            email,
-            password,
-            status,
-            profileId
+            ...body
         })
 
         return userViewModel.toHttp(user)
@@ -41,20 +35,16 @@ export class UserController {
     @Patch(":id")
     async updateUser(
         @Request() request: AuthRequestModel,
-        @Param("id") id: string,
-        @Body() body: UpdateUserBody
+        @Param() params: UpdateUserParamsDto,
+        @Body() body: UpdateUserBodyDto,
     ) {
-        const { name, email, status } = body
-
         await this.UpdateUserUseCase.execute({
             actor: {
                 id: request.user.id,
                 profileId: request.user.profileId,
             },
-            id,
-            name,
-            email,
-            status,
+            id: params.id,
+            ...body
         })
     }
 }

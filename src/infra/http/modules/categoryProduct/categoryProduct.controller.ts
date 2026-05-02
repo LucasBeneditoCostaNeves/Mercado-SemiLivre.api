@@ -1,10 +1,17 @@
-import { Body, Controller, Get, Post } from "@nestjs/common"
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateCategoryProductUseCase } from "src/modules/categoryProducts/useCases/createCategoryProductUseCase/createCategoryProductUseCase"
 import { CreateCategoryProductBody } from "./dtos/createCategoryProduct"
 import { categoryProductViewModel } from "./viewModel/CategoryProductViewModel"
 import { ListCategoryProductUseCase } from "src/modules/categoryProducts/useCases/listCategoryProductUseCase/listCategoryProductUseCase"
 
 @Controller('categoryProduct')
+@UsePipes(
+    new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+    }),
+)
 export class CategoryProductController {
     constructor(private CreateCategoryProductUseCase: CreateCategoryProductUseCase, private ListCategoryProductUseCase: ListCategoryProductUseCase) { }
 

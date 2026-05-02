@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common"
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateProfileUseCase } from "src/modules/profile/useCases/createProfileUseCase/createProfileUseCase"
 import { ProfileViewModel } from "./viewModel/profileViewModel"
 import { CreateUserBody } from "./dtos/createProfileBody"
@@ -7,6 +7,13 @@ import { ListManyProfrileUseCase } from "src/modules/profile/useCases/listManyPr
 
 
 @Controller('profile')
+@UsePipes(
+    new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+    }),
+)
 export class ProfileController {
 
     constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfrileUseCase: ListManyProfrileUseCase) { }
