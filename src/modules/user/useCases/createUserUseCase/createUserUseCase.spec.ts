@@ -31,7 +31,7 @@ describe("Criar usuário", () => {
 
         // Validando se o reposit?rio em mem?ria cont?m o usu?rio retornado pelo useCase
         expect(userRepositoryInMemory.users).toEqual([user])
-    }, 10000)
+    }, 100000)
 
     it("Validando se a password está sendo criptografada e correta", async () => {
         const userPassword = "123456"

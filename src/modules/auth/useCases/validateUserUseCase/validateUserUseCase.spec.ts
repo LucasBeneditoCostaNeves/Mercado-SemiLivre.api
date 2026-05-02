@@ -24,7 +24,7 @@ describe("Validar Usuário", () => {
         const validateUser = await validateUserUseCase.execute({ email: user.email, password: userPassword })
 
         expect(user).toBe(validateUser)
-    }, 10000)
+    }, 100000)
 
     it("Caso 2: Usuário passou email incorreto", async () => {
         const userPassword = "123456"

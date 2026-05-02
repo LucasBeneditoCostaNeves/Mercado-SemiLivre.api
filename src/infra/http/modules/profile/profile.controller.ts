@@ -1,31 +1,22 @@
 import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateProfileUseCase } from "src/modules/profile/useCases/createProfileUseCase/createProfileUseCase"
 import { ProfileViewModel } from "./viewModel/profileViewModel"
-import { CreateUserBody } from "./dtos/createProfileBody"
 import { Public } from "../auth/decorators/isPublic"
 import { ListManyProfrileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
-
+import { ZodValidationPipe } from "nestjs-zod"
+import { CreateProfileBodyDto } from "./dtos/profile.dto"
 
 @Controller('profile')
-@UsePipes(
-    new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        transform: true,
-    }),
-)
+@UsePipes(ZodValidationPipe)
 export class ProfileController {
 
     constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfrileUseCase: ListManyProfrileUseCase) { }
 
     @Post()
     @Public()
-    async createPost(@Body() body: CreateUserBody) {
-
-        const { name } = body
-
+    async createPost(@Body() body: CreateProfileBodyDto) {
         const profile = await this.CreateProfileUseCase.execute({
-            name
+            ...body
         })
 
         return ProfileViewModel.toHttp(profile)
