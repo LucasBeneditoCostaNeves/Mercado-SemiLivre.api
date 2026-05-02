@@ -1,27 +1,19 @@
 import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateCategoryProductUseCase } from "src/modules/categoryProducts/useCases/createCategoryProductUseCase/createCategoryProductUseCase"
-import { CreateCategoryProductBody } from "./dtos/createCategoryProduct"
 import { categoryProductViewModel } from "./viewModel/CategoryProductViewModel"
 import { ListCategoryProductUseCase } from "src/modules/categoryProducts/useCases/listCategoryProductUseCase/listCategoryProductUseCase"
+import { ZodValidationPipe } from "nestjs-zod"
+import { CreateCategoryProductBodyDto } from "./dtos/categoryProduct.dto"
 
 @Controller('categoryProduct')
-@UsePipes(
-    new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-        transform: true,
-    }),
-)
+@UsePipes(ZodValidationPipe)
 export class CategoryProductController {
     constructor(private CreateCategoryProductUseCase: CreateCategoryProductUseCase, private ListCategoryProductUseCase: ListCategoryProductUseCase) { }
 
     @Post()
-    async createPost(@Body() body: CreateCategoryProductBody) {
-        const { name, status } = body
-
+    async createPost(@Body() body: CreateCategoryProductBodyDto) {
         const categoryProduct = this.CreateCategoryProductUseCase.execute({
-            name,
-            status
+            ...body
         })
 
         return categoryProductViewModel.toHttp(categoryProduct)
