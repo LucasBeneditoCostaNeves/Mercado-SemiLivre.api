@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/c
 import { CreateProfileUseCase } from "src/modules/profile/useCases/createProfileUseCase/createProfileUseCase"
 import { ProfileViewModel } from "./viewModel/profileViewModel"
 import { Public } from "../auth/decorators/isPublic"
-import { ListManyProfrileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
+import { ListManyProfileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
 import { ZodValidationPipe } from "nestjs-zod"
 import { CreateProfileBodyDto } from "./dtos/profile.dto"
 
@@ -10,7 +10,7 @@ import { CreateProfileBodyDto } from "./dtos/profile.dto"
 @UsePipes(ZodValidationPipe)
 export class ProfileController {
 
-    constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfrileUseCase: ListManyProfrileUseCase) { }
+    constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfileUseCase: ListManyProfileUseCase) { }
 
     @Post()
     @Public()
@@ -24,7 +24,7 @@ export class ProfileController {
 
     @Get()
     async listManyProfiles() {
-        const profiles = await this.ListManyProfrileUseCase.execute({})
+        const profiles = await this.ListManyProfileUseCase.execute({})
 
         return profiles
     }
