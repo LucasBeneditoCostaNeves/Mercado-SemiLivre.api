@@ -1,7 +1,7 @@
 model CategoryProducts {
   id        String    @id @default(uuid())
   name      String
-  status    Boolean
+  status    Boolean   @default(true)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   Product   Product[]
@@ -10,11 +10,25 @@ model CategoryProducts {
 model Product {
   id                  String           @id @default(uuid())
   name                String
-  status              Boolean
+  status              Boolean          @default(true)
   category_product_id String
   categoryProducts    CategoryProducts @relation(fields: [category_product_id], references: [id])
   seller_user_id      String
   user                User             @relation(fields: [seller_user_id], references: [id])
+  ProductVariation    ProductVariation[]
   createdAt           DateTime         @default(now())
   updatedAt           DateTime         @default(now())
+}
+
+model ProductVariation {
+  id          String   @id @default(uuid())
+  name        String
+  price       Decimal
+  quantity    Int
+  description String
+  product_id  String
+  product     Product  @relation(fields: [product_id], references: [id])
+  status      Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
