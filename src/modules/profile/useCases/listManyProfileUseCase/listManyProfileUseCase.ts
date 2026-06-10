@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common"
 import { ProfileRepository } from "../../repositories/ProfileRepository"
 
 @Injectable()
-export class ListManyProfrileUseCase {
+export class ListManyProfileUseCase {
     constructor(private profileRepository: ProfileRepository) { }
 
     async execute({ }) {

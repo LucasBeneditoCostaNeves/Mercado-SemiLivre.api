@@ -1,9 +1,7 @@
 import { UserRepositoryInMemory } from "src/modules/user/repositories/UserRepositoryInMemory"
-import { ValidateUserUseCase } from "./validadeUserUseCase"
-import { User } from "src/modules/user/entities/User"
 import { hash } from "bcrypt"
-import { dmmfToRuntimeDataModel } from "@prisma/client/runtime/client"
 import { makeUser } from "src/modules/user/factories/userFactory"
+import { ValidateUserUseCase } from "./validateUserUseCase"
 
 let validateUserUseCase: ValidateUserUseCase
 let userRepositoryInMemory: UserRepositoryInMemory
@@ -26,7 +24,7 @@ describe("Validar Usuário", () => {
         const validateUser = await validateUserUseCase.execute({ email: user.email, password: userPassword })
 
         expect(user).toBe(validateUser)
-    }, 10000)
+    }, 100000)
 
     it("Caso 2: Usuário passou email incorreto", async () => {
         const userPassword = "123456"

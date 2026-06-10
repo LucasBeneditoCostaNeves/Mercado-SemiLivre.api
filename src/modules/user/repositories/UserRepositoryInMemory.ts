@@ -1,6 +1,13 @@
 import { User } from "../entities/User"
 import { UserRepository } from "./UserRepository"
 
+export interface IUserUpdateDTO {
+    id: string
+    name?: string
+    email?: string
+    status?: boolean
+}
+
 export class UserRepositoryInMemory implements UserRepository {
     public users: User[] = []
 
@@ -22,7 +29,19 @@ export class UserRepositoryInMemory implements UserRepository {
         return this.users
     }
 
-    async update() {
+    async update(datatUser: IUserUpdateDTO) {
+        const userSelected = this.users.find((user) => user.id === datatUser.id)
 
+        if (!userSelected) {
+            throw new Error("User not found")
+        }
+
+        userSelected.name = datatUser.name || userSelected.name
+        userSelected.email = datatUser.email || userSelected.email
+        userSelected.status = datatUser.status || userSelected.status
+    }
+
+    async exisByEmail(email: string): Promise<boolean> {
+        return this.users.some((user) => user.email === email)
     }
 }
