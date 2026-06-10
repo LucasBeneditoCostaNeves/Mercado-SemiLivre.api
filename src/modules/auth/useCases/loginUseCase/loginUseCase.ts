@@ -12,7 +12,6 @@ export class LoginUseCase {
     constructor(private jwtService: JwtService) { }
 
     async execute({ user }: LoginRequest) {
-        console.log(user)
         const payload: UserPaylaod = {
             sub: user.id,
             name: user.name,

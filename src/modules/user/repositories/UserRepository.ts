@@ -24,4 +24,5 @@ export abstract class UserRepository {
     abstract findByEmail(email: string): Promise<User | null>
     abstract findMany(): Promise<IUserDTO[]>
     abstract update(user: IUserUpdateDTO): Promise<void>
+    abstract exisByEmail(email: string): Promise<boolean>
 }

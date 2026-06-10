@@ -1,24 +1,22 @@
-import { Body, Controller, Get, Post } from "@nestjs/common"
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from "@nestjs/common"
 import { CreateProfileUseCase } from "src/modules/profile/useCases/createProfileUseCase/createProfileUseCase"
 import { ProfileViewModel } from "./viewModel/profileViewModel"
-import { CreateUserBody } from "./dtos/createProfileBody"
 import { Public } from "../auth/decorators/isPublic"
-import { ListManyProfrileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
-
+import { ListManyProfileUseCase } from "src/modules/profile/useCases/listManyProfileUseCase/listManyProfileUseCase"
+import { ZodValidationPipe } from "nestjs-zod"
+import { CreateProfileBodyDto } from "./dtos/profile.dto"
 
 @Controller('profile')
+@UsePipes(ZodValidationPipe)
 export class ProfileController {
 
-    constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfrileUseCase: ListManyProfrileUseCase) { }
+    constructor(private CreateProfileUseCase: CreateProfileUseCase, private ListManyProfileUseCase: ListManyProfileUseCase) { }
 
     @Post()
     @Public()
-    async createPost(@Body() body: CreateUserBody) {
-
-        const { name } = body
-
+    async createPost(@Body() body: CreateProfileBodyDto) {
         const profile = await this.CreateProfileUseCase.execute({
-            name
+            ...body
         })
 
         return ProfileViewModel.toHttp(profile)
@@ -26,7 +24,7 @@ export class ProfileController {
 
     @Get()
     async listManyProfiles() {
-        const profiles = await this.ListManyProfrileUseCase.execute({})
+        const profiles = await this.ListManyProfileUseCase.execute({})
 
         return profiles
     }
