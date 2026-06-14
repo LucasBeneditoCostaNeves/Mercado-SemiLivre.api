@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common"
-import { ProductVariationRepository } from "src/modules/productVariation/repositories/ProductVariationRepository"
+import { ProductVariationDTO, ProductVariationRepository } from "src/modules/productVariation/repositories/ProductVariationRepository"
 import { ProductVariation } from "src/modules/productVariation/entities/ProductVariation"
 import { PrismaProductVariationMapper } from "../mappers/PrismaProductVariation"
 import { PrismaService } from "../prisma.service"
+
 
 @Injectable()
 export class PrismaProductVariationRepository implements ProductVariationRepository {
@@ -14,5 +15,10 @@ export class PrismaProductVariationRepository implements ProductVariationReposit
         await this.prisma.productVariation.create({
             data: raw
         })
+    }
+
+    async findMany(): Promise<ProductVariationDTO[]> {
+        const profiles = await this.prisma.productVariation.findMany()
+        return profiles.map((p) => ({ ...p, price: Number(p.price) }))
     }
 }

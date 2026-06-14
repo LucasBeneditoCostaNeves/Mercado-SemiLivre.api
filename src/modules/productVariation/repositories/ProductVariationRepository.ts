@@ -1,12 +1,13 @@
 import { ProductVariation } from "../entities/ProductVariation"
 
-export interface IUserDTO {
+export interface ProductVariationDTO {
     id: string
     name: string
-    email: string
-    password: string
+    description: string
+    price: number
+    quantity: number
     status: boolean
-    profileId: string
+    product_id: string
     createdAt: Date
     updatedAt: Date
 }
@@ -21,8 +22,7 @@ export interface IUserUpdateDTO {
 
 export abstract class ProductVariationRepository {
     abstract create(productVariation: ProductVariation): Promise<void>
-    // abstract findByEmail(email: string): Promise<User | null>
-    // abstract findMany(): Promise<IUserDTO[]>
+    abstract findMany(): Promise<ProductVariationDTO[]>
     // abstract update(user: IUserUpdateDTO): Promise<void>
     // abstract exisByEmail(email: string): Promise<boolean>
 }

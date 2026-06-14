@@ -3,6 +3,7 @@ import { ZodValidationPipe } from "nestjs-zod"
 import { createProductVariationUseCase } from "src/modules/productVariation/useCases/createProductVariationUseCase/createProductVariationUseCase"
 import { createProductVariationBodyDto } from "./dtos/productVariation.dto"
 import { productVariationViewModel } from "./viewModel/productVariationViewModel"
+import { listProductVariationUseCase } from "src/modules/productVariation/useCases/listProductVariationUseCase/listProductVariationUseCase"
 
 
 
@@ -10,11 +11,12 @@ import { productVariationViewModel } from "./viewModel/productVariationViewModel
 @UsePipes(ZodValidationPipe)
 export class ProductVariationController {
 
-    constructor(private createProductVariationUseCase: createProductVariationUseCase) { }
+    constructor(private createProductVariationUseCase: createProductVariationUseCase, private listProductVariationUseCase: listProductVariationUseCase) { }
 
     @Get()
     async list() {
-        return []
+        const productVariations = await this.listProductVariationUseCase.execute()
+        return productVariations
     }
 
     @Post()
