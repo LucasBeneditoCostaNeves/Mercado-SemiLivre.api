@@ -1,0 +1,18 @@
+import { Injectable } from "@nestjs/common"
+import { ProductVariationRepository } from "src/modules/productVariation/repositories/ProductVariationRepository"
+import { ProductVariation } from "src/modules/productVariation/entities/ProductVariation"
+import { PrismaProductVariationMapper } from "../mappers/PrismaProductVariation"
+import { PrismaService } from "../prisma.service"
+
+@Injectable()
+export class PrismaProductVariationRepository implements ProductVariationRepository {
+    constructor(private prisma: PrismaService) { }
+
+    async create(productVariation: ProductVariation): Promise<void> {
+        const raw = PrismaProductVariationMapper.toPrisma(productVariation)
+
+        await this.prisma.productVariation.create({
+            data: raw
+        })
+    }
+}

@@ -8,6 +8,8 @@ import { CategoryProductRepository } from "src/modules/categoryProducts/reposito
 import { PrismaCategoryProductRepository } from "./prisma/repositories/PrismaCategoryProductRepository"
 import { ProductRepository } from "src/modules/product/repositories/ProductRepository"
 import { PrismaProductRepository } from "./prisma/repositories/PrismaProductRepository"
+import { ProductVariationRepository } from "src/modules/productVariation/repositories/ProductVariationRepository"
+import { PrismaProductVariationRepository } from "./prisma/repositories/PrismaProductVariationRepository"
 
 @Module({
     providers: [
@@ -27,10 +29,14 @@ import { PrismaProductRepository } from "./prisma/repositories/PrismaProductRepo
         {
             provide: ProductRepository,
             useClass: PrismaProductRepository
+        },
+        {
+            provide: ProductVariationRepository,
+            useClass: PrismaProductVariationRepository
         }
     ],
 
-    exports: [UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository]
+    exports: [UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository, ProductVariationRepository]
 })
 
 export class DatabaseModule { }
