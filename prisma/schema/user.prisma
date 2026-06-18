@@ -5,12 +5,13 @@ model Profile {
   updatedAt DateTime @default(now())
   User      User[]
 
-  @@map("profiles")
+  @@map("Profiles")
 }
 
 model User {
   id        String    @id @default(uuid())
   name      String
+  lastName  String
   email     String    @unique
   password  String
   status    Boolean
