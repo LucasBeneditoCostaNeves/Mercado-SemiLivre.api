@@ -14,7 +14,7 @@ model User {
   email     String    @unique
   password  String
   status    Boolean
-  profile   Profile   @relation(fields: [profileId], references: [id])
+  profile   Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
   profileId String
   Product   Product[]
   createdAt DateTime  @default(now())

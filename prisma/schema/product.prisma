@@ -12,9 +12,9 @@ model Product {
   name                String
   status              Boolean          @default(true)
   category_product_id String
-  categoryProducts    CategoryProducts @relation(fields: [category_product_id], references: [id])
+  categoryProducts    CategoryProducts @relation(fields: [category_product_id], references: [id], onDelete: Cascade)
   seller_user_id      String
-  user                User             @relation(fields: [seller_user_id], references: [id])
+  user                User             @relation(fields: [seller_user_id], references: [id], onDelete: Cascade)
   ProductVariation    ProductVariation[]
   createdAt           DateTime         @default(now())
   updatedAt           DateTime         @default(now())
@@ -27,7 +27,7 @@ model ProductVariation {
   quantity    Int
   description String
   product_id  String
-  product     Product  @relation(fields: [product_id], references: [id])
+  product     Product  @relation(fields: [product_id], references: [id], onDelete: Cascade)
   status      Boolean @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
