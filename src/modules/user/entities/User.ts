@@ -3,6 +3,7 @@ import { Replace } from "../../../utils/replace"
 
 interface UserSchema {
     name: string,
+    lastName: string,
     email: string,
     password: string,
     status: boolean,
@@ -39,6 +40,14 @@ export class User {
 
     set name(name: string) {
         this.props.name = name
+    }
+
+    get lastName(): string {
+        return this.props.lastName
+    }
+
+    set lastName(lastName: string) {
+        this.props.lastName = lastName
     }
 
     get email(): string {

@@ -7,6 +7,7 @@ import { EmailAlreadyInUseError } from "src/domain/errors/user/EmailAlreadyInUse
 interface CreatedUserRequest {
     email: string
     name: string
+    lastName: string
     password: string,
     status: boolean,
     profileId: string
@@ -16,7 +17,7 @@ interface CreatedUserRequest {
 export class CreateUserUseCase {
     constructor(private userRepository: UserRepository) { }
 
-    async execute({ email, name, password, status, profileId }: CreatedUserRequest) {
+    async execute({ email, name, lastName, password, status, profileId }: CreatedUserRequest) {
 
         const existsByEmail: boolean = await this.userRepository.exisByEmail(email)
 
@@ -27,6 +28,7 @@ export class CreateUserUseCase {
         const user = new User({
             email,
             name,
+            lastName,
             profileId,
             password: await hash(password, 10),
             status

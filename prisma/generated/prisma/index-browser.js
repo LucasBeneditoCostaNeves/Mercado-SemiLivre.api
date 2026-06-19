@@ -160,10 +160,36 @@ exports.Prisma.ProfileScalarFieldEnum = {
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  lastName: 'lastName',
   email: 'email',
   password: 'password',
   status: 'status',
   profileId: 'profileId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PersonalDataScalarFieldEnum = {
+  id: 'id',
+  cpf: 'cpf',
+  birthDate: 'birthDate',
+  phone: 'phone',
+  gender: 'gender',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AddressScalarFieldEnum = {
+  id: 'id',
+  cep: 'cep',
+  state: 'state',
+  city: 'city',
+  street: 'street',
+  number: 'number',
+  complement: 'complement',
+  isDefault: 'isDefault',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -178,13 +204,25 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.Gender = exports.$Enums.Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER',
+  PREFER_NOT_TO_SAY: 'PREFER_NOT_TO_SAY'
+};
 
 exports.Prisma.ModelName = {
   CategoryProducts: 'CategoryProducts',
   Product: 'Product',
   ProductVariation: 'ProductVariation',
   Profile: 'Profile',
-  User: 'User'
+  User: 'User',
+  PersonalData: 'PersonalData',
+  Address: 'Address'
 };
 
 /**

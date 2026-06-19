@@ -8,9 +8,11 @@ import { ProfileModule } from './infra/http/modules/profile/profile.module'
 import { CategoryProductModule } from './infra/http/modules/categoryProduct/categoryProduct.module'
 import { ProductModule } from './infra/http/modules/product/product.module'
 import { ProductVariationModule } from './infra/http/modules/productVariation/productVariation.module'
+import { PersonalDataModule } from './infra/http/modules/personalData/personalData.module'
+import { AddressModule } from './infra/http/modules/address/address.module'
 
 @Module({
-  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule],
   controllers: [],
   providers: [
     {
