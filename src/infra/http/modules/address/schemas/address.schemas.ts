@@ -34,3 +34,9 @@ export const addressParamsSchema = z
         id: z.string().uuid(),
     })
     .strict()
+
+export const addressIdParamSchema = z
+    .object({
+        id: z.string().uuid(),
+    })
+    .strict()

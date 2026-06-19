@@ -1,21 +1,17 @@
-import { Body, Controller, Get, Param, Post, Put, UseGuards, UsePipes } from '@nestjs/common'
+import { Body, Controller, Get, Post, Put, UsePipes } from '@nestjs/common'
 import { ZodValidationPipe } from 'nestjs-zod'
-import { AdminProfileGuard } from '../auth/guards/adminProfile.guard'
+import type { AuthenticatedUser } from 'src/infra/http/modules/auth/models/authRequestModel'
 import { Gender } from 'src/modules/personalData/entities/PersonalData'
 import { CreatePersonalDataUseCase } from 'src/modules/personalData/useCases/createPersonalDataUseCase/createPersonalDataUseCase'
 import { GetPersonalDataUseCase } from 'src/modules/personalData/useCases/getPersonalDataUseCase/getPersonalDataUseCase'
 import { UpdatePersonalDataUseCase } from 'src/modules/personalData/useCases/updatePersonalDataUseCase/updatePersonalDataUseCase'
+import { CurrentUser } from '../auth/decorators/currentUser.decorator'
+import { CreatePersonalDataBodyDto, UpdatePersonalDataBodyDto } from './dtos/personalData.dto'
 import { PersonalDataViewModel } from './viewModel/PersonalDataViewModel'
-import {
-    CreatePersonalDataBodyDto,
-    PersonalDataParamsDto,
-    UpdatePersonalDataBodyDto,
-} from './dtos/personalData.dto'
 
-@Controller('users/:userId/personal-data')
-@UseGuards(AdminProfileGuard)
+@Controller('me/personal-data')
 @UsePipes(ZodValidationPipe)
-export class PersonalDataController {
+export class MePersonalDataController {
     constructor(
         private createPersonalDataUseCase: CreatePersonalDataUseCase,
         private getPersonalDataUseCase: GetPersonalDataUseCase,
@@ -23,9 +19,9 @@ export class PersonalDataController {
     ) {}
 
     @Post()
-    async create(@Param() params: PersonalDataParamsDto, @Body() body: CreatePersonalDataBodyDto) {
+    async create(@CurrentUser() user: AuthenticatedUser, @Body() body: CreatePersonalDataBodyDto) {
         const personalData = await this.createPersonalDataUseCase.execute({
-            userId: params.userId,
+            userId: user.id,
             cpf: body.cpf,
             birthDate: body.birthDate,
             phone: body.phone,
@@ -35,15 +31,15 @@ export class PersonalDataController {
     }
 
     @Get()
-    async get(@Param() params: PersonalDataParamsDto) {
-        const personalData = await this.getPersonalDataUseCase.execute({ userId: params.userId })
+    async get(@CurrentUser() user: AuthenticatedUser) {
+        const personalData = await this.getPersonalDataUseCase.execute({ userId: user.id })
         return PersonalDataViewModel.toHTTP(personalData)
     }
 
     @Put()
-    async update(@Param() params: PersonalDataParamsDto, @Body() body: UpdatePersonalDataBodyDto) {
+    async update(@CurrentUser() user: AuthenticatedUser, @Body() body: UpdatePersonalDataBodyDto) {
         await this.updatePersonalDataUseCase.execute({
-            userId: params.userId,
+            userId: user.id,
             birthDate: body.birthDate,
             phone: body.phone,
             gender: body.gender as Gender | undefined,
