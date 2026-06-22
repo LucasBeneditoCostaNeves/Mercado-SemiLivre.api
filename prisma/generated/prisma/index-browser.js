@@ -128,24 +128,53 @@ exports.Prisma.CategoryProductsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ProductScalarFieldEnum = {
+exports.Prisma.BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
   status: 'status',
   category_product_id: 'category_product_id',
   seller_user_id: 'seller_user_id',
+  brand_id: 'brand_id',
+  thumbnail: 'thumbnail',
+  warrantyInformation: 'warrantyInformation',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ProductVariationScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  title: 'title',
+  discountPercentage: 'discountPercentage',
   price: 'price',
   quantity: 'quantity',
   description: 'description',
   product_id: 'product_id',
   status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProductVariationImagesScalarFieldEnum = {
+  id: 'id',
+  link: 'link',
+  product_variation_id: 'product_variation_id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ReviewProductScalarFieldEnum = {
+  id: 'id',
+  rating: 'rating',
+  comment: 'comment',
+  product_variation_id: 'product_variation_id',
+  reviewer_id: 'reviewer_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -217,8 +246,11 @@ exports.Gender = exports.$Enums.Gender = {
 
 exports.Prisma.ModelName = {
   CategoryProducts: 'CategoryProducts',
+  Brand: 'Brand',
   Product: 'Product',
   ProductVariation: 'ProductVariation',
+  productVariationImages: 'productVariationImages',
+  ReviewProduct: 'ReviewProduct',
   Profile: 'Profile',
   User: 'User',
   PersonalData: 'PersonalData',

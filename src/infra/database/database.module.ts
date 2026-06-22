@@ -48,7 +48,7 @@ import { PrismaAddressRepository } from "./prisma/repositories/PrismaAddressRepo
         }
     ],
 
-    exports: [UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository, ProductVariationRepository, PersonalDataRepository, AddressRepository]
+    exports: [PrismaService, UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository, ProductVariationRepository, PersonalDataRepository, AddressRepository]
 })
 
 export class DatabaseModule { }
