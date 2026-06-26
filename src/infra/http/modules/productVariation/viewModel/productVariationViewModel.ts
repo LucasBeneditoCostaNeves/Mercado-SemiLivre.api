@@ -2,10 +2,10 @@ import { ProductVariation } from "src/modules/productVariation/entities/ProductV
 
 export class productVariationViewModel {
     static toHttp(productVariation: ProductVariation) {
-        const { id, name, description, price, status, product_id, createdAt, updatedAt } = productVariation
+        const { id, title, description, price, status, product_id, createdAt, updatedAt } = productVariation
         return {
             id,
-            name,
+            title,
             description,
             price,
             status,

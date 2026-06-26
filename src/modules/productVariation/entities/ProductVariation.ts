@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto"
 import { Replace } from "src/utils/replace"
 
 interface ProductVariationSchema {
-    name: string,
+    title: string,
     price: number,
     quantity: number,
     description: string,
@@ -30,12 +30,12 @@ export class ProductVariation {
         return this._id
     }
 
-    get name(): string {
-        return this.props.name
+    get title(): string {
+        return this.props.title
     }
 
-    set name(name: string) {
-        this.props.name = name
+    set title(title: string) {
+        this.props.title = title
     }
 
     get price(): number {

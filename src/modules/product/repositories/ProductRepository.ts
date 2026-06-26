@@ -2,7 +2,7 @@ import { Product } from "../entities/Product"
 
 export interface IProductDTO {
     id: string
-    name: string
+    title: string
     status: boolean
     category_product_id: string
     seller_user_id: string
@@ -12,7 +12,7 @@ export interface IProductDTO {
 
 export interface IProductUpdateDTO {
     id: string,
-    name?: string,
+    title?: string,
     status?: boolean
 }
 
