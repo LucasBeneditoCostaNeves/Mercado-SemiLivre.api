@@ -77,5 +77,5 @@
 - [x] 11.7 Unit tests for `CreateAddressUseCase`
 - [x] 11.8 Unit tests for `SetDefaultAddressUseCase` (sets new default, clears previous default)
 - [x] 11.9 Unit tests for `DeleteAddressUseCase` (happy path, forbidden, not found)
-- [ ] 11.10 E2E tests for `POST /users/:userId/personal-data` (201, 409 duplicate, 422 invalid CPF)
-- [ ] 11.11 E2E tests for `POST /users/:userId/addresses` and `PATCH /users/:userId/addresses/:id/default`
+- [x] 11.10 E2E tests for `POST /users/:userId/personal-data` (201, 409 duplicate, 422 invalid CPF)
+- [x] 11.11 E2E tests for `POST /users/:userId/addresses` and `PATCH /users/:userId/addresses/:id/default`
