@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { CategoryProducts } from '@prisma/client'
-import { CatalogRepository, RawCatalogProduct } from 'src/modules/catalog/repositories/CatalogRepository'
+import { CatalogRepository, RawCatalogProduct, RawCatalogProductDetail } from 'src/modules/catalog/repositories/CatalogRepository'
 import { PrismaService } from '../prisma.service'
 
 @Injectable()
@@ -22,5 +22,23 @@ export class PrismaCatalogRepository implements CatalogRepository {
 
   async findDepartments(): Promise<CategoryProducts[]> {
     return this.prisma.categoryProducts.findMany({ where: { status: true } })
+  }
+
+  async findProductById(id: string): Promise<RawCatalogProductDetail | null> {
+    return this.prisma.product.findFirst({
+      where: { id, status: true },
+      include: {
+        brand: true,
+        categoryProducts: true,
+        user: { select: { name: true } },
+        ProductVariation: {
+          where: { status: true },
+          include: {
+            ReviewProduct: true,
+            productVariationImages: true,
+          },
+        },
+      },
+    })
   }
 }

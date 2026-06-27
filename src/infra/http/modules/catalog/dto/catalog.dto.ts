@@ -1,4 +1,6 @@
 import { createZodDto } from 'nestjs-zod'
-import { listCatalogProductsQuerySchema } from '../schemas/catalog.schemas'
+import { getProductDetailParamsSchema, listCatalogProductsQuerySchema } from '../schemas/catalog.schemas'
 
 export class ListCatalogProductsQueryDto extends createZodDto(listCatalogProductsQuerySchema) {}
+
+export class GetProductDetailParamsDto extends createZodDto(getProductDetailParamsSchema) {}

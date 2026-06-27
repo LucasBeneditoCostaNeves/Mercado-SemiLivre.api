@@ -4,6 +4,7 @@ import { PrismaCatalogRepository } from 'src/infra/database/prisma/repositories/
 import { CatalogRepository } from 'src/modules/catalog/repositories/CatalogRepository'
 import { ListCatalogDepartmentsUseCase } from 'src/modules/catalog/useCases/listCatalogDepartments/ListCatalogDepartmentsUseCase'
 import { ListCatalogProductsUseCase } from 'src/modules/catalog/useCases/listCatalogProducts/ListCatalogProductsUseCase'
+import { GetProductDetailUseCase } from 'src/modules/catalog/useCases/getProductDetail/GetProductDetailUseCase'
 import { CatalogController } from './catalog.controller'
 
 @Module({
@@ -12,6 +13,7 @@ import { CatalogController } from './catalog.controller'
   providers: [
     ListCatalogProductsUseCase,
     ListCatalogDepartmentsUseCase,
+    GetProductDetailUseCase,
     {
       provide: CatalogRepository,
       useClass: PrismaCatalogRepository,
