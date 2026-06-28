@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const createProductBodySchema = z
     .object({
-        name: z.string().trim().min(1).max(255),
+        title: z.string().trim().min(1).max(255),
         category_product_id: z.uuid(),
         seller_user_id: z.uuid(),
         status: z.boolean(),
@@ -11,7 +11,7 @@ export const createProductBodySchema = z
 
 export const updateProductBodySchema = z
     .object({
-        name: z.string().trim().min(1).max(255).optional(),
+        title: z.string().trim().min(1).max(255).optional(),
         status: z.boolean().optional(),
     })
     .strict()

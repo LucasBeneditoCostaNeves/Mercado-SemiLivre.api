@@ -2,7 +2,7 @@ import { randomUUID } from "crypto"
 import { Replace } from "../../../utils/replace"
 
 interface IProductSchema {
-    name: string
+    title: string
     seller_user_id: string
     category_product_id: string
     status: boolean
@@ -13,11 +13,6 @@ interface IProductSchema {
 export class Product {
     private props: IProductSchema
     private _id: string
-
-    /*  
-        Usando Replace aqui pq caso for usado user para criar um usuário novo não vai ser passado o 
-        createdAt e o updatedAt, então estamos falando que caso não seja passado será um new Date()
-    */
 
     constructor(props: Replace<IProductSchema, { createdAt?: Date, updatedAt?: Date }>, id?: string) {
         this.props = {
@@ -32,12 +27,12 @@ export class Product {
         return this._id
     }
 
-    get name(): string {
-        return this.props.name
+    get title(): string {
+        return this.props.title
     }
 
-    set name(name: string) {
-        this.props.name = name
+    set title(title: string) {
+        this.props.title = title
     }
 
     get status(): boolean {

@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const createProductVariationBodyShema = z
     .object({
-        name: z.string().trim().min(5).max(255),
+        title: z.string().trim().min(5).max(255),
         description: z.string().trim().min(10).max(1000),
         price: z.number().nonnegative(),
         status: z.boolean(),

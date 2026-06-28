@@ -2,9 +2,8 @@ import { Injectable } from "@nestjs/common"
 import { ProductVariationRepository } from "../../repositories/ProductVariationRepository"
 import { ProductVariation } from "../../entities/ProductVariation"
 
-
 interface CreatedProductVariationRequest {
-    name: string
+    title: string
     price: number
     quantity: number
     description: string
@@ -12,15 +11,14 @@ interface CreatedProductVariationRequest {
     status: boolean,
 }
 
-
 @Injectable()
 export class createProductVariationUseCase {
     constructor(private productVariationRepository: ProductVariationRepository) { }
 
-    async execute({ name, price, quantity, description, product_id, status }: CreatedProductVariationRequest) {
+    async execute({ title, price, quantity, description, product_id, status }: CreatedProductVariationRequest) {
 
-        const user = new ProductVariation({
-            name,
+        const productVariation = new ProductVariation({
+            title,
             price,
             quantity,
             status,
@@ -28,8 +26,8 @@ export class createProductVariationUseCase {
             product_id,
         })
 
-        await this.productVariationRepository.create(user)
+        await this.productVariationRepository.create(productVariation)
 
-        return user
+        return productVariation
     }
 }

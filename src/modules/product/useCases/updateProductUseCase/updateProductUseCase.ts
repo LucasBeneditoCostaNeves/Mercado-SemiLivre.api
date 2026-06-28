@@ -12,7 +12,7 @@ export class UpdateProductUseCase {
     constructor(private ProductRepository: ProductRepository) { }
 
     async execute({ dataProduct }: IProductUpdateRequest) {
-        const { id, name, status } = dataProduct
+        const { id, title, status } = dataProduct
 
         const product = await this.ProductRepository.findById(id)
 
@@ -20,9 +20,9 @@ export class UpdateProductUseCase {
             throw new ProductNotFoundError()
         }
 
-        const dataToUpdate: Partial<{ name: string; status: boolean }> = {}
+        const dataToUpdate: Partial<{ title: string; status: boolean }> = {}
 
-        if (name !== undefined) dataToUpdate.name = name.trim()
+        if (title !== undefined) dataToUpdate.title = title.trim()
         if (status !== undefined) dataToUpdate.status = status
 
         if (Object.keys(dataToUpdate).length === 0) {
