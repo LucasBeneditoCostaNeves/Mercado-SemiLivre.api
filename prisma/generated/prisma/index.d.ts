@@ -4072,6 +4072,7 @@ export namespace Prisma {
     brand_id: string | null
     thumbnail: string | null
     warrantyInformation: string | null
+    aiSummary: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4085,6 +4086,7 @@ export namespace Prisma {
     brand_id: string | null
     thumbnail: string | null
     warrantyInformation: string | null
+    aiSummary: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4098,6 +4100,7 @@ export namespace Prisma {
     brand_id: number
     thumbnail: number
     warrantyInformation: number
+    aiSummary: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4113,6 +4116,7 @@ export namespace Prisma {
     brand_id?: true
     thumbnail?: true
     warrantyInformation?: true
+    aiSummary?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4126,6 +4130,7 @@ export namespace Prisma {
     brand_id?: true
     thumbnail?: true
     warrantyInformation?: true
+    aiSummary?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4139,6 +4144,7 @@ export namespace Prisma {
     brand_id?: true
     thumbnail?: true
     warrantyInformation?: true
+    aiSummary?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4225,6 +4231,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary: string | null
     createdAt: Date
     updatedAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -4255,6 +4262,7 @@ export namespace Prisma {
     brand_id?: boolean
     thumbnail?: boolean
     warrantyInformation?: boolean
+    aiSummary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     categoryProducts?: boolean | CategoryProductsDefaultArgs<ExtArgs>
@@ -4273,6 +4281,7 @@ export namespace Prisma {
     brand_id?: boolean
     thumbnail?: boolean
     warrantyInformation?: boolean
+    aiSummary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     categoryProducts?: boolean | CategoryProductsDefaultArgs<ExtArgs>
@@ -4289,6 +4298,7 @@ export namespace Prisma {
     brand_id?: boolean
     thumbnail?: boolean
     warrantyInformation?: boolean
+    aiSummary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     categoryProducts?: boolean | CategoryProductsDefaultArgs<ExtArgs>
@@ -4305,11 +4315,12 @@ export namespace Prisma {
     brand_id?: boolean
     thumbnail?: boolean
     warrantyInformation?: boolean
+    aiSummary?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "status" | "category_product_id" | "seller_user_id" | "brand_id" | "thumbnail" | "warrantyInformation" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "status" | "category_product_id" | "seller_user_id" | "brand_id" | "thumbnail" | "warrantyInformation" | "aiSummary" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     categoryProducts?: boolean | CategoryProductsDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -4345,6 +4356,7 @@ export namespace Prisma {
       brand_id: string
       thumbnail: string
       warrantyInformation: string
+      aiSummary: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["product"]>
@@ -4782,6 +4794,7 @@ export namespace Prisma {
     readonly brand_id: FieldRef<"Product", 'String'>
     readonly thumbnail: FieldRef<"Product", 'String'>
     readonly warrantyInformation: FieldRef<"Product", 'String'>
+    readonly aiSummary: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
@@ -7542,6 +7555,7 @@ export namespace Prisma {
     id: string | null
     rating: Decimal | null
     comment: string | null
+    country: string | null
     product_variation_id: string | null
     reviewer_id: string | null
     createdAt: Date | null
@@ -7552,6 +7566,7 @@ export namespace Prisma {
     id: string | null
     rating: Decimal | null
     comment: string | null
+    country: string | null
     product_variation_id: string | null
     reviewer_id: string | null
     createdAt: Date | null
@@ -7562,6 +7577,8 @@ export namespace Prisma {
     id: number
     rating: number
     comment: number
+    photos: number
+    country: number
     product_variation_id: number
     reviewer_id: number
     createdAt: number
@@ -7582,6 +7599,7 @@ export namespace Prisma {
     id?: true
     rating?: true
     comment?: true
+    country?: true
     product_variation_id?: true
     reviewer_id?: true
     createdAt?: true
@@ -7592,6 +7610,7 @@ export namespace Prisma {
     id?: true
     rating?: true
     comment?: true
+    country?: true
     product_variation_id?: true
     reviewer_id?: true
     createdAt?: true
@@ -7602,6 +7621,8 @@ export namespace Prisma {
     id?: true
     rating?: true
     comment?: true
+    photos?: true
+    country?: true
     product_variation_id?: true
     reviewer_id?: true
     createdAt?: true
@@ -7699,6 +7720,8 @@ export namespace Prisma {
     id: string
     rating: Decimal
     comment: string
+    photos: string[]
+    country: string | null
     product_variation_id: string
     reviewer_id: string
     createdAt: Date
@@ -7728,6 +7751,8 @@ export namespace Prisma {
     id?: boolean
     rating?: boolean
     comment?: boolean
+    photos?: boolean
+    country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
     createdAt?: boolean
@@ -7740,6 +7765,8 @@ export namespace Prisma {
     id?: boolean
     rating?: boolean
     comment?: boolean
+    photos?: boolean
+    country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
     createdAt?: boolean
@@ -7752,6 +7779,8 @@ export namespace Prisma {
     id?: boolean
     rating?: boolean
     comment?: boolean
+    photos?: boolean
+    country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
     createdAt?: boolean
@@ -7764,13 +7793,15 @@ export namespace Prisma {
     id?: boolean
     rating?: boolean
     comment?: boolean
+    photos?: boolean
+    country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ReviewProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rating" | "comment" | "product_variation_id" | "reviewer_id" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewProduct"]>
+  export type ReviewProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rating" | "comment" | "photos" | "country" | "product_variation_id" | "reviewer_id" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewProduct"]>
   export type ReviewProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7794,6 +7825,8 @@ export namespace Prisma {
       id: string
       rating: Prisma.Decimal
       comment: string
+      photos: string[]
+      country: string | null
       product_variation_id: string
       reviewer_id: string
       createdAt: Date
@@ -8226,6 +8259,8 @@ export namespace Prisma {
     readonly id: FieldRef<"ReviewProduct", 'String'>
     readonly rating: FieldRef<"ReviewProduct", 'Decimal'>
     readonly comment: FieldRef<"ReviewProduct", 'String'>
+    readonly photos: FieldRef<"ReviewProduct", 'String[]'>
+    readonly country: FieldRef<"ReviewProduct", 'String'>
     readonly product_variation_id: FieldRef<"ReviewProduct", 'String'>
     readonly reviewer_id: FieldRef<"ReviewProduct", 'String'>
     readonly createdAt: FieldRef<"ReviewProduct", 'DateTime'>
@@ -13222,6 +13257,7 @@ export namespace Prisma {
     brand_id: 'brand_id',
     thumbnail: 'thumbnail',
     warrantyInformation: 'warrantyInformation',
+    aiSummary: 'aiSummary',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -13260,6 +13296,8 @@ export namespace Prisma {
     id: 'id',
     rating: 'rating',
     comment: 'comment',
+    photos: 'photos',
+    country: 'country',
     product_variation_id: 'product_variation_id',
     reviewer_id: 'reviewer_id',
     createdAt: 'createdAt',
@@ -13565,6 +13603,7 @@ export namespace Prisma {
     brand_id?: StringFilter<"Product"> | string
     thumbnail?: StringFilter<"Product"> | string
     warrantyInformation?: StringFilter<"Product"> | string
+    aiSummary?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     categoryProducts?: XOR<CategoryProductsScalarRelationFilter, CategoryProductsWhereInput>
@@ -13582,6 +13621,7 @@ export namespace Prisma {
     brand_id?: SortOrder
     thumbnail?: SortOrder
     warrantyInformation?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     categoryProducts?: CategoryProductsOrderByWithRelationInput
@@ -13602,6 +13642,7 @@ export namespace Prisma {
     brand_id?: StringFilter<"Product"> | string
     thumbnail?: StringFilter<"Product"> | string
     warrantyInformation?: StringFilter<"Product"> | string
+    aiSummary?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     categoryProducts?: XOR<CategoryProductsScalarRelationFilter, CategoryProductsWhereInput>
@@ -13619,6 +13660,7 @@ export namespace Prisma {
     brand_id?: SortOrder
     thumbnail?: SortOrder
     warrantyInformation?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -13638,6 +13680,7 @@ export namespace Prisma {
     brand_id?: StringWithAggregatesFilter<"Product"> | string
     thumbnail?: StringWithAggregatesFilter<"Product"> | string
     warrantyInformation?: StringWithAggregatesFilter<"Product"> | string
+    aiSummary?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -13792,6 +13835,8 @@ export namespace Prisma {
     id?: StringFilter<"ReviewProduct"> | string
     rating?: DecimalFilter<"ReviewProduct"> | Decimal | DecimalJsLike | number | string
     comment?: StringFilter<"ReviewProduct"> | string
+    photos?: StringNullableListFilter<"ReviewProduct">
+    country?: StringNullableFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringFilter<"ReviewProduct"> | string
     reviewer_id?: StringFilter<"ReviewProduct"> | string
     createdAt?: DateTimeFilter<"ReviewProduct"> | Date | string
@@ -13804,6 +13849,8 @@ export namespace Prisma {
     id?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    photos?: SortOrder
+    country?: SortOrderInput | SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
     createdAt?: SortOrder
@@ -13819,6 +13866,8 @@ export namespace Prisma {
     NOT?: ReviewProductWhereInput | ReviewProductWhereInput[]
     rating?: DecimalFilter<"ReviewProduct"> | Decimal | DecimalJsLike | number | string
     comment?: StringFilter<"ReviewProduct"> | string
+    photos?: StringNullableListFilter<"ReviewProduct">
+    country?: StringNullableFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringFilter<"ReviewProduct"> | string
     reviewer_id?: StringFilter<"ReviewProduct"> | string
     createdAt?: DateTimeFilter<"ReviewProduct"> | Date | string
@@ -13831,6 +13880,8 @@ export namespace Prisma {
     id?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    photos?: SortOrder
+    country?: SortOrderInput | SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
     createdAt?: SortOrder
@@ -13849,6 +13900,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ReviewProduct"> | string
     rating?: DecimalWithAggregatesFilter<"ReviewProduct"> | Decimal | DecimalJsLike | number | string
     comment?: StringWithAggregatesFilter<"ReviewProduct"> | string
+    photos?: StringNullableListFilter<"ReviewProduct">
+    country?: StringNullableWithAggregatesFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringWithAggregatesFilter<"ReviewProduct"> | string
     reviewer_id?: StringWithAggregatesFilter<"ReviewProduct"> | string
     createdAt?: DateTimeWithAggregatesFilter<"ReviewProduct"> | Date | string
@@ -14266,6 +14319,7 @@ export namespace Prisma {
     status?: boolean
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryProducts: CategoryProductsCreateNestedOneWithoutProductInput
@@ -14283,6 +14337,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     ProductVariation?: ProductVariationUncheckedCreateNestedManyWithoutProductInput
@@ -14294,6 +14349,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryProducts?: CategoryProductsUpdateOneRequiredWithoutProductNestedInput
@@ -14311,6 +14367,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ProductVariation?: ProductVariationUncheckedUpdateManyWithoutProductNestedInput
@@ -14325,6 +14382,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14335,6 +14393,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14348,6 +14407,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14509,6 +14569,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productVariation: ProductVariationCreateNestedOneWithoutReviewProductInput
@@ -14519,6 +14581,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     product_variation_id: string
     reviewer_id: string
     createdAt?: Date | string
@@ -14529,6 +14593,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productVariation?: ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput
@@ -14539,6 +14605,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     reviewer_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14549,6 +14617,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     product_variation_id: string
     reviewer_id: string
     createdAt?: Date | string
@@ -14559,6 +14629,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14567,6 +14639,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     reviewer_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15024,6 +15098,21 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type CategoryProductsScalarRelationFilter = {
     is?: CategoryProductsWhereInput
     isNot?: CategoryProductsWhereInput
@@ -15045,6 +15134,11 @@ export namespace Prisma {
     none?: ProductVariationWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type ProductVariationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -15058,6 +15152,7 @@ export namespace Prisma {
     brand_id?: SortOrder
     thumbnail?: SortOrder
     warrantyInformation?: SortOrder
+    aiSummary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15071,6 +15166,7 @@ export namespace Prisma {
     brand_id?: SortOrder
     thumbnail?: SortOrder
     warrantyInformation?: SortOrder
+    aiSummary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15084,8 +15180,27 @@ export namespace Prisma {
     brand_id?: SortOrder
     thumbnail?: SortOrder
     warrantyInformation?: SortOrder
+    aiSummary?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
@@ -15247,10 +15362,20 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type ReviewProductCountOrderByAggregateInput = {
     id?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    photos?: SortOrder
+    country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
     createdAt?: SortOrder
@@ -15265,6 +15390,7 @@ export namespace Prisma {
     id?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
     createdAt?: SortOrder
@@ -15275,6 +15401,7 @@ export namespace Prisma {
     id?: SortOrder
     rating?: SortOrder
     comment?: SortOrder
+    country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
     createdAt?: SortOrder
@@ -15422,26 +15549,6 @@ export namespace Prisma {
     _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type AddressCountOrderByAggregateInput = {
     id?: SortOrder
     cep?: SortOrder
@@ -15482,24 +15589,6 @@ export namespace Prisma {
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ProductCreateNestedManyWithoutCategoryProductsInput = {
@@ -15628,6 +15717,10 @@ export namespace Prisma {
     connectOrCreate?: ProductVariationCreateOrConnectWithoutProductInput | ProductVariationCreateOrConnectWithoutProductInput[]
     createMany?: ProductVariationCreateManyProductInputEnvelope
     connect?: ProductVariationWhereUniqueInput | ProductVariationWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type CategoryProductsUpdateOneRequiredWithoutProductNestedInput = {
@@ -15810,6 +15903,10 @@ export namespace Prisma {
     update?: XOR<XOR<ProductVariationUpdateToOneWithWhereWithoutProductVariationImagesInput, ProductVariationUpdateWithoutProductVariationImagesInput>, ProductVariationUncheckedUpdateWithoutProductVariationImagesInput>
   }
 
+  export type ReviewProductCreatephotosInput = {
+    set: string[]
+  }
+
   export type ProductVariationCreateNestedOneWithoutReviewProductInput = {
     create?: XOR<ProductVariationCreateWithoutReviewProductInput, ProductVariationUncheckedCreateWithoutReviewProductInput>
     connectOrCreate?: ProductVariationCreateOrConnectWithoutReviewProductInput
@@ -15820,6 +15917,11 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutReviewProductInput, UserUncheckedCreateWithoutReviewProductInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewProductInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type ReviewProductUpdatephotosInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput = {
@@ -16076,10 +16178,6 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type UserUpdateOneRequiredWithoutAddressNestedInput = {
     create?: XOR<UserCreateWithoutAddressInput, UserUncheckedCreateWithoutAddressInput>
     connectOrCreate?: UserCreateOrConnectWithoutAddressInput
@@ -16168,6 +16266,48 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -16239,54 +16379,13 @@ export namespace Prisma {
     _max?: NestedEnumGenderFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type ProductCreateWithoutCategoryProductsInput = {
     id?: string
     title: string
     status?: boolean
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutProductInput
@@ -16302,6 +16401,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     ProductVariation?: ProductVariationUncheckedCreateNestedManyWithoutProductInput
@@ -16345,6 +16445,7 @@ export namespace Prisma {
     brand_id?: StringFilter<"Product"> | string
     thumbnail?: StringFilter<"Product"> | string
     warrantyInformation?: StringFilter<"Product"> | string
+    aiSummary?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
   }
@@ -16355,6 +16456,7 @@ export namespace Prisma {
     status?: boolean
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryProducts: CategoryProductsCreateNestedOneWithoutProductInput
@@ -16370,6 +16472,7 @@ export namespace Prisma {
     seller_user_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     ProductVariation?: ProductVariationUncheckedCreateNestedManyWithoutProductInput
@@ -16645,6 +16748,7 @@ export namespace Prisma {
     status?: boolean
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryProducts: CategoryProductsCreateNestedOneWithoutProductInput
@@ -16661,6 +16765,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16674,6 +16779,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutReviewProductInput
@@ -16683,6 +16790,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     reviewer_id: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -16739,6 +16848,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryProducts?: CategoryProductsUpdateOneRequiredWithoutProductNestedInput
@@ -16755,6 +16865,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16782,6 +16893,8 @@ export namespace Prisma {
     id?: StringFilter<"ReviewProduct"> | string
     rating?: DecimalFilter<"ReviewProduct"> | Decimal | DecimalJsLike | number | string
     comment?: StringFilter<"ReviewProduct"> | string
+    photos?: StringNullableListFilter<"ReviewProduct">
+    country?: StringNullableFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringFilter<"ReviewProduct"> | string
     reviewer_id?: StringFilter<"ReviewProduct"> | string
     createdAt?: DateTimeFilter<"ReviewProduct"> | Date | string
@@ -17131,6 +17244,7 @@ export namespace Prisma {
     status?: boolean
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     categoryProducts: CategoryProductsCreateNestedOneWithoutProductInput
@@ -17146,6 +17260,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     ProductVariation?: ProductVariationUncheckedCreateNestedManyWithoutProductInput
@@ -17226,6 +17341,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     productVariation: ProductVariationCreateNestedOneWithoutReviewProductInput
@@ -17235,6 +17352,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     product_variation_id: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17531,6 +17650,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17541,6 +17661,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutProductNestedInput
@@ -17556,6 +17677,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ProductVariation?: ProductVariationUncheckedUpdateManyWithoutProductNestedInput
@@ -17569,6 +17691,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17581,6 +17704,7 @@ export namespace Prisma {
     seller_user_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17591,6 +17715,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryProducts?: CategoryProductsUpdateOneRequiredWithoutProductNestedInput
@@ -17606,6 +17731,7 @@ export namespace Prisma {
     seller_user_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ProductVariation?: ProductVariationUncheckedUpdateManyWithoutProductNestedInput
@@ -17619,6 +17745,7 @@ export namespace Prisma {
     seller_user_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17679,6 +17806,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     reviewer_id: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17695,6 +17824,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewProductNestedInput
@@ -17704,6 +17835,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     reviewer_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17713,6 +17846,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     reviewer_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17799,6 +17934,7 @@ export namespace Prisma {
     brand_id: string
     thumbnail: string
     warrantyInformation: string
+    aiSummary?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -17820,6 +17956,8 @@ export namespace Prisma {
     id?: string
     rating: Decimal | DecimalJsLike | number | string
     comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
     product_variation_id: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -17831,6 +17969,7 @@ export namespace Prisma {
     status?: BoolFieldUpdateOperationsInput | boolean
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryProducts?: CategoryProductsUpdateOneRequiredWithoutProductNestedInput
@@ -17846,6 +17985,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ProductVariation?: ProductVariationUncheckedUpdateManyWithoutProductNestedInput
@@ -17859,6 +17999,7 @@ export namespace Prisma {
     brand_id?: StringFieldUpdateOperationsInput | string
     thumbnail?: StringFieldUpdateOperationsInput | string
     warrantyInformation?: StringFieldUpdateOperationsInput | string
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17906,6 +18047,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productVariation?: ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput
@@ -17915,6 +18058,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17924,6 +18069,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -27,6 +27,7 @@ model Product {
   brand               Brand              @relation(fields: [brand_id], references: [id], onDelete: Cascade)
   thumbnail           String
   warrantyInformation String
+  aiSummary           String?
   ProductVariation    ProductVariation[]
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @default(now())
@@ -61,6 +62,8 @@ model ReviewProduct {
   id                   String           @id @default(uuid())
   rating               Decimal
   comment              String
+  photos               String[]
+  country              String?
   product_variation_id String
   productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
   reviewer_id          String

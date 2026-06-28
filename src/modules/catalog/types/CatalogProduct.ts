@@ -9,4 +9,5 @@ export type CatalogProduct = {
   icon: string
   imageUrl: string
   badge?: 'OFERTA' | 'NOVO'
+  brand?: string
 }
