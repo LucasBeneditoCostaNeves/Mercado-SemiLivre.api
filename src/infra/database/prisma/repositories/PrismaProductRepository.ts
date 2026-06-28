@@ -6,7 +6,7 @@ import { Injectable } from "@nestjs/common"
 
 interface IProductDTO {
     id: string
-    name: string
+    title: string
     status: boolean
     category_product_id: string
     seller_user_id: string
@@ -28,15 +28,17 @@ export class PrismaProductRepository implements ProductRepository {
 
     async findMany(): Promise<IProductDTO[]> {
         const products = await this.prisma.product.findMany({})
-        return products
+        return products.map(({ id, title, status, category_product_id, seller_user_id, createdAt, updatedAt }) => ({
+            id, title, status, category_product_id, seller_user_id, createdAt, updatedAt
+        }))
     }
 
     async update(dataProduct: IProductUpdateDTO): Promise<void> {
-        const { id, name, status } = dataProduct
+        const { id, title, status } = dataProduct
 
         await this.prisma.product.update({
             where: { id },
-            data: { name, status }
+            data: { title, status }
         })
     }
 

@@ -1,22 +1,103 @@
+model CartItem {
+  id                 String           @id @default(uuid())
+  quantity           Int
+  userId             String
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productVariationId String
+  productVariation   ProductVariation @relation(fields: [productVariationId], references: [id], onDelete: Cascade)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @default(now())
+
+  @@unique([userId, productVariationId])
+  @@map("CartItems")
+}
+
+model UserFavorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@map("UserFavorites")
+}
+
 model CategoryProducts {
   id        String    @id @default(uuid())
-  name      String
-  status    Boolean
+  name      String    @unique
+  status    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  Product   Product[]
+}
+
+model Brand {
+  id        String    @id @default(uuid())
+  name      String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   Product   Product[]
 }
 
 model Product {
-  id                  String           @id @default(uuid())
-  name                String
-  status              Boolean
+  id                  String             @id @default(uuid())
+  title               String
+  status              Boolean            @default(true)
   category_product_id String
-  categoryProducts    CategoryProducts @relation(fields: [category_product_id], references: [id])
+  categoryProducts    CategoryProducts   @relation(fields: [category_product_id], references: [id], onDelete: Cascade)
   seller_user_id      String
-  user                User             @relation(fields: [seller_user_id], references: [id])
-  createdAt           DateTime         @default(now())
-  updatedAt           DateTime         @default(now())
+  user                User               @relation(fields: [seller_user_id], references: [id], onDelete: Cascade)
+  brand_id            String
+  brand               Brand              @relation(fields: [brand_id], references: [id], onDelete: Cascade)
+  thumbnail           String
+  warrantyInformation String
+  aiSummary           String?
+  ProductVariation    ProductVariation[]
+  UserFavorite        UserFavorite[]
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @default(now())
+}
+
+model ProductVariation {
+  id                     String                   @id @default(uuid())
+  title                  String
+  discountPercentage     Decimal
+  price                  Decimal
+  quantity               Int
+  description            String
+  product_id             String
+  product                Product                  @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  status                 Boolean                  @default(true)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @default(now())
+  ReviewProduct          ReviewProduct[]
+  productVariationImages productVariationImages[]
+  CartItem               CartItem[]
+}
+
+model productVariationImages {
+  id                   String           @id @default(uuid())
+  link                 String
+  product_variation_id String
+  productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now())
+}
+
+model ReviewProduct {
+  id                   String           @id @default(uuid())
+  rating               Decimal
+  comment              String
+  photos               String[]
+  country              String?
+  product_variation_id String
+  productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
+  reviewer_id          String
+  user                 User             @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now())
 }
 
 // This is your Prisma schema file,
@@ -46,18 +127,58 @@ model Profile {
   updatedAt DateTime @default(now())
   User      User[]
 
-  @@map("profiles")
+  @@map("Profiles")
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  status    Boolean
-  profile   Profile   @relation(fields: [profileId], references: [id])
-  profileId String
-  Product   Product[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
+  id            String          @id @default(uuid())
+  name          String
+  lastName      String
+  email         String          @unique
+  password      String
+  status        Boolean
+  profile       Profile         @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId     String
+  Product       Product[]
+  PersonalData  PersonalData?
+  Address       Address[]
+  ReviewProduct ReviewProduct[]
+  CartItem      CartItem[]
+  UserFavorite  UserFavorite[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @default(now())
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+model PersonalData {
+  id        String   @id @default(uuid())
+  cpf       String   @unique
+  birthDate DateTime
+  phone     String
+  gender    Gender
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  cep        String
+  state      String
+  city       String
+  street     String
+  number     String
+  complement String?
+  isDefault  Boolean  @default(false)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
 }

@@ -8,6 +8,12 @@ import { CategoryProductRepository } from "src/modules/categoryProducts/reposito
 import { PrismaCategoryProductRepository } from "./prisma/repositories/PrismaCategoryProductRepository"
 import { ProductRepository } from "src/modules/product/repositories/ProductRepository"
 import { PrismaProductRepository } from "./prisma/repositories/PrismaProductRepository"
+import { ProductVariationRepository } from "src/modules/productVariation/repositories/ProductVariationRepository"
+import { PrismaProductVariationRepository } from "./prisma/repositories/PrismaProductVariationRepository"
+import { PersonalDataRepository } from "src/modules/personalData/repositories/PersonalDataRepository"
+import { PrismaPersonalDataRepository } from "./prisma/repositories/PrismaPersonalDataRepository"
+import { AddressRepository } from "src/modules/address/repositories/AddressRepository"
+import { PrismaAddressRepository } from "./prisma/repositories/PrismaAddressRepository"
 
 @Module({
     providers: [
@@ -27,10 +33,22 @@ import { PrismaProductRepository } from "./prisma/repositories/PrismaProductRepo
         {
             provide: ProductRepository,
             useClass: PrismaProductRepository
+        },
+        {
+            provide: ProductVariationRepository,
+            useClass: PrismaProductVariationRepository
+        },
+        {
+            provide: PersonalDataRepository,
+            useClass: PrismaPersonalDataRepository
+        },
+        {
+            provide: AddressRepository,
+            useClass: PrismaAddressRepository
         }
     ],
 
-    exports: [UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository]
+    exports: [PrismaService, UserRepository, ProfileRepository, CategoryProductRepository, ProductRepository, ProductVariationRepository, PersonalDataRepository, AddressRepository]
 })
 
 export class DatabaseModule { }
