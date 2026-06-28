@@ -47,6 +47,7 @@ model ProductVariation {
   updatedAt              DateTime                 @default(now())
   ReviewProduct          ReviewProduct[]
   productVariationImages productVariationImages[]
+  CartItem               CartItem[]
 }
 
 model productVariationImages {

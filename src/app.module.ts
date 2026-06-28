@@ -12,9 +12,10 @@ import { PersonalDataModule } from './infra/http/modules/personalData/personalDa
 import { AddressModule } from './infra/http/modules/address/address.module'
 import { SeedModule } from './infra/http/modules/seed/seed.module'
 import { CatalogModule } from './infra/http/modules/catalog/catalog.module'
+import { CartModule } from './infra/http/modules/cart/cart.module'
 
 @Module({
-  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule],
   controllers: [],
   providers: [
     {
