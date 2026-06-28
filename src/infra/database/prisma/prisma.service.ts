@@ -12,7 +12,13 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       throw new Error('DATABASE_URL nao definida.')
     }
 
-    const adapter = new PrismaPg(databaseUrl)
+    const isRemote = databaseUrl.includes('render.com') || process.env.NODE_ENV === "production"
+
+    const poolConfig = isRemote
+      ? { connectionString: databaseUrl, ssl: { rejectUnauthorized: false } }
+      : { connectionString: databaseUrl }
+
+    const adapter = new PrismaPg(poolConfig)
 
     super({
       adapter,
