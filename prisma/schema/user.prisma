@@ -5,18 +5,56 @@ model Profile {
   updatedAt DateTime @default(now())
   User      User[]
 
-  @@map("profiles")
+  @@map("Profiles")
 }
 
 model User {
-  id        String    @id @default(uuid())
-  name      String
-  email     String    @unique
-  password  String
-  status    Boolean
-  profile   Profile   @relation(fields: [profileId], references: [id])
-  profileId String
-  Product   Product[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
+  id            String        @id @default(uuid())
+  name          String
+  lastName      String
+  email         String        @unique
+  password      String
+  status        Boolean
+  profile       Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId     String
+  Product       Product[]
+  PersonalData  PersonalData?
+  Address       Address[]
+  ReviewProduct ReviewProduct []
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @default(now())
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}
+
+model PersonalData {
+  id        String   @id @default(uuid())
+  cpf       String   @unique
+  birthDate DateTime
+  phone     String
+  gender    Gender
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Address {
+  id         String   @id @default(uuid())
+  cep        String
+  state      String
+  city       String
+  street     String
+  number     String
+  complement String?
+  isDefault  Boolean  @default(false)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
 }

@@ -1,0 +1,302 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-06-19T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app",
+  "resources": [
+    {
+      "_id": "wrk_mercado_semilivre",
+      "_type": "workspace",
+      "name": "Mercado SemiLivre API",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_mercado_semilivre",
+      "name": "Base Environment",
+      "data": {
+        "baseUrl": "http://localhost:3000",
+        "token": "",
+        "userId": "",
+        "addressId": ""
+      }
+    },
+
+    {
+      "_id": "fld_address_admin",
+      "_type": "request_group",
+      "parentId": "wrk_mercado_semilivre",
+      "name": "Address (Admin — requer perfil admin)"
+    },
+    {
+      "_id": "req_admin_create_address",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "POST /users/:userId/addresses",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"01310-100\",\n  \"state\": \"SP\",\n  \"city\": \"São Paulo\",\n  \"street\": \"Av. Paulista\",\n  \"number\": \"1000\",\n  \"complement\": \"Apto 42\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_list_addresses",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "GET /users/:userId/addresses",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_get_address",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "GET /users/:userId/addresses/:id",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses/{{ _.addressId }}",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_update_address",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "PUT /users/:userId/addresses/:id",
+      "method": "PUT",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses/{{ _.addressId }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"01310-100\",\n  \"state\": \"SP\",\n  \"city\": \"São Paulo\",\n  \"street\": \"Av. Paulista\",\n  \"number\": \"2000\",\n  \"complement\": null\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_delete_address",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "DELETE /users/:userId/addresses/:id",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses/{{ _.addressId }}",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_set_default_address",
+      "_type": "request",
+      "parentId": "fld_address_admin",
+      "name": "PATCH /users/:userId/addresses/:id/default",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/addresses/{{ _.addressId }}/default",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+
+    {
+      "_id": "fld_address_me",
+      "_type": "request_group",
+      "parentId": "wrk_mercado_semilivre",
+      "name": "Address (Me — qualquer usuário autenticado)"
+    },
+    {
+      "_id": "req_me_create_address",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "POST /me/addresses",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/me/addresses",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"01310-100\",\n  \"state\": \"SP\",\n  \"city\": \"São Paulo\",\n  \"street\": \"Av. Paulista\",\n  \"number\": \"1000\",\n  \"complement\": \"Apto 42\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_list_addresses",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "GET /me/addresses",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/me/addresses",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_get_address",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "GET /me/addresses/:id",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/me/addresses/{{ _.addressId }}",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_update_address",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "PUT /me/addresses/:id",
+      "method": "PUT",
+      "url": "{{ _.baseUrl }}/me/addresses/{{ _.addressId }}",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cep\": \"01310-100\",\n  \"state\": \"SP\",\n  \"city\": \"São Paulo\",\n  \"street\": \"Av. Paulista\",\n  \"number\": \"2000\",\n  \"complement\": null\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_delete_address",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "DELETE /me/addresses/:id",
+      "method": "DELETE",
+      "url": "{{ _.baseUrl }}/me/addresses/{{ _.addressId }}",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_set_default_address",
+      "_type": "request",
+      "parentId": "fld_address_me",
+      "name": "PATCH /me/addresses/:id/default",
+      "method": "PATCH",
+      "url": "{{ _.baseUrl }}/me/addresses/{{ _.addressId }}/default",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+
+    {
+      "_id": "fld_personal_data_admin",
+      "_type": "request_group",
+      "parentId": "wrk_mercado_semilivre",
+      "name": "Personal Data (Admin — requer perfil admin)"
+    },
+    {
+      "_id": "req_admin_create_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_admin",
+      "name": "POST /users/:userId/personal-data",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/personal-data",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cpf\": \"123.456.789-00\",\n  \"birthDate\": \"1995-03-15\",\n  \"phone\": \"(11) 99999-9999\",\n  \"gender\": \"MALE\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_get_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_admin",
+      "name": "GET /users/:userId/personal-data",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/personal-data",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_admin_update_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_admin",
+      "name": "PUT /users/:userId/personal-data",
+      "method": "PUT",
+      "url": "{{ _.baseUrl }}/users/{{ _.userId }}/personal-data",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"birthDate\": \"1995-03-15\",\n  \"phone\": \"(11) 99999-9999\",\n  \"gender\": \"FEMALE\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+
+    {
+      "_id": "fld_personal_data_me",
+      "_type": "request_group",
+      "parentId": "wrk_mercado_semilivre",
+      "name": "Personal Data (Me — qualquer usuário autenticado)"
+    },
+    {
+      "_id": "req_me_create_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_me",
+      "name": "POST /me/personal-data",
+      "method": "POST",
+      "url": "{{ _.baseUrl }}/me/personal-data",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"cpf\": \"123.456.789-00\",\n  \"birthDate\": \"1995-03-15\",\n  \"phone\": \"(11) 99999-9999\",\n  \"gender\": \"MALE\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_get_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_me",
+      "name": "GET /me/personal-data",
+      "method": "GET",
+      "url": "{{ _.baseUrl }}/me/personal-data",
+      "body": { "mimeType": "application/json" },
+      "headers": [
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    },
+    {
+      "_id": "req_me_update_personal_data",
+      "_type": "request",
+      "parentId": "fld_personal_data_me",
+      "name": "PUT /me/personal-data",
+      "method": "PUT",
+      "url": "{{ _.baseUrl }}/me/personal-data",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"birthDate\": \"1995-03-15\",\n  \"phone\": \"(11) 99999-9999\",\n  \"gender\": \"FEMALE\"\n}"
+      },
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "Authorization", "value": "Bearer {{ _.token }}" }
+      ]
+    }
+  ]
+}

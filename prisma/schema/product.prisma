@@ -1,20 +1,70 @@
 model CategoryProducts {
   id        String    @id @default(uuid())
-  name      String
-  status    Boolean
+  name      String    @unique
+  status    Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+  Product   Product[]
+}
+
+model Brand {
+  id        String    @id @default(uuid())
+  name      String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
   Product   Product[]
 }
 
 model Product {
-  id                  String           @id @default(uuid())
-  name                String
-  status              Boolean
-  category_product_id String
-  categoryProducts    CategoryProducts @relation(fields: [category_product_id], references: [id])
-  seller_user_id      String
-  user                User             @relation(fields: [seller_user_id], references: [id])
-  createdAt           DateTime         @default(now())
-  updatedAt           DateTime         @default(now())
+  id                    String           @id @default(uuid())
+  title                 String
+  status                Boolean          @default(true)
+  category_product_id   String
+  categoryProducts      CategoryProducts @relation(fields: [category_product_id], references: [id], onDelete: Cascade)
+  seller_user_id        String
+  user                  User             @relation(fields: [seller_user_id], references: [id], onDelete: Cascade)
+  brand_id              String
+  brand                 Brand            @relation(fields: [brand_id], references: [id], onDelete: Cascade)
+  thumbnail             String
+  warrantyInformation String
+  ProductVariation      ProductVariation[]
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @default(now())
+}
+
+model ProductVariation {
+  id                     String                   @id @default(uuid())
+  title                  String
+  discountPercentage     Decimal
+  price                  Decimal
+  quantity               Int
+  description            String
+  product_id             String
+  product                Product                  @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  status                 Boolean                  @default(true)
+  createdAt              DateTime                 @default(now())
+  updatedAt              DateTime                 @default(now())
+  ReviewProduct          ReviewProduct[]
+  productVariationImages productVariationImages[]
+}
+
+model productVariationImages {
+  id                   String           @id @default(uuid())
+  link                 String
+  product_variation_id String
+  productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now())
+}
+
+model ReviewProduct {
+  id                      String @id @default(uuid())
+  rating                  Decimal
+  comment                 String
+  product_variation_id    String 
+  productVariation        ProductVariation    @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
+  reviewer_id             String
+  user                    User                @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @default(now())
 }

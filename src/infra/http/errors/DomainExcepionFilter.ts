@@ -10,6 +10,10 @@ import { ZodError } from "zod"
 import { ProductNotFoundError } from "src/domain/errors/product/ProductNotFoundError"
 import { NoFieldsToUpdateError } from "src/domain/errors/NoFieldsToUpdateError"
 import { EmailAlreadyInUseError } from "src/domain/errors/user/EmailAlreadyInUseError"
+import { PersonalDataAlreadyExistsError } from "src/domain/errors/personalData/PersonalDataAlreadyExistsError"
+import { PersonalDataNotFoundError } from "src/domain/errors/personalData/PersonalDataNotFoundError"
+import { AddressNotFoundError } from "src/domain/errors/address/AddressNotFoundError"
+import { AddressForbiddenError } from "src/domain/errors/address/AddressForbiddenError"
 
 @Catch()
 export class DomainExceptionFilter implements ExceptionFilter {
@@ -25,6 +29,18 @@ export class DomainExceptionFilter implements ExceptionFilter {
         }
         if (error instanceof EmailAlreadyInUseError) {
             return response.status(409).json({ message: error.message })
+        }
+        if (error instanceof PersonalDataAlreadyExistsError) {
+            return response.status(409).json({ message: error.message })
+        }
+        if (error instanceof PersonalDataNotFoundError) {
+            return response.status(404).json({ message: error.message })
+        }
+        if (error instanceof AddressNotFoundError) {
+            return response.status(404).json({ message: error.message })
+        }
+        if (error instanceof AddressForbiddenError) {
+            return response.status(403).json({ message: error.message })
         }
 
         if (error instanceof ZodValidationException) {
