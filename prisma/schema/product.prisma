@@ -29,6 +29,7 @@ model Product {
   warrantyInformation   String
   aiSummary             String?
   ProductVariation      ProductVariation[]
+  UserFavorite          UserFavorite[]
   createdAt             DateTime         @default(now())
   updatedAt             DateTime         @default(now())
 }

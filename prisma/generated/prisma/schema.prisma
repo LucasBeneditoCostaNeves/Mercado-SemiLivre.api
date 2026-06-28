@@ -12,6 +12,18 @@ model CartItem {
   @@map("CartItems")
 }
 
+model UserFavorite {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+  @@map("UserFavorites")
+}
+
 model CategoryProducts {
   id        String    @id @default(uuid())
   name      String    @unique
@@ -43,6 +55,7 @@ model Product {
   warrantyInformation String
   aiSummary           String?
   ProductVariation    ProductVariation[]
+  UserFavorite        UserFavorite[]
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @default(now())
 }
@@ -131,6 +144,7 @@ model User {
   Address       Address[]
   ReviewProduct ReviewProduct[]
   CartItem      CartItem[]
+  UserFavorite  UserFavorite[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now())
 }

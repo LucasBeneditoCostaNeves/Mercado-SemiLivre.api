@@ -13,9 +13,10 @@ import { AddressModule } from './infra/http/modules/address/address.module'
 import { SeedModule } from './infra/http/modules/seed/seed.module'
 import { CatalogModule } from './infra/http/modules/catalog/catalog.module'
 import { CartModule } from './infra/http/modules/cart/cart.module'
+import { FavoritesModule } from './infra/http/modules/favorites/favorites.module'
 
 @Module({
-  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule, FavoritesModule],
   controllers: [],
   providers: [
     {
