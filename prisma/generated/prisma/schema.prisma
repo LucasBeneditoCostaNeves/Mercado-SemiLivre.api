@@ -1,3 +1,17 @@
+model CartItem {
+  id                 String           @id @default(uuid())
+  quantity           Int
+  userId             String
+  user               User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productVariationId String
+  productVariation   ProductVariation @relation(fields: [productVariationId], references: [id], onDelete: Cascade)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @default(now())
+
+  @@unique([userId, productVariationId])
+  @@map("CartItems")
+}
+
 model CategoryProducts {
   id        String    @id @default(uuid())
   name      String    @unique
@@ -27,6 +41,7 @@ model Product {
   brand               Brand              @relation(fields: [brand_id], references: [id], onDelete: Cascade)
   thumbnail           String
   warrantyInformation String
+  aiSummary           String?
   ProductVariation    ProductVariation[]
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @default(now())
@@ -46,6 +61,7 @@ model ProductVariation {
   updatedAt              DateTime                 @default(now())
   ReviewProduct          ReviewProduct[]
   productVariationImages productVariationImages[]
+  CartItem               CartItem[]
 }
 
 model productVariationImages {
@@ -61,6 +77,8 @@ model ReviewProduct {
   id                   String           @id @default(uuid())
   rating               Decimal
   comment              String
+  photos               String[]
+  country              String?
   product_variation_id String
   productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
   reviewer_id          String
@@ -112,6 +130,7 @@ model User {
   PersonalData  PersonalData?
   Address       Address[]
   ReviewProduct ReviewProduct[]
+  CartItem      CartItem[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @default(now())
 }

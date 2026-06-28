@@ -120,6 +120,15 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CartItemScalarFieldEnum = {
+  id: 'id',
+  quantity: 'quantity',
+  userId: 'userId',
+  productVariationId: 'productVariationId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.CategoryProductsScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -144,6 +153,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   brand_id: 'brand_id',
   thumbnail: 'thumbnail',
   warrantyInformation: 'warrantyInformation',
+  aiSummary: 'aiSummary',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -173,6 +183,8 @@ exports.Prisma.ReviewProductScalarFieldEnum = {
   id: 'id',
   rating: 'rating',
   comment: 'comment',
+  photos: 'photos',
+  country: 'country',
   product_variation_id: 'product_variation_id',
   reviewer_id: 'reviewer_id',
   createdAt: 'createdAt',
@@ -245,6 +257,7 @@ exports.Gender = exports.$Enums.Gender = {
 };
 
 exports.Prisma.ModelName = {
+  CartItem: 'CartItem',
   CategoryProducts: 'CategoryProducts',
   Brand: 'Brand',
   Product: 'Product',
