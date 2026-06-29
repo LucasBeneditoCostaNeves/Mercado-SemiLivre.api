@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common'
 import { PrismaService } from 'src/infra/database/prisma/prisma.service'
 
-const FIXED_USER_ID = '789386c9-c335-484c-bf1d-931378d5fb34'
+const FIXED_USER_ID = '06d772fe-4df5-4476-820f-41a4795dc1b2'
 
 interface ReviewInput {
   rating: number
