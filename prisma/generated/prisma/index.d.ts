@@ -24,6 +24,16 @@ export type CartItem = $Result.DefaultSelection<Prisma.$CartItemPayload>
  */
 export type UserFavorite = $Result.DefaultSelection<Prisma.$UserFavoritePayload>
 /**
+ * Model UserSearchHistory
+ * 
+ */
+export type UserSearchHistory = $Result.DefaultSelection<Prisma.$UserSearchHistoryPayload>
+/**
+ * Model UserProductClick
+ * 
+ */
+export type UserProductClick = $Result.DefaultSelection<Prisma.$UserProductClickPayload>
+/**
  * Model CategoryProducts
  * 
  */
@@ -233,6 +243,26 @@ export class PrismaClient<
     * ```
     */
   get userFavorite(): Prisma.UserFavoriteDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userSearchHistory`: Exposes CRUD operations for the **UserSearchHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserSearchHistories
+    * const userSearchHistories = await prisma.userSearchHistory.findMany()
+    * ```
+    */
+  get userSearchHistory(): Prisma.UserSearchHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userProductClick`: Exposes CRUD operations for the **UserProductClick** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserProductClicks
+    * const userProductClicks = await prisma.userProductClick.findMany()
+    * ```
+    */
+  get userProductClick(): Prisma.UserProductClickDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.categoryProducts`: Exposes CRUD operations for the **CategoryProducts** model.
@@ -769,6 +799,8 @@ export namespace Prisma {
   export const ModelName: {
     CartItem: 'CartItem',
     UserFavorite: 'UserFavorite',
+    UserSearchHistory: 'UserSearchHistory',
+    UserProductClick: 'UserProductClick',
     CategoryProducts: 'CategoryProducts',
     Brand: 'Brand',
     Product: 'Product',
@@ -794,7 +826,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "cartItem" | "userFavorite" | "categoryProducts" | "brand" | "product" | "productVariation" | "productVariationImages" | "reviewProduct" | "profile" | "user" | "personalData" | "address"
+      modelProps: "cartItem" | "userFavorite" | "userSearchHistory" | "userProductClick" | "categoryProducts" | "brand" | "product" | "productVariation" | "productVariationImages" | "reviewProduct" | "profile" | "user" | "personalData" | "address"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -943,6 +975,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserFavoriteCountArgs<ExtArgs>
             result: $Utils.Optional<UserFavoriteCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserSearchHistory: {
+        payload: Prisma.$UserSearchHistoryPayload<ExtArgs>
+        fields: Prisma.UserSearchHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserSearchHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserSearchHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.UserSearchHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserSearchHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.UserSearchHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.UserSearchHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.UserSearchHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserSearchHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.UserSearchHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          update: {
+            args: Prisma.UserSearchHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserSearchHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserSearchHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserSearchHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserSearchHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserSearchHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.UserSearchHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserSearchHistory>
+          }
+          groupBy: {
+            args: Prisma.UserSearchHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserSearchHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserSearchHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<UserSearchHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserProductClick: {
+        payload: Prisma.$UserProductClickPayload<ExtArgs>
+        fields: Prisma.UserProductClickFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserProductClickFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserProductClickFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          findFirst: {
+            args: Prisma.UserProductClickFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserProductClickFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          findMany: {
+            args: Prisma.UserProductClickFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>[]
+          }
+          create: {
+            args: Prisma.UserProductClickCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          createMany: {
+            args: Prisma.UserProductClickCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserProductClickCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>[]
+          }
+          delete: {
+            args: Prisma.UserProductClickDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          update: {
+            args: Prisma.UserProductClickUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserProductClickDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserProductClickUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserProductClickUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserProductClickUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserProductClickPayload>
+          }
+          aggregate: {
+            args: Prisma.UserProductClickAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserProductClick>
+          }
+          groupBy: {
+            args: Prisma.UserProductClickGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserProductClickGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserProductClickCountArgs<ExtArgs>
+            result: $Utils.Optional<UserProductClickCountAggregateOutputType> | number
           }
         }
       }
@@ -1796,6 +1976,8 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     cartItem?: CartItemOmit
     userFavorite?: UserFavoriteOmit
+    userSearchHistory?: UserSearchHistoryOmit
+    userProductClick?: UserProductClickOmit
     categoryProducts?: CategoryProductsOmit
     brand?: BrandOmit
     product?: ProductOmit
@@ -2073,6 +2255,8 @@ export namespace Prisma {
     ReviewProduct: number
     CartItem: number
     UserFavorite: number
+    UserSearchHistory: number
+    UserProductClick: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2081,6 +2265,8 @@ export namespace Prisma {
     ReviewProduct?: boolean | UserCountOutputTypeCountReviewProductArgs
     CartItem?: boolean | UserCountOutputTypeCountCartItemArgs
     UserFavorite?: boolean | UserCountOutputTypeCountUserFavoriteArgs
+    UserSearchHistory?: boolean | UserCountOutputTypeCountUserSearchHistoryArgs
+    UserProductClick?: boolean | UserCountOutputTypeCountUserProductClickArgs
   }
 
   // Custom InputTypes
@@ -2127,6 +2313,20 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUserFavoriteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: UserFavoriteWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserSearchHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSearchHistoryWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUserProductClickArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProductClickWhereInput
   }
 
 
@@ -4307,6 +4507,2119 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserFavoriteInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserSearchHistory
+   */
+
+  export type AggregateUserSearchHistory = {
+    _count: UserSearchHistoryCountAggregateOutputType | null
+    _min: UserSearchHistoryMinAggregateOutputType | null
+    _max: UserSearchHistoryMaxAggregateOutputType | null
+  }
+
+  export type UserSearchHistoryMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    term: string | null
+    searchedAt: Date | null
+  }
+
+  export type UserSearchHistoryMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    term: string | null
+    searchedAt: Date | null
+  }
+
+  export type UserSearchHistoryCountAggregateOutputType = {
+    id: number
+    userId: number
+    term: number
+    searchedAt: number
+    _all: number
+  }
+
+
+  export type UserSearchHistoryMinAggregateInputType = {
+    id?: true
+    userId?: true
+    term?: true
+    searchedAt?: true
+  }
+
+  export type UserSearchHistoryMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    term?: true
+    searchedAt?: true
+  }
+
+  export type UserSearchHistoryCountAggregateInputType = {
+    id?: true
+    userId?: true
+    term?: true
+    searchedAt?: true
+    _all?: true
+  }
+
+  export type UserSearchHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSearchHistory to aggregate.
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSearchHistories to fetch.
+     */
+    orderBy?: UserSearchHistoryOrderByWithRelationInput | UserSearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserSearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserSearchHistories
+    **/
+    _count?: true | UserSearchHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserSearchHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserSearchHistoryMaxAggregateInputType
+  }
+
+  export type GetUserSearchHistoryAggregateType<T extends UserSearchHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserSearchHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserSearchHistory[P]>
+      : GetScalarType<T[P], AggregateUserSearchHistory[P]>
+  }
+
+
+
+
+  export type UserSearchHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserSearchHistoryWhereInput
+    orderBy?: UserSearchHistoryOrderByWithAggregationInput | UserSearchHistoryOrderByWithAggregationInput[]
+    by: UserSearchHistoryScalarFieldEnum[] | UserSearchHistoryScalarFieldEnum
+    having?: UserSearchHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserSearchHistoryCountAggregateInputType | true
+    _min?: UserSearchHistoryMinAggregateInputType
+    _max?: UserSearchHistoryMaxAggregateInputType
+  }
+
+  export type UserSearchHistoryGroupByOutputType = {
+    id: string
+    userId: string
+    term: string
+    searchedAt: Date
+    _count: UserSearchHistoryCountAggregateOutputType | null
+    _min: UserSearchHistoryMinAggregateOutputType | null
+    _max: UserSearchHistoryMaxAggregateOutputType | null
+  }
+
+  type GetUserSearchHistoryGroupByPayload<T extends UserSearchHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserSearchHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserSearchHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserSearchHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], UserSearchHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSearchHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    term?: boolean
+    searchedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSearchHistory"]>
+
+  export type UserSearchHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    term?: boolean
+    searchedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSearchHistory"]>
+
+  export type UserSearchHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    term?: boolean
+    searchedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userSearchHistory"]>
+
+  export type UserSearchHistorySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    term?: boolean
+    searchedAt?: boolean
+  }
+
+  export type UserSearchHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "term" | "searchedAt", ExtArgs["result"]["userSearchHistory"]>
+  export type UserSearchHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSearchHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserSearchHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserSearchHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserSearchHistory"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      term: string
+      searchedAt: Date
+    }, ExtArgs["result"]["userSearchHistory"]>
+    composites: {}
+  }
+
+  type UserSearchHistoryGetPayload<S extends boolean | null | undefined | UserSearchHistoryDefaultArgs> = $Result.GetResult<Prisma.$UserSearchHistoryPayload, S>
+
+  type UserSearchHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserSearchHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserSearchHistoryCountAggregateInputType | true
+    }
+
+  export interface UserSearchHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserSearchHistory'], meta: { name: 'UserSearchHistory' } }
+    /**
+     * Find zero or one UserSearchHistory that matches the filter.
+     * @param {UserSearchHistoryFindUniqueArgs} args - Arguments to find a UserSearchHistory
+     * @example
+     * // Get one UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserSearchHistoryFindUniqueArgs>(args: SelectSubset<T, UserSearchHistoryFindUniqueArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserSearchHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserSearchHistoryFindUniqueOrThrowArgs} args - Arguments to find a UserSearchHistory
+     * @example
+     * // Get one UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserSearchHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, UserSearchHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSearchHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryFindFirstArgs} args - Arguments to find a UserSearchHistory
+     * @example
+     * // Get one UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserSearchHistoryFindFirstArgs>(args?: SelectSubset<T, UserSearchHistoryFindFirstArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserSearchHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryFindFirstOrThrowArgs} args - Arguments to find a UserSearchHistory
+     * @example
+     * // Get one UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserSearchHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, UserSearchHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserSearchHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserSearchHistories
+     * const userSearchHistories = await prisma.userSearchHistory.findMany()
+     * 
+     * // Get first 10 UserSearchHistories
+     * const userSearchHistories = await prisma.userSearchHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userSearchHistoryWithIdOnly = await prisma.userSearchHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserSearchHistoryFindManyArgs>(args?: SelectSubset<T, UserSearchHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserSearchHistory.
+     * @param {UserSearchHistoryCreateArgs} args - Arguments to create a UserSearchHistory.
+     * @example
+     * // Create one UserSearchHistory
+     * const UserSearchHistory = await prisma.userSearchHistory.create({
+     *   data: {
+     *     // ... data to create a UserSearchHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserSearchHistoryCreateArgs>(args: SelectSubset<T, UserSearchHistoryCreateArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserSearchHistories.
+     * @param {UserSearchHistoryCreateManyArgs} args - Arguments to create many UserSearchHistories.
+     * @example
+     * // Create many UserSearchHistories
+     * const userSearchHistory = await prisma.userSearchHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserSearchHistoryCreateManyArgs>(args?: SelectSubset<T, UserSearchHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserSearchHistories and returns the data saved in the database.
+     * @param {UserSearchHistoryCreateManyAndReturnArgs} args - Arguments to create many UserSearchHistories.
+     * @example
+     * // Create many UserSearchHistories
+     * const userSearchHistory = await prisma.userSearchHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserSearchHistories and only return the `id`
+     * const userSearchHistoryWithIdOnly = await prisma.userSearchHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserSearchHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, UserSearchHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserSearchHistory.
+     * @param {UserSearchHistoryDeleteArgs} args - Arguments to delete one UserSearchHistory.
+     * @example
+     * // Delete one UserSearchHistory
+     * const UserSearchHistory = await prisma.userSearchHistory.delete({
+     *   where: {
+     *     // ... filter to delete one UserSearchHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserSearchHistoryDeleteArgs>(args: SelectSubset<T, UserSearchHistoryDeleteArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserSearchHistory.
+     * @param {UserSearchHistoryUpdateArgs} args - Arguments to update one UserSearchHistory.
+     * @example
+     * // Update one UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserSearchHistoryUpdateArgs>(args: SelectSubset<T, UserSearchHistoryUpdateArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserSearchHistories.
+     * @param {UserSearchHistoryDeleteManyArgs} args - Arguments to filter UserSearchHistories to delete.
+     * @example
+     * // Delete a few UserSearchHistories
+     * const { count } = await prisma.userSearchHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserSearchHistoryDeleteManyArgs>(args?: SelectSubset<T, UserSearchHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSearchHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserSearchHistories
+     * const userSearchHistory = await prisma.userSearchHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserSearchHistoryUpdateManyArgs>(args: SelectSubset<T, UserSearchHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserSearchHistories and returns the data updated in the database.
+     * @param {UserSearchHistoryUpdateManyAndReturnArgs} args - Arguments to update many UserSearchHistories.
+     * @example
+     * // Update many UserSearchHistories
+     * const userSearchHistory = await prisma.userSearchHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserSearchHistories and only return the `id`
+     * const userSearchHistoryWithIdOnly = await prisma.userSearchHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserSearchHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, UserSearchHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserSearchHistory.
+     * @param {UserSearchHistoryUpsertArgs} args - Arguments to update or create a UserSearchHistory.
+     * @example
+     * // Update or create a UserSearchHistory
+     * const userSearchHistory = await prisma.userSearchHistory.upsert({
+     *   create: {
+     *     // ... data to create a UserSearchHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserSearchHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserSearchHistoryUpsertArgs>(args: SelectSubset<T, UserSearchHistoryUpsertArgs<ExtArgs>>): Prisma__UserSearchHistoryClient<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserSearchHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryCountArgs} args - Arguments to filter UserSearchHistories to count.
+     * @example
+     * // Count the number of UserSearchHistories
+     * const count = await prisma.userSearchHistory.count({
+     *   where: {
+     *     // ... the filter for the UserSearchHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserSearchHistoryCountArgs>(
+      args?: Subset<T, UserSearchHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserSearchHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserSearchHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserSearchHistoryAggregateArgs>(args: Subset<T, UserSearchHistoryAggregateArgs>): Prisma.PrismaPromise<GetUserSearchHistoryAggregateType<T>>
+
+    /**
+     * Group by UserSearchHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserSearchHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserSearchHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserSearchHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: UserSearchHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserSearchHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserSearchHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserSearchHistory model
+   */
+  readonly fields: UserSearchHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserSearchHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserSearchHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserSearchHistory model
+   */
+  interface UserSearchHistoryFieldRefs {
+    readonly id: FieldRef<"UserSearchHistory", 'String'>
+    readonly userId: FieldRef<"UserSearchHistory", 'String'>
+    readonly term: FieldRef<"UserSearchHistory", 'String'>
+    readonly searchedAt: FieldRef<"UserSearchHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserSearchHistory findUnique
+   */
+  export type UserSearchHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSearchHistory to fetch.
+     */
+    where: UserSearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * UserSearchHistory findUniqueOrThrow
+   */
+  export type UserSearchHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSearchHistory to fetch.
+     */
+    where: UserSearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * UserSearchHistory findFirst
+   */
+  export type UserSearchHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSearchHistory to fetch.
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSearchHistories to fetch.
+     */
+    orderBy?: UserSearchHistoryOrderByWithRelationInput | UserSearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSearchHistories.
+     */
+    cursor?: UserSearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSearchHistories.
+     */
+    distinct?: UserSearchHistoryScalarFieldEnum | UserSearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * UserSearchHistory findFirstOrThrow
+   */
+  export type UserSearchHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSearchHistory to fetch.
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSearchHistories to fetch.
+     */
+    orderBy?: UserSearchHistoryOrderByWithRelationInput | UserSearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserSearchHistories.
+     */
+    cursor?: UserSearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSearchHistories.
+     */
+    distinct?: UserSearchHistoryScalarFieldEnum | UserSearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * UserSearchHistory findMany
+   */
+  export type UserSearchHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which UserSearchHistories to fetch.
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserSearchHistories to fetch.
+     */
+    orderBy?: UserSearchHistoryOrderByWithRelationInput | UserSearchHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserSearchHistories.
+     */
+    cursor?: UserSearchHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserSearchHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserSearchHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserSearchHistories.
+     */
+    distinct?: UserSearchHistoryScalarFieldEnum | UserSearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * UserSearchHistory create
+   */
+  export type UserSearchHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserSearchHistory.
+     */
+    data: XOR<UserSearchHistoryCreateInput, UserSearchHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * UserSearchHistory createMany
+   */
+  export type UserSearchHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserSearchHistories.
+     */
+    data: UserSearchHistoryCreateManyInput | UserSearchHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserSearchHistory createManyAndReturn
+   */
+  export type UserSearchHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserSearchHistories.
+     */
+    data: UserSearchHistoryCreateManyInput | UserSearchHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSearchHistory update
+   */
+  export type UserSearchHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserSearchHistory.
+     */
+    data: XOR<UserSearchHistoryUpdateInput, UserSearchHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which UserSearchHistory to update.
+     */
+    where: UserSearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * UserSearchHistory updateMany
+   */
+  export type UserSearchHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserSearchHistories.
+     */
+    data: XOR<UserSearchHistoryUpdateManyMutationInput, UserSearchHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSearchHistories to update
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * Limit how many UserSearchHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSearchHistory updateManyAndReturn
+   */
+  export type UserSearchHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update UserSearchHistories.
+     */
+    data: XOR<UserSearchHistoryUpdateManyMutationInput, UserSearchHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which UserSearchHistories to update
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * Limit how many UserSearchHistories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserSearchHistory upsert
+   */
+  export type UserSearchHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserSearchHistory to update in case it exists.
+     */
+    where: UserSearchHistoryWhereUniqueInput
+    /**
+     * In case the UserSearchHistory found by the `where` argument doesn't exist, create a new UserSearchHistory with this data.
+     */
+    create: XOR<UserSearchHistoryCreateInput, UserSearchHistoryUncheckedCreateInput>
+    /**
+     * In case the UserSearchHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserSearchHistoryUpdateInput, UserSearchHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * UserSearchHistory delete
+   */
+  export type UserSearchHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which UserSearchHistory to delete.
+     */
+    where: UserSearchHistoryWhereUniqueInput
+  }
+
+  /**
+   * UserSearchHistory deleteMany
+   */
+  export type UserSearchHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserSearchHistories to delete
+     */
+    where?: UserSearchHistoryWhereInput
+    /**
+     * Limit how many UserSearchHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserSearchHistory without action
+   */
+  export type UserSearchHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserProductClick
+   */
+
+  export type AggregateUserProductClick = {
+    _count: UserProductClickCountAggregateOutputType | null
+    _min: UserProductClickMinAggregateOutputType | null
+    _max: UserProductClickMaxAggregateOutputType | null
+  }
+
+  export type UserProductClickMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    productId: string | null
+    sourcePage: string | null
+    clickedAt: Date | null
+  }
+
+  export type UserProductClickMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    productId: string | null
+    sourcePage: string | null
+    clickedAt: Date | null
+  }
+
+  export type UserProductClickCountAggregateOutputType = {
+    id: number
+    userId: number
+    productId: number
+    sourcePage: number
+    clickedAt: number
+    _all: number
+  }
+
+
+  export type UserProductClickMinAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    sourcePage?: true
+    clickedAt?: true
+  }
+
+  export type UserProductClickMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    sourcePage?: true
+    clickedAt?: true
+  }
+
+  export type UserProductClickCountAggregateInputType = {
+    id?: true
+    userId?: true
+    productId?: true
+    sourcePage?: true
+    clickedAt?: true
+    _all?: true
+  }
+
+  export type UserProductClickAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProductClick to aggregate.
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProductClicks to fetch.
+     */
+    orderBy?: UserProductClickOrderByWithRelationInput | UserProductClickOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserProductClickWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProductClicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProductClicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserProductClicks
+    **/
+    _count?: true | UserProductClickCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserProductClickMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserProductClickMaxAggregateInputType
+  }
+
+  export type GetUserProductClickAggregateType<T extends UserProductClickAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserProductClick]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserProductClick[P]>
+      : GetScalarType<T[P], AggregateUserProductClick[P]>
+  }
+
+
+
+
+  export type UserProductClickGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserProductClickWhereInput
+    orderBy?: UserProductClickOrderByWithAggregationInput | UserProductClickOrderByWithAggregationInput[]
+    by: UserProductClickScalarFieldEnum[] | UserProductClickScalarFieldEnum
+    having?: UserProductClickScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserProductClickCountAggregateInputType | true
+    _min?: UserProductClickMinAggregateInputType
+    _max?: UserProductClickMaxAggregateInputType
+  }
+
+  export type UserProductClickGroupByOutputType = {
+    id: string
+    userId: string
+    productId: string
+    sourcePage: string
+    clickedAt: Date
+    _count: UserProductClickCountAggregateOutputType | null
+    _min: UserProductClickMinAggregateOutputType | null
+    _max: UserProductClickMaxAggregateOutputType | null
+  }
+
+  type GetUserProductClickGroupByPayload<T extends UserProductClickGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserProductClickGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserProductClickGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserProductClickGroupByOutputType[P]>
+            : GetScalarType<T[P], UserProductClickGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserProductClickSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    sourcePage?: boolean
+    clickedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProductClick"]>
+
+  export type UserProductClickSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    sourcePage?: boolean
+    clickedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProductClick"]>
+
+  export type UserProductClickSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    sourcePage?: boolean
+    clickedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["userProductClick"]>
+
+  export type UserProductClickSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    productId?: boolean
+    sourcePage?: boolean
+    clickedAt?: boolean
+  }
+
+  export type UserProductClickOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "productId" | "sourcePage" | "clickedAt", ExtArgs["result"]["userProductClick"]>
+  export type UserProductClickInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserProductClickIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UserProductClickIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UserProductClickPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserProductClick"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      productId: string
+      sourcePage: string
+      clickedAt: Date
+    }, ExtArgs["result"]["userProductClick"]>
+    composites: {}
+  }
+
+  type UserProductClickGetPayload<S extends boolean | null | undefined | UserProductClickDefaultArgs> = $Result.GetResult<Prisma.$UserProductClickPayload, S>
+
+  type UserProductClickCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserProductClickFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserProductClickCountAggregateInputType | true
+    }
+
+  export interface UserProductClickDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserProductClick'], meta: { name: 'UserProductClick' } }
+    /**
+     * Find zero or one UserProductClick that matches the filter.
+     * @param {UserProductClickFindUniqueArgs} args - Arguments to find a UserProductClick
+     * @example
+     * // Get one UserProductClick
+     * const userProductClick = await prisma.userProductClick.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserProductClickFindUniqueArgs>(args: SelectSubset<T, UserProductClickFindUniqueArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserProductClick that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserProductClickFindUniqueOrThrowArgs} args - Arguments to find a UserProductClick
+     * @example
+     * // Get one UserProductClick
+     * const userProductClick = await prisma.userProductClick.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserProductClickFindUniqueOrThrowArgs>(args: SelectSubset<T, UserProductClickFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProductClick that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickFindFirstArgs} args - Arguments to find a UserProductClick
+     * @example
+     * // Get one UserProductClick
+     * const userProductClick = await prisma.userProductClick.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserProductClickFindFirstArgs>(args?: SelectSubset<T, UserProductClickFindFirstArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserProductClick that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickFindFirstOrThrowArgs} args - Arguments to find a UserProductClick
+     * @example
+     * // Get one UserProductClick
+     * const userProductClick = await prisma.userProductClick.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserProductClickFindFirstOrThrowArgs>(args?: SelectSubset<T, UserProductClickFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserProductClicks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserProductClicks
+     * const userProductClicks = await prisma.userProductClick.findMany()
+     * 
+     * // Get first 10 UserProductClicks
+     * const userProductClicks = await prisma.userProductClick.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userProductClickWithIdOnly = await prisma.userProductClick.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserProductClickFindManyArgs>(args?: SelectSubset<T, UserProductClickFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserProductClick.
+     * @param {UserProductClickCreateArgs} args - Arguments to create a UserProductClick.
+     * @example
+     * // Create one UserProductClick
+     * const UserProductClick = await prisma.userProductClick.create({
+     *   data: {
+     *     // ... data to create a UserProductClick
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserProductClickCreateArgs>(args: SelectSubset<T, UserProductClickCreateArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserProductClicks.
+     * @param {UserProductClickCreateManyArgs} args - Arguments to create many UserProductClicks.
+     * @example
+     * // Create many UserProductClicks
+     * const userProductClick = await prisma.userProductClick.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserProductClickCreateManyArgs>(args?: SelectSubset<T, UserProductClickCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserProductClicks and returns the data saved in the database.
+     * @param {UserProductClickCreateManyAndReturnArgs} args - Arguments to create many UserProductClicks.
+     * @example
+     * // Create many UserProductClicks
+     * const userProductClick = await prisma.userProductClick.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserProductClicks and only return the `id`
+     * const userProductClickWithIdOnly = await prisma.userProductClick.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserProductClickCreateManyAndReturnArgs>(args?: SelectSubset<T, UserProductClickCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserProductClick.
+     * @param {UserProductClickDeleteArgs} args - Arguments to delete one UserProductClick.
+     * @example
+     * // Delete one UserProductClick
+     * const UserProductClick = await prisma.userProductClick.delete({
+     *   where: {
+     *     // ... filter to delete one UserProductClick
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserProductClickDeleteArgs>(args: SelectSubset<T, UserProductClickDeleteArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserProductClick.
+     * @param {UserProductClickUpdateArgs} args - Arguments to update one UserProductClick.
+     * @example
+     * // Update one UserProductClick
+     * const userProductClick = await prisma.userProductClick.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserProductClickUpdateArgs>(args: SelectSubset<T, UserProductClickUpdateArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserProductClicks.
+     * @param {UserProductClickDeleteManyArgs} args - Arguments to filter UserProductClicks to delete.
+     * @example
+     * // Delete a few UserProductClicks
+     * const { count } = await prisma.userProductClick.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserProductClickDeleteManyArgs>(args?: SelectSubset<T, UserProductClickDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProductClicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserProductClicks
+     * const userProductClick = await prisma.userProductClick.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserProductClickUpdateManyArgs>(args: SelectSubset<T, UserProductClickUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserProductClicks and returns the data updated in the database.
+     * @param {UserProductClickUpdateManyAndReturnArgs} args - Arguments to update many UserProductClicks.
+     * @example
+     * // Update many UserProductClicks
+     * const userProductClick = await prisma.userProductClick.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserProductClicks and only return the `id`
+     * const userProductClickWithIdOnly = await prisma.userProductClick.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserProductClickUpdateManyAndReturnArgs>(args: SelectSubset<T, UserProductClickUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserProductClick.
+     * @param {UserProductClickUpsertArgs} args - Arguments to update or create a UserProductClick.
+     * @example
+     * // Update or create a UserProductClick
+     * const userProductClick = await prisma.userProductClick.upsert({
+     *   create: {
+     *     // ... data to create a UserProductClick
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserProductClick we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserProductClickUpsertArgs>(args: SelectSubset<T, UserProductClickUpsertArgs<ExtArgs>>): Prisma__UserProductClickClient<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserProductClicks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickCountArgs} args - Arguments to filter UserProductClicks to count.
+     * @example
+     * // Count the number of UserProductClicks
+     * const count = await prisma.userProductClick.count({
+     *   where: {
+     *     // ... the filter for the UserProductClicks we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserProductClickCountArgs>(
+      args?: Subset<T, UserProductClickCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserProductClickCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserProductClick.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserProductClickAggregateArgs>(args: Subset<T, UserProductClickAggregateArgs>): Prisma.PrismaPromise<GetUserProductClickAggregateType<T>>
+
+    /**
+     * Group by UserProductClick.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserProductClickGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserProductClickGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserProductClickGroupByArgs['orderBy'] }
+        : { orderBy?: UserProductClickGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserProductClickGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserProductClickGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserProductClick model
+   */
+  readonly fields: UserProductClickFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserProductClick.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserProductClickClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserProductClick model
+   */
+  interface UserProductClickFieldRefs {
+    readonly id: FieldRef<"UserProductClick", 'String'>
+    readonly userId: FieldRef<"UserProductClick", 'String'>
+    readonly productId: FieldRef<"UserProductClick", 'String'>
+    readonly sourcePage: FieldRef<"UserProductClick", 'String'>
+    readonly clickedAt: FieldRef<"UserProductClick", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserProductClick findUnique
+   */
+  export type UserProductClickFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProductClick to fetch.
+     */
+    where: UserProductClickWhereUniqueInput
+  }
+
+  /**
+   * UserProductClick findUniqueOrThrow
+   */
+  export type UserProductClickFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProductClick to fetch.
+     */
+    where: UserProductClickWhereUniqueInput
+  }
+
+  /**
+   * UserProductClick findFirst
+   */
+  export type UserProductClickFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProductClick to fetch.
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProductClicks to fetch.
+     */
+    orderBy?: UserProductClickOrderByWithRelationInput | UserProductClickOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProductClicks.
+     */
+    cursor?: UserProductClickWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProductClicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProductClicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProductClicks.
+     */
+    distinct?: UserProductClickScalarFieldEnum | UserProductClickScalarFieldEnum[]
+  }
+
+  /**
+   * UserProductClick findFirstOrThrow
+   */
+  export type UserProductClickFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProductClick to fetch.
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProductClicks to fetch.
+     */
+    orderBy?: UserProductClickOrderByWithRelationInput | UserProductClickOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserProductClicks.
+     */
+    cursor?: UserProductClickWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProductClicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProductClicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProductClicks.
+     */
+    distinct?: UserProductClickScalarFieldEnum | UserProductClickScalarFieldEnum[]
+  }
+
+  /**
+   * UserProductClick findMany
+   */
+  export type UserProductClickFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter, which UserProductClicks to fetch.
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserProductClicks to fetch.
+     */
+    orderBy?: UserProductClickOrderByWithRelationInput | UserProductClickOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserProductClicks.
+     */
+    cursor?: UserProductClickWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserProductClicks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserProductClicks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserProductClicks.
+     */
+    distinct?: UserProductClickScalarFieldEnum | UserProductClickScalarFieldEnum[]
+  }
+
+  /**
+   * UserProductClick create
+   */
+  export type UserProductClickCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * The data needed to create a UserProductClick.
+     */
+    data: XOR<UserProductClickCreateInput, UserProductClickUncheckedCreateInput>
+  }
+
+  /**
+   * UserProductClick createMany
+   */
+  export type UserProductClickCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserProductClicks.
+     */
+    data: UserProductClickCreateManyInput | UserProductClickCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserProductClick createManyAndReturn
+   */
+  export type UserProductClickCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserProductClicks.
+     */
+    data: UserProductClickCreateManyInput | UserProductClickCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProductClick update
+   */
+  export type UserProductClickUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * The data needed to update a UserProductClick.
+     */
+    data: XOR<UserProductClickUpdateInput, UserProductClickUncheckedUpdateInput>
+    /**
+     * Choose, which UserProductClick to update.
+     */
+    where: UserProductClickWhereUniqueInput
+  }
+
+  /**
+   * UserProductClick updateMany
+   */
+  export type UserProductClickUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserProductClicks.
+     */
+    data: XOR<UserProductClickUpdateManyMutationInput, UserProductClickUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProductClicks to update
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * Limit how many UserProductClicks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProductClick updateManyAndReturn
+   */
+  export type UserProductClickUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * The data used to update UserProductClicks.
+     */
+    data: XOR<UserProductClickUpdateManyMutationInput, UserProductClickUncheckedUpdateManyInput>
+    /**
+     * Filter which UserProductClicks to update
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * Limit how many UserProductClicks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * UserProductClick upsert
+   */
+  export type UserProductClickUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * The filter to search for the UserProductClick to update in case it exists.
+     */
+    where: UserProductClickWhereUniqueInput
+    /**
+     * In case the UserProductClick found by the `where` argument doesn't exist, create a new UserProductClick with this data.
+     */
+    create: XOR<UserProductClickCreateInput, UserProductClickUncheckedCreateInput>
+    /**
+     * In case the UserProductClick was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserProductClickUpdateInput, UserProductClickUncheckedUpdateInput>
+  }
+
+  /**
+   * UserProductClick delete
+   */
+  export type UserProductClickDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    /**
+     * Filter which UserProductClick to delete.
+     */
+    where: UserProductClickWhereUniqueInput
+  }
+
+  /**
+   * UserProductClick deleteMany
+   */
+  export type UserProductClickDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserProductClicks to delete
+     */
+    where?: UserProductClickWhereInput
+    /**
+     * Limit how many UserProductClicks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserProductClick without action
+   */
+  export type UserProductClickDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
   }
 
 
@@ -12399,6 +14712,8 @@ export namespace Prisma {
     ReviewProduct?: boolean | User$ReviewProductArgs<ExtArgs>
     CartItem?: boolean | User$CartItemArgs<ExtArgs>
     UserFavorite?: boolean | User$UserFavoriteArgs<ExtArgs>
+    UserSearchHistory?: boolean | User$UserSearchHistoryArgs<ExtArgs>
+    UserProductClick?: boolean | User$UserProductClickArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -12449,6 +14764,8 @@ export namespace Prisma {
     ReviewProduct?: boolean | User$ReviewProductArgs<ExtArgs>
     CartItem?: boolean | User$CartItemArgs<ExtArgs>
     UserFavorite?: boolean | User$UserFavoriteArgs<ExtArgs>
+    UserSearchHistory?: boolean | User$UserSearchHistoryArgs<ExtArgs>
+    UserProductClick?: boolean | User$UserProductClickArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12468,6 +14785,8 @@ export namespace Prisma {
       ReviewProduct: Prisma.$ReviewProductPayload<ExtArgs>[]
       CartItem: Prisma.$CartItemPayload<ExtArgs>[]
       UserFavorite: Prisma.$UserFavoritePayload<ExtArgs>[]
+      UserSearchHistory: Prisma.$UserSearchHistoryPayload<ExtArgs>[]
+      UserProductClick: Prisma.$UserProductClickPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12880,6 +15199,8 @@ export namespace Prisma {
     ReviewProduct<T extends User$ReviewProductArgs<ExtArgs> = {}>(args?: Subset<T, User$ReviewProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     CartItem<T extends User$CartItemArgs<ExtArgs> = {}>(args?: Subset<T, User$CartItemArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     UserFavorite<T extends User$UserFavoriteArgs<ExtArgs> = {}>(args?: Subset<T, User$UserFavoriteArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserFavoritePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    UserSearchHistory<T extends User$UserSearchHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$UserSearchHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserSearchHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    UserProductClick<T extends User$UserProductClickArgs<ExtArgs> = {}>(args?: Subset<T, User$UserProductClickArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProductClickPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13455,6 +15776,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: UserFavoriteScalarFieldEnum | UserFavoriteScalarFieldEnum[]
+  }
+
+  /**
+   * User.UserSearchHistory
+   */
+  export type User$UserSearchHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserSearchHistory
+     */
+    select?: UserSearchHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserSearchHistory
+     */
+    omit?: UserSearchHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserSearchHistoryInclude<ExtArgs> | null
+    where?: UserSearchHistoryWhereInput
+    orderBy?: UserSearchHistoryOrderByWithRelationInput | UserSearchHistoryOrderByWithRelationInput[]
+    cursor?: UserSearchHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserSearchHistoryScalarFieldEnum | UserSearchHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * User.UserProductClick
+   */
+  export type User$UserProductClickArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserProductClick
+     */
+    select?: UserProductClickSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserProductClick
+     */
+    omit?: UserProductClickOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserProductClickInclude<ExtArgs> | null
+    where?: UserProductClickWhereInput
+    orderBy?: UserProductClickOrderByWithRelationInput | UserProductClickOrderByWithRelationInput[]
+    cursor?: UserProductClickWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserProductClickScalarFieldEnum | UserProductClickScalarFieldEnum[]
   }
 
   /**
@@ -15755,6 +18124,27 @@ export namespace Prisma {
   export type UserFavoriteScalarFieldEnum = (typeof UserFavoriteScalarFieldEnum)[keyof typeof UserFavoriteScalarFieldEnum]
 
 
+  export const UserSearchHistoryScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    term: 'term',
+    searchedAt: 'searchedAt'
+  };
+
+  export type UserSearchHistoryScalarFieldEnum = (typeof UserSearchHistoryScalarFieldEnum)[keyof typeof UserSearchHistoryScalarFieldEnum]
+
+
+  export const UserProductClickScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    productId: 'productId',
+    sourcePage: 'sourcePage',
+    clickedAt: 'clickedAt'
+  };
+
+  export type UserProductClickScalarFieldEnum = (typeof UserProductClickScalarFieldEnum)[keyof typeof UserProductClickScalarFieldEnum]
+
+
   export const CategoryProductsScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -16132,6 +18522,111 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"UserFavorite"> | string
     productId?: StringWithAggregatesFilter<"UserFavorite"> | string
     createdAt?: DateTimeWithAggregatesFilter<"UserFavorite"> | Date | string
+  }
+
+  export type UserSearchHistoryWhereInput = {
+    AND?: UserSearchHistoryWhereInput | UserSearchHistoryWhereInput[]
+    OR?: UserSearchHistoryWhereInput[]
+    NOT?: UserSearchHistoryWhereInput | UserSearchHistoryWhereInput[]
+    id?: StringFilter<"UserSearchHistory"> | string
+    userId?: StringFilter<"UserSearchHistory"> | string
+    term?: StringFilter<"UserSearchHistory"> | string
+    searchedAt?: DateTimeFilter<"UserSearchHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserSearchHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    term?: SortOrder
+    searchedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserSearchHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserSearchHistoryWhereInput | UserSearchHistoryWhereInput[]
+    OR?: UserSearchHistoryWhereInput[]
+    NOT?: UserSearchHistoryWhereInput | UserSearchHistoryWhereInput[]
+    userId?: StringFilter<"UserSearchHistory"> | string
+    term?: StringFilter<"UserSearchHistory"> | string
+    searchedAt?: DateTimeFilter<"UserSearchHistory"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type UserSearchHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    term?: SortOrder
+    searchedAt?: SortOrder
+    _count?: UserSearchHistoryCountOrderByAggregateInput
+    _max?: UserSearchHistoryMaxOrderByAggregateInput
+    _min?: UserSearchHistoryMinOrderByAggregateInput
+  }
+
+  export type UserSearchHistoryScalarWhereWithAggregatesInput = {
+    AND?: UserSearchHistoryScalarWhereWithAggregatesInput | UserSearchHistoryScalarWhereWithAggregatesInput[]
+    OR?: UserSearchHistoryScalarWhereWithAggregatesInput[]
+    NOT?: UserSearchHistoryScalarWhereWithAggregatesInput | UserSearchHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserSearchHistory"> | string
+    userId?: StringWithAggregatesFilter<"UserSearchHistory"> | string
+    term?: StringWithAggregatesFilter<"UserSearchHistory"> | string
+    searchedAt?: DateTimeWithAggregatesFilter<"UserSearchHistory"> | Date | string
+  }
+
+  export type UserProductClickWhereInput = {
+    AND?: UserProductClickWhereInput | UserProductClickWhereInput[]
+    OR?: UserProductClickWhereInput[]
+    NOT?: UserProductClickWhereInput | UserProductClickWhereInput[]
+    id?: StringFilter<"UserProductClick"> | string
+    userId?: StringFilter<"UserProductClick"> | string
+    productId?: StringFilter<"UserProductClick"> | string
+    sourcePage?: StringFilter<"UserProductClick"> | string
+    clickedAt?: DateTimeFilter<"UserProductClick"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UserProductClickOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    sourcePage?: SortOrder
+    clickedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type UserProductClickWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UserProductClickWhereInput | UserProductClickWhereInput[]
+    OR?: UserProductClickWhereInput[]
+    NOT?: UserProductClickWhereInput | UserProductClickWhereInput[]
+    userId?: StringFilter<"UserProductClick"> | string
+    productId?: StringFilter<"UserProductClick"> | string
+    sourcePage?: StringFilter<"UserProductClick"> | string
+    clickedAt?: DateTimeFilter<"UserProductClick"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type UserProductClickOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    sourcePage?: SortOrder
+    clickedAt?: SortOrder
+    _count?: UserProductClickCountOrderByAggregateInput
+    _max?: UserProductClickMaxOrderByAggregateInput
+    _min?: UserProductClickMinOrderByAggregateInput
+  }
+
+  export type UserProductClickScalarWhereWithAggregatesInput = {
+    AND?: UserProductClickScalarWhereWithAggregatesInput | UserProductClickScalarWhereWithAggregatesInput[]
+    OR?: UserProductClickScalarWhereWithAggregatesInput[]
+    NOT?: UserProductClickScalarWhereWithAggregatesInput | UserProductClickScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserProductClick"> | string
+    userId?: StringWithAggregatesFilter<"UserProductClick"> | string
+    productId?: StringWithAggregatesFilter<"UserProductClick"> | string
+    sourcePage?: StringWithAggregatesFilter<"UserProductClick"> | string
+    clickedAt?: DateTimeWithAggregatesFilter<"UserProductClick"> | Date | string
   }
 
   export type CategoryProductsWhereInput = {
@@ -16632,6 +19127,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductListRelationFilter
     CartItem?: CartItemListRelationFilter
     UserFavorite?: UserFavoriteListRelationFilter
+    UserSearchHistory?: UserSearchHistoryListRelationFilter
+    UserProductClick?: UserProductClickListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -16651,6 +19148,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductOrderByRelationAggregateInput
     CartItem?: CartItemOrderByRelationAggregateInput
     UserFavorite?: UserFavoriteOrderByRelationAggregateInput
+    UserSearchHistory?: UserSearchHistoryOrderByRelationAggregateInput
+    UserProductClick?: UserProductClickOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -16673,6 +19172,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductListRelationFilter
     CartItem?: CartItemListRelationFilter
     UserFavorite?: UserFavoriteListRelationFilter
+    UserSearchHistory?: UserSearchHistoryListRelationFilter
+    UserProductClick?: UserProductClickListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -16966,6 +19467,109 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryCreateInput = {
+    id?: string
+    term: string
+    searchedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserSearchHistoryInput
+  }
+
+  export type UserSearchHistoryUncheckedCreateInput = {
+    id?: string
+    userId: string
+    term: string
+    searchedAt?: Date | string
+  }
+
+  export type UserSearchHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserSearchHistoryNestedInput
+  }
+
+  export type UserSearchHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryCreateManyInput = {
+    id?: string
+    userId: string
+    term: string
+    searchedAt?: Date | string
+  }
+
+  export type UserSearchHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickCreateInput = {
+    id?: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
+    user: UserCreateNestedOneWithoutUserProductClickInput
+  }
+
+  export type UserProductClickUncheckedCreateInput = {
+    id?: string
+    userId: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
+  }
+
+  export type UserProductClickUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutUserProductClickNestedInput
+  }
+
+  export type UserProductClickUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickCreateManyInput = {
+    id?: string
+    userId: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
+  }
+
+  export type UserProductClickUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryProductsCreateInput = {
@@ -17492,6 +20096,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -17510,6 +20116,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -17528,6 +20136,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -17546,6 +20156,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -17920,6 +20532,51 @@ export namespace Prisma {
     userId?: SortOrder
     productId?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type UserSearchHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    term?: SortOrder
+    searchedAt?: SortOrder
+  }
+
+  export type UserSearchHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    term?: SortOrder
+    searchedAt?: SortOrder
+  }
+
+  export type UserSearchHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    term?: SortOrder
+    searchedAt?: SortOrder
+  }
+
+  export type UserProductClickCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    sourcePage?: SortOrder
+    clickedAt?: SortOrder
+  }
+
+  export type UserProductClickMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    sourcePage?: SortOrder
+    clickedAt?: SortOrder
+  }
+
+  export type UserProductClickMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    productId?: SortOrder
+    sourcePage?: SortOrder
+    clickedAt?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -18329,7 +20986,27 @@ export namespace Prisma {
     none?: AddressWhereInput
   }
 
+  export type UserSearchHistoryListRelationFilter = {
+    every?: UserSearchHistoryWhereInput
+    some?: UserSearchHistoryWhereInput
+    none?: UserSearchHistoryWhereInput
+  }
+
+  export type UserProductClickListRelationFilter = {
+    every?: UserProductClickWhereInput
+    some?: UserProductClickWhereInput
+    none?: UserProductClickWhereInput
+  }
+
   export type AddressOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserSearchHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserProductClickOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18531,6 +21208,34 @@ export namespace Prisma {
     upsert?: ProductUpsertWithoutUserFavoriteInput
     connect?: ProductWhereUniqueInput
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutUserFavoriteInput, ProductUpdateWithoutUserFavoriteInput>, ProductUncheckedUpdateWithoutUserFavoriteInput>
+  }
+
+  export type UserCreateNestedOneWithoutUserSearchHistoryInput = {
+    create?: XOR<UserCreateWithoutUserSearchHistoryInput, UserUncheckedCreateWithoutUserSearchHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserSearchHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutUserSearchHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutUserSearchHistoryInput, UserUncheckedCreateWithoutUserSearchHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserSearchHistoryInput
+    upsert?: UserUpsertWithoutUserSearchHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserSearchHistoryInput, UserUpdateWithoutUserSearchHistoryInput>, UserUncheckedUpdateWithoutUserSearchHistoryInput>
+  }
+
+  export type UserCreateNestedOneWithoutUserProductClickInput = {
+    create?: XOR<UserCreateWithoutUserProductClickInput, UserUncheckedCreateWithoutUserProductClickInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserProductClickInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutUserProductClickNestedInput = {
+    create?: XOR<UserCreateWithoutUserProductClickInput, UserUncheckedCreateWithoutUserProductClickInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUserProductClickInput
+    upsert?: UserUpsertWithoutUserProductClickInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserProductClickInput, UserUpdateWithoutUserProductClickInput>, UserUncheckedUpdateWithoutUserProductClickInput>
   }
 
   export type ProductCreateNestedManyWithoutCategoryProductsInput = {
@@ -19039,6 +21744,20 @@ export namespace Prisma {
     connect?: UserFavoriteWhereUniqueInput | UserFavoriteWhereUniqueInput[]
   }
 
+  export type UserSearchHistoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput> | UserSearchHistoryCreateWithoutUserInput[] | UserSearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSearchHistoryCreateOrConnectWithoutUserInput | UserSearchHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: UserSearchHistoryCreateManyUserInputEnvelope
+    connect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+  }
+
+  export type UserProductClickCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput> | UserProductClickCreateWithoutUserInput[] | UserProductClickUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserProductClickCreateOrConnectWithoutUserInput | UserProductClickCreateOrConnectWithoutUserInput[]
+    createMany?: UserProductClickCreateManyUserInputEnvelope
+    connect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+  }
+
   export type ProductUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
@@ -19078,6 +21797,20 @@ export namespace Prisma {
     connectOrCreate?: UserFavoriteCreateOrConnectWithoutUserInput | UserFavoriteCreateOrConnectWithoutUserInput[]
     createMany?: UserFavoriteCreateManyUserInputEnvelope
     connect?: UserFavoriteWhereUniqueInput | UserFavoriteWhereUniqueInput[]
+  }
+
+  export type UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput> | UserSearchHistoryCreateWithoutUserInput[] | UserSearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSearchHistoryCreateOrConnectWithoutUserInput | UserSearchHistoryCreateOrConnectWithoutUserInput[]
+    createMany?: UserSearchHistoryCreateManyUserInputEnvelope
+    connect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+  }
+
+  export type UserProductClickUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput> | UserProductClickCreateWithoutUserInput[] | UserProductClickUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserProductClickCreateOrConnectWithoutUserInput | UserProductClickCreateOrConnectWithoutUserInput[]
+    createMany?: UserProductClickCreateManyUserInputEnvelope
+    connect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
   }
 
   export type ProfileUpdateOneRequiredWithoutUserNestedInput = {
@@ -19168,6 +21901,34 @@ export namespace Prisma {
     deleteMany?: UserFavoriteScalarWhereInput | UserFavoriteScalarWhereInput[]
   }
 
+  export type UserSearchHistoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput> | UserSearchHistoryCreateWithoutUserInput[] | UserSearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSearchHistoryCreateOrConnectWithoutUserInput | UserSearchHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: UserSearchHistoryUpsertWithWhereUniqueWithoutUserInput | UserSearchHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSearchHistoryCreateManyUserInputEnvelope
+    set?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    disconnect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    delete?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    connect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    update?: UserSearchHistoryUpdateWithWhereUniqueWithoutUserInput | UserSearchHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSearchHistoryUpdateManyWithWhereWithoutUserInput | UserSearchHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSearchHistoryScalarWhereInput | UserSearchHistoryScalarWhereInput[]
+  }
+
+  export type UserProductClickUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput> | UserProductClickCreateWithoutUserInput[] | UserProductClickUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserProductClickCreateOrConnectWithoutUserInput | UserProductClickCreateOrConnectWithoutUserInput[]
+    upsert?: UserProductClickUpsertWithWhereUniqueWithoutUserInput | UserProductClickUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserProductClickCreateManyUserInputEnvelope
+    set?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    disconnect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    delete?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    connect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    update?: UserProductClickUpdateWithWhereUniqueWithoutUserInput | UserProductClickUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserProductClickUpdateManyWithWhereWithoutUserInput | UserProductClickUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserProductClickScalarWhereInput | UserProductClickScalarWhereInput[]
+  }
+
   export type ProductUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<ProductCreateWithoutUserInput, ProductUncheckedCreateWithoutUserInput> | ProductCreateWithoutUserInput[] | ProductUncheckedCreateWithoutUserInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutUserInput | ProductCreateOrConnectWithoutUserInput[]
@@ -19246,6 +22007,34 @@ export namespace Prisma {
     update?: UserFavoriteUpdateWithWhereUniqueWithoutUserInput | UserFavoriteUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: UserFavoriteUpdateManyWithWhereWithoutUserInput | UserFavoriteUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: UserFavoriteScalarWhereInput | UserFavoriteScalarWhereInput[]
+  }
+
+  export type UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput> | UserSearchHistoryCreateWithoutUserInput[] | UserSearchHistoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserSearchHistoryCreateOrConnectWithoutUserInput | UserSearchHistoryCreateOrConnectWithoutUserInput[]
+    upsert?: UserSearchHistoryUpsertWithWhereUniqueWithoutUserInput | UserSearchHistoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserSearchHistoryCreateManyUserInputEnvelope
+    set?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    disconnect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    delete?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    connect?: UserSearchHistoryWhereUniqueInput | UserSearchHistoryWhereUniqueInput[]
+    update?: UserSearchHistoryUpdateWithWhereUniqueWithoutUserInput | UserSearchHistoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserSearchHistoryUpdateManyWithWhereWithoutUserInput | UserSearchHistoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserSearchHistoryScalarWhereInput | UserSearchHistoryScalarWhereInput[]
+  }
+
+  export type UserProductClickUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput> | UserProductClickCreateWithoutUserInput[] | UserProductClickUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: UserProductClickCreateOrConnectWithoutUserInput | UserProductClickCreateOrConnectWithoutUserInput[]
+    upsert?: UserProductClickUpsertWithWhereUniqueWithoutUserInput | UserProductClickUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: UserProductClickCreateManyUserInputEnvelope
+    set?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    disconnect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    delete?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    connect?: UserProductClickWhereUniqueInput | UserProductClickWhereUniqueInput[]
+    update?: UserProductClickUpdateWithWhereUniqueWithoutUserInput | UserProductClickUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: UserProductClickUpdateManyWithWhereWithoutUserInput | UserProductClickUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: UserProductClickScalarWhereInput | UserProductClickScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPersonalDataInput = {
@@ -19488,6 +22277,8 @@ export namespace Prisma {
     Address?: AddressCreateNestedManyWithoutUserInput
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartItemInput = {
@@ -19505,6 +22296,8 @@ export namespace Prisma {
     Address?: AddressUncheckedCreateNestedManyWithoutUserInput
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartItemInput = {
@@ -19573,6 +22366,8 @@ export namespace Prisma {
     Address?: AddressUpdateManyWithoutUserNestedInput
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartItemInput = {
@@ -19590,6 +22385,8 @@ export namespace Prisma {
     Address?: AddressUncheckedUpdateManyWithoutUserNestedInput
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductVariationUpsertWithoutCartItemInput = {
@@ -19648,6 +22445,8 @@ export namespace Prisma {
     Address?: AddressCreateNestedManyWithoutUserInput
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserFavoriteInput = {
@@ -19665,6 +22464,8 @@ export namespace Prisma {
     Address?: AddressUncheckedCreateNestedManyWithoutUserInput
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserFavoriteInput = {
@@ -19733,6 +22534,8 @@ export namespace Prisma {
     Address?: AddressUpdateManyWithoutUserNestedInput
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserFavoriteInput = {
@@ -19750,6 +22553,8 @@ export namespace Prisma {
     Address?: AddressUncheckedUpdateManyWithoutUserNestedInput
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductUpsertWithoutUserFavoriteInput = {
@@ -19791,6 +22596,190 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ProductVariation?: ProductVariationUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type UserCreateWithoutUserSearchHistoryInput = {
+    id?: string
+    name: string
+    lastName: string
+    email: string
+    password: string
+    status: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile: ProfileCreateNestedOneWithoutUserInput
+    Product?: ProductCreateNestedManyWithoutUserInput
+    PersonalData?: PersonalDataCreateNestedOneWithoutUserInput
+    Address?: AddressCreateNestedManyWithoutUserInput
+    ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
+    CartItem?: CartItemCreateNestedManyWithoutUserInput
+    UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUserSearchHistoryInput = {
+    id?: string
+    name: string
+    lastName: string
+    email: string
+    password: string
+    status: boolean
+    profileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Product?: ProductUncheckedCreateNestedManyWithoutUserInput
+    PersonalData?: PersonalDataUncheckedCreateNestedOneWithoutUserInput
+    Address?: AddressUncheckedCreateNestedManyWithoutUserInput
+    ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
+    CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUserSearchHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserSearchHistoryInput, UserUncheckedCreateWithoutUserSearchHistoryInput>
+  }
+
+  export type UserUpsertWithoutUserSearchHistoryInput = {
+    update: XOR<UserUpdateWithoutUserSearchHistoryInput, UserUncheckedUpdateWithoutUserSearchHistoryInput>
+    create: XOR<UserCreateWithoutUserSearchHistoryInput, UserUncheckedCreateWithoutUserSearchHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserSearchHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserSearchHistoryInput, UserUncheckedUpdateWithoutUserSearchHistoryInput>
+  }
+
+  export type UserUpdateWithoutUserSearchHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
+    Product?: ProductUpdateManyWithoutUserNestedInput
+    PersonalData?: PersonalDataUpdateOneWithoutUserNestedInput
+    Address?: AddressUpdateManyWithoutUserNestedInput
+    ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
+    CartItem?: CartItemUpdateManyWithoutUserNestedInput
+    UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserSearchHistoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    profileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Product?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    PersonalData?: PersonalDataUncheckedUpdateOneWithoutUserNestedInput
+    Address?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
+    CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutUserProductClickInput = {
+    id?: string
+    name: string
+    lastName: string
+    email: string
+    password: string
+    status: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    profile: ProfileCreateNestedOneWithoutUserInput
+    Product?: ProductCreateNestedManyWithoutUserInput
+    PersonalData?: PersonalDataCreateNestedOneWithoutUserInput
+    Address?: AddressCreateNestedManyWithoutUserInput
+    ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
+    CartItem?: CartItemCreateNestedManyWithoutUserInput
+    UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUserProductClickInput = {
+    id?: string
+    name: string
+    lastName: string
+    email: string
+    password: string
+    status: boolean
+    profileId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Product?: ProductUncheckedCreateNestedManyWithoutUserInput
+    PersonalData?: PersonalDataUncheckedCreateNestedOneWithoutUserInput
+    Address?: AddressUncheckedCreateNestedManyWithoutUserInput
+    ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
+    CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
+    UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUserProductClickInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUserProductClickInput, UserUncheckedCreateWithoutUserProductClickInput>
+  }
+
+  export type UserUpsertWithoutUserProductClickInput = {
+    update: XOR<UserUpdateWithoutUserProductClickInput, UserUncheckedUpdateWithoutUserProductClickInput>
+    create: XOR<UserCreateWithoutUserProductClickInput, UserUncheckedCreateWithoutUserProductClickInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUserProductClickInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUserProductClickInput, UserUncheckedUpdateWithoutUserProductClickInput>
+  }
+
+  export type UserUpdateWithoutUserProductClickInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
+    Product?: ProductUpdateManyWithoutUserNestedInput
+    PersonalData?: PersonalDataUpdateOneWithoutUserNestedInput
+    Address?: AddressUpdateManyWithoutUserNestedInput
+    ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
+    CartItem?: CartItemUpdateManyWithoutUserNestedInput
+    UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUserProductClickInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    status?: BoolFieldUpdateOperationsInput | boolean
+    profileId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Product?: ProductUncheckedUpdateManyWithoutUserNestedInput
+    PersonalData?: PersonalDataUncheckedUpdateOneWithoutUserNestedInput
+    Address?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
+    CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
+    UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductCreateWithoutCategoryProductsInput = {
@@ -19958,6 +22947,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProductInput = {
@@ -19975,6 +22966,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProductInput = {
@@ -20116,6 +23109,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProductInput = {
@@ -20133,6 +23128,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BrandUpsertWithoutProductInput = {
@@ -20588,6 +23585,8 @@ export namespace Prisma {
     Address?: AddressCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReviewProductInput = {
@@ -20605,6 +23604,8 @@ export namespace Prisma {
     Address?: AddressUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReviewProductInput = {
@@ -20679,6 +23680,8 @@ export namespace Prisma {
     Address?: AddressUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReviewProductInput = {
@@ -20696,6 +23699,8 @@ export namespace Prisma {
     Address?: AddressUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProfileInput = {
@@ -20713,6 +23718,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProfileInput = {
@@ -20730,6 +23737,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProfileInput = {
@@ -20973,6 +23982,52 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserSearchHistoryCreateWithoutUserInput = {
+    id?: string
+    term: string
+    searchedAt?: Date | string
+  }
+
+  export type UserSearchHistoryUncheckedCreateWithoutUserInput = {
+    id?: string
+    term: string
+    searchedAt?: Date | string
+  }
+
+  export type UserSearchHistoryCreateOrConnectWithoutUserInput = {
+    where: UserSearchHistoryWhereUniqueInput
+    create: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSearchHistoryCreateManyUserInputEnvelope = {
+    data: UserSearchHistoryCreateManyUserInput | UserSearchHistoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserProductClickCreateWithoutUserInput = {
+    id?: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
+  }
+
+  export type UserProductClickUncheckedCreateWithoutUserInput = {
+    id?: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
+  }
+
+  export type UserProductClickCreateOrConnectWithoutUserInput = {
+    where: UserProductClickWhereUniqueInput
+    create: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserProductClickCreateManyUserInputEnvelope = {
+    data: UserProductClickCreateManyUserInput | UserProductClickCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ProfileUpsertWithoutUserInput = {
     update: XOR<ProfileUpdateWithoutUserInput, ProfileUncheckedUpdateWithoutUserInput>
     create: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
@@ -21126,6 +24181,59 @@ export namespace Prisma {
     data: XOR<UserFavoriteUpdateManyMutationInput, UserFavoriteUncheckedUpdateManyWithoutUserInput>
   }
 
+  export type UserSearchHistoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserSearchHistoryWhereUniqueInput
+    update: XOR<UserSearchHistoryUpdateWithoutUserInput, UserSearchHistoryUncheckedUpdateWithoutUserInput>
+    create: XOR<UserSearchHistoryCreateWithoutUserInput, UserSearchHistoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserSearchHistoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserSearchHistoryWhereUniqueInput
+    data: XOR<UserSearchHistoryUpdateWithoutUserInput, UserSearchHistoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserSearchHistoryUpdateManyWithWhereWithoutUserInput = {
+    where: UserSearchHistoryScalarWhereInput
+    data: XOR<UserSearchHistoryUpdateManyMutationInput, UserSearchHistoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserSearchHistoryScalarWhereInput = {
+    AND?: UserSearchHistoryScalarWhereInput | UserSearchHistoryScalarWhereInput[]
+    OR?: UserSearchHistoryScalarWhereInput[]
+    NOT?: UserSearchHistoryScalarWhereInput | UserSearchHistoryScalarWhereInput[]
+    id?: StringFilter<"UserSearchHistory"> | string
+    userId?: StringFilter<"UserSearchHistory"> | string
+    term?: StringFilter<"UserSearchHistory"> | string
+    searchedAt?: DateTimeFilter<"UserSearchHistory"> | Date | string
+  }
+
+  export type UserProductClickUpsertWithWhereUniqueWithoutUserInput = {
+    where: UserProductClickWhereUniqueInput
+    update: XOR<UserProductClickUpdateWithoutUserInput, UserProductClickUncheckedUpdateWithoutUserInput>
+    create: XOR<UserProductClickCreateWithoutUserInput, UserProductClickUncheckedCreateWithoutUserInput>
+  }
+
+  export type UserProductClickUpdateWithWhereUniqueWithoutUserInput = {
+    where: UserProductClickWhereUniqueInput
+    data: XOR<UserProductClickUpdateWithoutUserInput, UserProductClickUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserProductClickUpdateManyWithWhereWithoutUserInput = {
+    where: UserProductClickScalarWhereInput
+    data: XOR<UserProductClickUpdateManyMutationInput, UserProductClickUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type UserProductClickScalarWhereInput = {
+    AND?: UserProductClickScalarWhereInput | UserProductClickScalarWhereInput[]
+    OR?: UserProductClickScalarWhereInput[]
+    NOT?: UserProductClickScalarWhereInput | UserProductClickScalarWhereInput[]
+    id?: StringFilter<"UserProductClick"> | string
+    userId?: StringFilter<"UserProductClick"> | string
+    productId?: StringFilter<"UserProductClick"> | string
+    sourcePage?: StringFilter<"UserProductClick"> | string
+    clickedAt?: DateTimeFilter<"UserProductClick"> | Date | string
+  }
+
   export type UserCreateWithoutPersonalDataInput = {
     id?: string
     name: string
@@ -21141,6 +24249,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPersonalDataInput = {
@@ -21158,6 +24268,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPersonalDataInput = {
@@ -21191,6 +24303,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPersonalDataInput = {
@@ -21208,6 +24322,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutAddressInput = {
@@ -21225,6 +24341,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductCreateNestedManyWithoutUserInput
     CartItem?: CartItemCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressInput = {
@@ -21242,6 +24360,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedCreateNestedManyWithoutUserInput
     CartItem?: CartItemUncheckedCreateNestedManyWithoutUserInput
     UserFavorite?: UserFavoriteUncheckedCreateNestedManyWithoutUserInput
+    UserSearchHistory?: UserSearchHistoryUncheckedCreateNestedManyWithoutUserInput
+    UserProductClick?: UserProductClickUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressInput = {
@@ -21275,6 +24395,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressInput = {
@@ -21292,6 +24414,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProductCreateManyCategoryProductsInput = {
@@ -21614,6 +24738,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProfileInput = {
@@ -21631,6 +24757,8 @@ export namespace Prisma {
     ReviewProduct?: ReviewProductUncheckedUpdateManyWithoutUserNestedInput
     CartItem?: CartItemUncheckedUpdateManyWithoutUserNestedInput
     UserFavorite?: UserFavoriteUncheckedUpdateManyWithoutUserNestedInput
+    UserSearchHistory?: UserSearchHistoryUncheckedUpdateManyWithoutUserNestedInput
+    UserProductClick?: UserProductClickUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutProfileInput = {
@@ -21693,6 +24821,19 @@ export namespace Prisma {
     id?: string
     productId: string
     createdAt?: Date | string
+  }
+
+  export type UserSearchHistoryCreateManyUserInput = {
+    id?: string
+    term: string
+    searchedAt?: Date | string
+  }
+
+  export type UserProductClickCreateManyUserInput = {
+    id?: string
+    productId: string
+    sourcePage: string
+    clickedAt?: Date | string
   }
 
   export type ProductUpdateWithoutUserInput = {
@@ -21850,6 +24991,45 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     productId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserSearchHistoryUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    term?: StringFieldUpdateOperationsInput | string
+    searchedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserProductClickUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: StringFieldUpdateOperationsInput | string
+    sourcePage?: StringFieldUpdateOperationsInput | string
+    clickedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
