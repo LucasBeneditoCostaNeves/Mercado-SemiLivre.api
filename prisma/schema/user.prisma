@@ -21,9 +21,11 @@ model User {
   PersonalData  PersonalData?
   Address       Address[]
   ReviewProduct ReviewProduct[]
-  CartItem      CartItem[]
-  UserFavorite  UserFavorite[]
-  createdAt     DateTime      @default(now())
+  CartItem          CartItem[]
+  UserFavorite      UserFavorite[]
+  UserSearchHistory UserSearchHistory[]
+  UserProductClick  UserProductClick[]
+  createdAt         DateTime      @default(now())
   updatedAt     DateTime      @default(now())
 }
 
