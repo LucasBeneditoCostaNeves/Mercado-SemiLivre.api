@@ -14526,6 +14526,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     status: boolean | null
+    avatarUrl: string | null
     profileId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -14538,6 +14539,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     status: boolean | null
+    avatarUrl: string | null
     profileId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -14550,6 +14552,7 @@ export namespace Prisma {
     email: number
     password: number
     status: number
+    avatarUrl: number
     profileId: number
     createdAt: number
     updatedAt: number
@@ -14564,6 +14567,7 @@ export namespace Prisma {
     email?: true
     password?: true
     status?: true
+    avatarUrl?: true
     profileId?: true
     createdAt?: true
     updatedAt?: true
@@ -14576,6 +14580,7 @@ export namespace Prisma {
     email?: true
     password?: true
     status?: true
+    avatarUrl?: true
     profileId?: true
     createdAt?: true
     updatedAt?: true
@@ -14588,6 +14593,7 @@ export namespace Prisma {
     email?: true
     password?: true
     status?: true
+    avatarUrl?: true
     profileId?: true
     createdAt?: true
     updatedAt?: true
@@ -14673,6 +14679,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl: string | null
     profileId: string
     createdAt: Date
     updatedAt: Date
@@ -14702,6 +14709,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     status?: boolean
+    avatarUrl?: boolean
     profileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -14724,6 +14732,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     status?: boolean
+    avatarUrl?: boolean
     profileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -14737,6 +14746,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     status?: boolean
+    avatarUrl?: boolean
     profileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -14750,12 +14760,13 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     status?: boolean
+    avatarUrl?: boolean
     profileId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "lastName" | "email" | "password" | "status" | "profileId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "lastName" | "email" | "password" | "status" | "avatarUrl" | "profileId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     profile?: boolean | ProfileDefaultArgs<ExtArgs>
     Product?: boolean | User$ProductArgs<ExtArgs>
@@ -14795,6 +14806,7 @@ export namespace Prisma {
       email: string
       password: string
       status: boolean
+      avatarUrl: string | null
       profileId: string
       createdAt: Date
       updatedAt: Date
@@ -15236,6 +15248,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly status: FieldRef<"User", 'Boolean'>
+    readonly avatarUrl: FieldRef<"User", 'String'>
     readonly profileId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -18242,6 +18255,7 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     status: 'status',
+    avatarUrl: 'avatarUrl',
     profileId: 'profileId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -19117,6 +19131,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     status?: BoolFilter<"User"> | boolean
+    avatarUrl?: StringNullableFilter<"User"> | string | null
     profileId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -19138,6 +19153,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     status?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
     profileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19162,6 +19178,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     status?: BoolFilter<"User"> | boolean
+    avatarUrl?: StringNullableFilter<"User"> | string | null
     profileId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -19183,6 +19200,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     status?: SortOrder
+    avatarUrl?: SortOrderInput | SortOrder
     profileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19201,6 +19219,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     status?: BoolWithAggregatesFilter<"User"> | boolean
+    avatarUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
     profileId?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -20087,6 +20106,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -20107,6 +20127,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20127,6 +20148,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -20147,6 +20169,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20167,6 +20190,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20179,6 +20203,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20190,6 +20215,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21017,6 +21043,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     status?: SortOrder
+    avatarUrl?: SortOrder
     profileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21029,6 +21056,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     status?: SortOrder
+    avatarUrl?: SortOrder
     profileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -21041,6 +21069,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     status?: SortOrder
+    avatarUrl?: SortOrder
     profileId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22269,6 +22298,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -22288,6 +22318,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22358,6 +22389,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -22377,6 +22409,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22437,6 +22470,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -22456,6 +22490,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22526,6 +22561,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -22545,6 +22581,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22605,6 +22642,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -22624,6 +22662,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22659,6 +22698,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -22678,6 +22718,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22697,6 +22738,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -22716,6 +22758,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22751,6 +22794,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -22770,6 +22814,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22939,6 +22984,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -22958,6 +23004,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23101,6 +23148,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -23120,6 +23168,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23577,6 +23626,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -23596,6 +23646,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23672,6 +23723,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -23691,6 +23743,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23710,6 +23763,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Product?: ProductCreateNestedManyWithoutUserInput
@@ -23729,6 +23783,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     Product?: ProductUncheckedCreateNestedManyWithoutUserInput
@@ -23777,6 +23832,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     status?: BoolFilter<"User"> | boolean
+    avatarUrl?: StringNullableFilter<"User"> | string | null
     profileId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -24241,6 +24297,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -24260,6 +24317,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24295,6 +24353,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -24314,6 +24373,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24333,6 +24393,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     profile: ProfileCreateNestedOneWithoutUserInput
@@ -24352,6 +24413,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     profileId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24387,6 +24449,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
@@ -24406,6 +24469,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     profileId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24719,6 +24783,7 @@ export namespace Prisma {
     email: string
     password: string
     status: boolean
+    avatarUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -24730,6 +24795,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Product?: ProductUpdateManyWithoutUserNestedInput
@@ -24749,6 +24815,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Product?: ProductUncheckedUpdateManyWithoutUserNestedInput
@@ -24768,6 +24835,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     status?: BoolFieldUpdateOperationsInput | boolean
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

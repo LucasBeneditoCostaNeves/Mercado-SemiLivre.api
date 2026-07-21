@@ -1,86 +1,101 @@
-import { User } from "src/modules/user/entities/User"
-import { IUserUpdateDTO, UserRepository } from "src/modules/user/repositories/UserRepository"
-import { PrismaUserMapper } from "../mappers/PrismaUserMapper"
-import { Injectable } from "@nestjs/common"
-import { PrismaService } from "src/infra/database/prisma/prisma.service"
+import { User } from 'src/modules/user/entities/User';
+import {
+  IUserUpdateDTO,
+  UserRepository,
+} from 'src/modules/user/repositories/UserRepository';
+import { PrismaUserMapper } from '../mappers/PrismaUserMapper';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 
 interface UserListDTO {
-    id: string
-    name: string
-    email: string
-    password: string
-    status: boolean
-    profileId: string
-    createdAt: Date
-    updatedAt: Date
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  status: boolean;
+  profileId: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 interface UserUpdateInput {
-    name?: string
-    email?: string
-    status?: boolean
+  name?: string;
+  email?: string;
+  status?: boolean;
+  avatarUrl?: string | null;
 }
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
+  constructor(private prisma: PrismaService) {}
 
-    constructor(private prisma: PrismaService) { }
+  async create(user: User): Promise<void> {
+    const userRaw = PrismaUserMapper.toPrisma(user);
 
-    async create(user: User): Promise<void> {
+    await this.prisma.user.create({
+      data: userRaw,
+    });
+  }
 
-        const userRaw = PrismaUserMapper.toPrisma(user)
+  async findMany(): Promise<UserListDTO[]> {
+    const users = await this.prisma.user.findMany();
+    return users;
+  }
 
-        await this.prisma.user.create({
-            data: userRaw
-        })
+  async findById(id: string): Promise<User | null> {
+    const user = await this.prisma.user.findUnique({ where: { id } });
+
+    if (!user) {
+      return null;
     }
 
-    async findMany(): Promise<UserListDTO[]> {
-        const users = await this.prisma.user.findMany()
-        return users
+    return PrismaUserMapper.toDomain(user);
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        email,
+        status: true,
+      },
+      include: {
+        profile: {
+          select: { name: true },
+        },
+      },
+    });
+
+    if (!user) {
+      return null;
     }
 
-    async findByEmail(email: string): Promise<User | null> {
-        const user = await this.prisma.user.findFirst({
-            where: {
-                email,
-                status: true,
-            },
-            include: {
-                profile: {
-                    select: { name: true },
-                },
-            },
-        })
+    return PrismaUserMapper.toDomain(user);
+  }
 
-        if (!user) {
-            return null
-        }
-
-        return PrismaUserMapper.toDomain(user)
+  async update(dataUser: IUserUpdateDTO): Promise<void> {
+    const { id, name, email, status, avatarUrl } = dataUser;
+    const dataToUpdate: UserUpdateInput = { name, email, status };
+    if (avatarUrl !== undefined) {
+      dataToUpdate.avatarUrl = avatarUrl;
     }
 
-    async update(dataUser: IUserUpdateDTO): Promise<void> {
-        const { id, name, email, status } = dataUser
-        const dataToUpdate: UserUpdateInput = { name, email, status }
+    if (Object.keys(dataToUpdate).length > 0) {
+      await this.prisma.user.update({
+        where: { id },
+        data: dataToUpdate,
+      });
+    }
+  }
 
-        if (Object.keys(dataToUpdate).length > 0) {
-            await this.prisma.user.update({
-                where: { id },
-                data: dataToUpdate,
-            })
-        }
+  async exisByEmail(email: string): Promise<boolean> {
+    const user = await this.prisma.user.findFirst({
+      where: { email },
+    });
+
+    if (!user) {
+      return false;
     }
 
-    async exisByEmail(email: string): Promise<boolean> {
-        const user = await this.prisma.user.findFirst({
-            where: { email },
-        })
-
-        if (!user) {
-            return false
-        }
-
-        return true
-    }
+    return true;
+  }
 }

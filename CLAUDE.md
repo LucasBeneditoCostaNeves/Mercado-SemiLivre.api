@@ -112,3 +112,9 @@ Gere os testes seguindo estas diretrizes obrigatórias:
 - Comentários explicando decisões não óbvias
 - Se necessário, crie também o arquivo de factory/stub separado
 - Aponte ao final qualquer cenário que não conseguiu cobrir e por quê
+
+## INTEGRAÇÃO DE FRETE (Melhor Envio)
+
+O cálculo de frete usa a API da Melhor Envio (`MELHOR_ENVIO_TOKEN`, `MELHOR_ENVIO_BASE_URL`, `SHIPPING_ORIGIN_CEP` no `.env`). Pré-requisito: criar uma conta de desenvolvedor no sandbox (`https://sandbox.melhorenvio.com.br`) e gerar um token de aplicação — sem token válido, o endpoint `POST /shipping/quote` retorna 503. Em produção, a conta precisa de CNPJ/CPF verificado junto à Melhor Envio.
+
+**NUNCA implementar funcionalidades da Melhor Envio que gerem custo real**, como geração/compra de etiqueta de postagem (`shipping-generate`, `/me/shipment/checkout`, `/me/shipment/generate`), impressão de etiqueta paga ou qualquer chamada que debite saldo da carteira Melhor Envio. Apenas cotação (`shipping-calculate` / `/shipment/calculate`) é permitida — é gratuita e não gera cobrança. Se uma tarefa pedir compra/geração de frete, sinalizar o risco de custo antes de implementar, mesmo em ambiente de sandbox.

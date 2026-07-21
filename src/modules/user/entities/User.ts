@@ -1,92 +1,108 @@
-import { randomUUID } from "crypto"
-import { Replace } from "../../../utils/replace"
+import { randomUUID } from 'crypto';
+import { Replace } from '../../../utils/replace';
 
 interface UserSchema {
-    name: string,
-    lastName: string,
-    email: string,
-    password: string,
-    status: boolean,
-    profileId: string,
-    createdAt: Date,
-    updatedAt: Date,
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+  status: boolean;
+  profileId: string;
+  avatarUrl: string | null;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class User {
-    private props: UserSchema
-    private _id: string
+  private props: UserSchema;
+  private _id: string;
 
-    /*  
+  /*  
         Usando Replace aqui pq caso for usado user para criar um usuário novo não vai ser passado o 
         createdAt e o updatedAt, então estamos falando que caso não seja passado será um new Date()
     */
 
-    constructor(props: Replace<UserSchema, { createdAt?: Date, updatedAt?: Date }>, id?: string) {
-        this.props = {
-            ...props,
-            createdAt: props.createdAt || new Date(),
-            updatedAt: props.updatedAt || new Date()
-        }
-        this._id = id || randomUUID()
-    }
+  constructor(
+    props: Replace<
+      UserSchema,
+      { createdAt?: Date; updatedAt?: Date; avatarUrl?: string | null }
+    >,
+    id?: string,
+  ) {
+    this.props = {
+      ...props,
+      avatarUrl: props.avatarUrl ?? null,
+      createdAt: props.createdAt || new Date(),
+      updatedAt: props.updatedAt || new Date(),
+    };
+    this._id = id || randomUUID();
+  }
 
-    get id(): string {
-        return this._id
-    }
+  get id(): string {
+    return this._id;
+  }
 
-    get name(): string {
-        return this.props.name
-    }
+  get name(): string {
+    return this.props.name;
+  }
 
-    set name(name: string) {
-        this.props.name = name
-    }
+  set name(name: string) {
+    this.props.name = name;
+  }
 
-    get lastName(): string {
-        return this.props.lastName
-    }
+  get lastName(): string {
+    return this.props.lastName;
+  }
 
-    set lastName(lastName: string) {
-        this.props.lastName = lastName
-    }
+  set lastName(lastName: string) {
+    this.props.lastName = lastName;
+  }
 
-    get email(): string {
-        return this.props.email
-    }
+  get email(): string {
+    return this.props.email;
+  }
 
-    set email(email: string) {
-        this.props.email = email
-    }
+  set email(email: string) {
+    this.props.email = email;
+  }
 
-    get password(): string {
-        return this.props.password
-    }
+  get password(): string {
+    return this.props.password;
+  }
 
-    set password(password: string) {
-        this.props.password = password
-    }
+  set password(password: string) {
+    this.props.password = password;
+  }
 
-    get status(): boolean {
-        return this.props.status
-    }
+  get status(): boolean {
+    return this.props.status;
+  }
 
-    set status(status: boolean) {
-        this.props.status = status
-    }
+  set status(status: boolean) {
+    this.props.status = status;
+  }
 
-    get profileId(): string {
-        return this.props.profileId
-    }
+  get profileId(): string {
+    return this.props.profileId;
+  }
 
-    set profileId(profileId: string) {
-        this.props.profileId = profileId
-    }
+  set profileId(profileId: string) {
+    this.props.profileId = profileId;
+  }
 
-    get createdAt(): Date {
-        return this.props.createdAt
-    }
+  get avatarUrl(): string | null {
+    return this.props.avatarUrl;
+  }
 
-    get updatedAt(): Date {
-        return this.props.updatedAt
-    }
+  set avatarUrl(avatarUrl: string | null) {
+    this.props.avatarUrl = avatarUrl;
+  }
+
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }
