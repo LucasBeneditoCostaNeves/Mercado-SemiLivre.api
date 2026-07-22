@@ -16,9 +16,11 @@ import { CartModule } from './infra/http/modules/cart/cart.module'
 import { FavoritesModule } from './infra/http/modules/favorites/favorites.module'
 import { HistoryModule } from './infra/http/modules/history/history.module'
 import { HealthModule } from './infra/http/modules/health/health.module'
+import { ShippingModule } from './infra/http/modules/shipping/shipping.module'
+import { OrderModule } from './infra/http/modules/order/order.module'
 
 @Module({
-  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule, FavoritesModule, HistoryModule, HealthModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule, FavoritesModule, HistoryModule, HealthModule, ShippingModule, OrderModule],
   controllers: [],
   providers: [
     {
