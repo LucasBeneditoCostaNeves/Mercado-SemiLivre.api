@@ -7,6 +7,7 @@ interface ProductVariationSchema {
     quantity: number,
     description: string,
     product_id: string,
+    discountPercentage: number,
     status?: boolean,
     createdAt: Date,
     updatedAt: Date
@@ -68,6 +69,14 @@ export class ProductVariation {
 
     set product_id(product_id: string) {
         this.props.product_id = product_id
+    }
+
+    get discountPercentage(): number {
+        return this.props.discountPercentage
+    }
+
+    set discountPercentage(discountPercentage: number) {
+        this.props.discountPercentage = discountPercentage
     }
 
     get status(): boolean | undefined {

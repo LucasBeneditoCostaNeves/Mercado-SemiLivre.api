@@ -18,7 +18,14 @@ export class PrismaProductVariationRepository implements ProductVariationReposit
     }
 
     async findMany(): Promise<ProductVariationDTO[]> {
-        const profiles = await this.prisma.productVariation.findMany()
-        return profiles.map((p) => ({ ...p, price: Number(p.price) }))
+        const profiles = await this.prisma.productVariation.findMany({
+            include: { productVariationImages: { select: { id: true, link: true } } },
+        })
+        return profiles.map(({ productVariationImages, ...p }) => ({
+            ...p,
+            price: Number(p.price),
+            discountPercentage: Number(p.discountPercentage),
+            images: productVariationImages,
+        }))
     }
 }

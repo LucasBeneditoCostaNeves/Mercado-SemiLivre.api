@@ -4,7 +4,9 @@ export const createProductBodySchema = z
     .object({
         title: z.string().trim().min(1).max(255),
         category_product_id: z.uuid(),
-        seller_user_id: z.uuid(),
+        brand_id: z.uuid(),
+        thumbnail: z.string().trim().min(1),
+        warrantyInformation: z.string().trim().min(1).max(500),
         status: z.boolean(),
     })
     .strict()

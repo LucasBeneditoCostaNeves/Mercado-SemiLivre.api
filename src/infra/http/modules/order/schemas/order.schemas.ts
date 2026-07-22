@@ -8,4 +8,5 @@ export const createCheckoutSessionSchema = z.object({
   shippingCarrier: z.string().min(1),
   shippingService: z.string().min(1),
   shippingPrice: z.number().min(0),
+  couponCode: z.string().trim().min(1).optional(),
 });

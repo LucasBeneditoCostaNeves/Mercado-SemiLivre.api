@@ -8,5 +8,6 @@ export const createProductVariationBodyShema = z
         status: z.boolean(),
         product_id: z.uuid(),
         quantity: z.number(),
+        discountPercentage: z.number().min(0).max(100).default(0),
 
     }).strict()

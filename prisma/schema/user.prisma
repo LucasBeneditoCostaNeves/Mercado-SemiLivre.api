@@ -27,6 +27,8 @@ model User {
   UserSearchHistory UserSearchHistory[]
   UserProductClick  UserProductClick[]
   Order             Order[]
+  ProductQuestion   ProductQuestion[]
+  CouponUsage       CouponUsage[]
   createdAt         DateTime      @default(now())
   updatedAt     DateTime      @default(now())
 }

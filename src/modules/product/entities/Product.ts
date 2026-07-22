@@ -5,6 +5,9 @@ interface IProductSchema {
     title: string
     seller_user_id: string
     category_product_id: string
+    brand_id: string
+    thumbnail: string
+    warrantyInformation: string
     status: boolean
     createdAt: Date
     updatedAt: Date
@@ -57,6 +60,30 @@ export class Product {
 
     set seller_user_id(seller_user_id: string) {
         this.props.seller_user_id = seller_user_id
+    }
+
+    get brand_id(): string {
+        return this.props.brand_id
+    }
+
+    set brand_id(brand_id: string) {
+        this.props.brand_id = brand_id
+    }
+
+    get thumbnail(): string {
+        return this.props.thumbnail
+    }
+
+    set thumbnail(thumbnail: string) {
+        this.props.thumbnail = thumbnail
+    }
+
+    get warrantyInformation(): string {
+        return this.props.warrantyInformation
+    }
+
+    set warrantyInformation(warrantyInformation: string) {
+        this.props.warrantyInformation = warrantyInformation
     }
 
     get createdAt(): Date {

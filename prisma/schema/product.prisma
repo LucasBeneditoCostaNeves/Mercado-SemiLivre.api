@@ -30,6 +30,7 @@ model Product {
   aiSummary             String?
   ProductVariation      ProductVariation[]
   UserFavorite          UserFavorite[]
+  ProductQuestion       ProductQuestion[]
   createdAt             DateTime         @default(now())
   updatedAt             DateTime         @default(now())
 }

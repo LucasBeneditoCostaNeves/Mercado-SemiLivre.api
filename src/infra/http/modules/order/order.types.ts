@@ -13,6 +13,8 @@ export interface CreateCheckoutSessionInput {
   shippingCarrier: string;
   shippingService: string;
   shippingPrice: number;
+  couponCode?: string;
+  discountAmount?: number;
 }
 
 export interface CheckoutSession {
@@ -26,6 +28,8 @@ export interface CheckoutSessionMetadata {
   shippingCarrier: string;
   shippingService: string;
   shippingPrice: number;
+  couponCode?: string;
+  discountAmount?: number;
 }
 
 export type PaymentWebhookEvent =

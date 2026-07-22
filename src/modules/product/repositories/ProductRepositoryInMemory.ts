@@ -1,5 +1,5 @@
 import { Product } from "../entities/Product";
-import { ProductRepository } from "./ProductRepository";
+import { IProductFilter, ProductRepository } from "./ProductRepository";
 
 export class ProductRepositoryInMemory implements ProductRepository {
     public products: Product[] = []
@@ -15,7 +15,14 @@ export class ProductRepositoryInMemory implements ProductRepository {
         }
     }
 
-    async findMany(): Promise<Product[]> {
+    async delete(id: string): Promise<void> {
+        this.products = this.products.filter(p => p.id !== id)
+    }
+
+    async findMany(filter?: IProductFilter): Promise<Product[]> {
+        if (filter?.sellerUserId) {
+            return this.products.filter(p => p.seller_user_id === filter.sellerUserId)
+        }
         return this.products
     }
 

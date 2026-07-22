@@ -8,6 +8,7 @@ import {
 import { ZodValidationException } from 'nestjs-zod';
 import { ZodError } from 'zod';
 import { ProductNotFoundError } from 'src/domain/errors/product/ProductNotFoundError';
+import { ProductForbiddenError } from 'src/domain/errors/product/ProductForbiddenError';
 import { NoFieldsToUpdateError } from 'src/domain/errors/NoFieldsToUpdateError';
 import { EmailAlreadyInUseError } from 'src/domain/errors/user/EmailAlreadyInUseError';
 import { UserNotFoundError } from 'src/domain/errors/user/UserNotFoundError';
@@ -28,6 +29,9 @@ export class DomainExceptionFilter implements ExceptionFilter {
 
     if (error instanceof ProductNotFoundError) {
       return response.status(404).json({ message: error.message });
+    }
+    if (error instanceof ProductForbiddenError) {
+      return response.status(403).json({ message: error.message });
     }
     if (error instanceof NoFieldsToUpdateError) {
       return response.status(400).json({ message: error.message });

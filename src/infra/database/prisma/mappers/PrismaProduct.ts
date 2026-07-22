@@ -3,12 +3,15 @@ import { Product as ProductRaw } from "@prisma/client"
 
 export class PrismaProductMapper {
 
-    static toPrisma({ id, title, category_product_id, seller_user_id, status, createdAt, updatedAt }: Product) {
+    static toPrisma({ id, title, category_product_id, seller_user_id, brand_id, thumbnail, warrantyInformation, status, createdAt, updatedAt }: Product) {
         return {
             id,
             title,
             category_product_id,
             seller_user_id,
+            brand_id,
+            thumbnail,
+            warrantyInformation,
             status,
             createdAt,
             updatedAt,
@@ -21,6 +24,9 @@ export class PrismaProductMapper {
                 title: productData.title,
                 category_product_id: productData.category_product_id,
                 seller_user_id: productData.seller_user_id,
+                brand_id: productData.brand_id,
+                thumbnail: productData.thumbnail,
+                warrantyInformation: productData.warrantyInformation,
                 status: productData.status,
                 createdAt: productData.createdAt,
                 updatedAt: productData.updatedAt,

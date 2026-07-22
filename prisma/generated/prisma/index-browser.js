@@ -129,6 +129,36 @@ exports.Prisma.CartItemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.CouponScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  discountType: 'discountType',
+  discountValue: 'discountValue',
+  scope: 'scope',
+  createdByRole: 'createdByRole',
+  createdById: 'createdById',
+  sellerId: 'sellerId',
+  productId: 'productId',
+  minOrderValue: 'minOrderValue',
+  maxDiscountValue: 'maxDiscountValue',
+  usageLimit: 'usageLimit',
+  usageLimitPerUser: 'usageLimitPerUser',
+  startsAt: 'startsAt',
+  expiresAt: 'expiresAt',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CouponUsageScalarFieldEnum = {
+  id: 'id',
+  couponId: 'couponId',
+  userId: 'userId',
+  orderId: 'orderId',
+  discountApplied: 'discountApplied',
+  usedAt: 'usedAt'
+};
+
 exports.Prisma.UserFavoriteScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -236,6 +266,17 @@ exports.Prisma.ReviewProductScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ProductQuestionScalarFieldEnum = {
+  id: 'id',
+  product_id: 'product_id',
+  buyer_user_id: 'buyer_user_id',
+  question: 'question',
+  answer: 'answer',
+  answeredAt: 'answeredAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.ProfileScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -295,6 +336,22 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.CouponDiscountType = exports.$Enums.CouponDiscountType = {
+  percentage: 'percentage',
+  fixed: 'fixed'
+};
+
+exports.CouponScope = exports.$Enums.CouponScope = {
+  global: 'global',
+  seller: 'seller',
+  product: 'product'
+};
+
+exports.CouponCreatorRole = exports.$Enums.CouponCreatorRole = {
+  admin: 'admin',
+  seller: 'seller'
+};
+
 exports.OrderStatus = exports.$Enums.OrderStatus = {
   PENDING: 'PENDING',
   PAID: 'PAID',
@@ -311,6 +368,8 @@ exports.Gender = exports.$Enums.Gender = {
 
 exports.Prisma.ModelName = {
   CartItem: 'CartItem',
+  Coupon: 'Coupon',
+  CouponUsage: 'CouponUsage',
   UserFavorite: 'UserFavorite',
   UserSearchHistory: 'UserSearchHistory',
   UserProductClick: 'UserProductClick',
@@ -322,6 +381,7 @@ exports.Prisma.ModelName = {
   ProductVariation: 'ProductVariation',
   productVariationImages: 'productVariationImages',
   ReviewProduct: 'ReviewProduct',
+  ProductQuestion: 'ProductQuestion',
   Profile: 'Profile',
   User: 'User',
   PersonalData: 'PersonalData',

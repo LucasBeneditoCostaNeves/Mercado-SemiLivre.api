@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 import { GetAddressUseCase } from 'src/modules/address/useCases/getAddressUseCase/getAddressUseCase';
 import { OrderNotFoundError } from 'src/domain/errors/order/OrderNotFoundError';
+import { CouponService } from '../coupon/coupon.service';
 import { PaymentGateway } from './gateway/PaymentGateway';
 import { CheckoutSession, CheckoutSessionMetadata } from './order.types';
 
@@ -16,6 +17,7 @@ interface CreateCheckoutSessionRequest {
   shippingCarrier: string;
   shippingService: string;
   shippingPrice: number;
+  couponCode?: string;
 }
 
 @Injectable()
@@ -24,6 +26,7 @@ export class OrderService {
     private prisma: PrismaService,
     private paymentGateway: PaymentGateway,
     private getAddressUseCase: GetAddressUseCase,
+    private couponService: CouponService,
   ) {}
 
   async createCheckoutSession(
@@ -39,12 +42,24 @@ export class OrderService {
       include: { productVariation: { include: { product: true } } },
     });
 
+    let discountAmount: number | undefined;
+    if (request.couponCode) {
+      const validated = await this.couponService.validate(
+        request.couponCode,
+        cartItems.map((item) => item.id),
+        request.userId,
+      );
+      discountAmount = validated.discountAmount;
+    }
+
     return this.paymentGateway.createCheckoutSession({
       userId: request.userId,
       cartItemIds: cartItems.map((item) => item.id),
       shippingCarrier: request.shippingCarrier,
       shippingService: request.shippingService,
       shippingPrice: request.shippingPrice,
+      couponCode: request.couponCode,
+      discountAmount,
       items: cartItems.map((item) => ({
         productVariationId: item.productVariationId,
         title: `${item.productVariation.product.title} — ${item.productVariation.title}`,
@@ -108,7 +123,9 @@ export class OrderService {
       0,
     );
 
-    await this.prisma.order.create({
+    const discountAmount = metadata.discountAmount ?? 0;
+
+    const order = await this.prisma.order.create({
       data: {
         userId: metadata.userId,
         stripeSessionId: sessionId,
@@ -116,7 +133,7 @@ export class OrderService {
         shippingCarrier: metadata.shippingCarrier,
         shippingService: metadata.shippingService,
         shippingPrice: metadata.shippingPrice,
-        totalAmount: itemsTotal + metadata.shippingPrice,
+        totalAmount: Math.max(itemsTotal + metadata.shippingPrice - discountAmount, 0),
         items: {
           create: cartItems.map((item) => ({
             productVariationId: item.productVariationId,
@@ -132,5 +149,19 @@ export class OrderService {
     await this.prisma.cartItem.deleteMany({
       where: { id: { in: metadata.cartItemIds }, userId: metadata.userId },
     });
+
+    if (metadata.couponCode && metadata.discountAmount) {
+      const coupon = await this.prisma.coupon.findUnique({
+        where: { code: metadata.couponCode },
+      });
+      if (coupon) {
+        await this.couponService.registerUsage(
+          coupon.id,
+          metadata.userId,
+          order.id,
+          metadata.discountAmount,
+        );
+      }
+    }
   }
 }

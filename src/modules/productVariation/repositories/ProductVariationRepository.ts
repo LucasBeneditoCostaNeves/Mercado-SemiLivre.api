@@ -8,6 +8,8 @@ export interface ProductVariationDTO {
     quantity: number
     status: boolean
     product_id: string
+    discountPercentage: number
+    images: { id: string; link: string }[]
     createdAt: Date
     updatedAt: Date
 }

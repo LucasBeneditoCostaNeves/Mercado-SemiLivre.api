@@ -12,6 +12,60 @@ model CartItem {
   @@map("CartItems")
 }
 
+model Coupon {
+  id                String             @id @default(uuid())
+  code              String             @unique
+  discountType      CouponDiscountType
+  discountValue     Decimal
+  scope             CouponScope
+  createdByRole     CouponCreatorRole
+  createdById       String
+  sellerId          String?
+  productId         String?
+  minOrderValue     Decimal?
+  maxDiscountValue  Decimal?
+  usageLimit        Int?
+  usageLimitPerUser Int?
+  startsAt          DateTime
+  expiresAt         DateTime?
+  isActive          Boolean            @default(true)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @default(now())
+
+  usages CouponUsage[]
+
+  @@map("Coupons")
+}
+
+model CouponUsage {
+  id              String   @id @default(uuid())
+  couponId        String
+  coupon          Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderId         String
+  discountApplied Decimal
+  usedAt          DateTime @default(now())
+
+  @@map("CouponUsages")
+}
+
+enum CouponDiscountType {
+  percentage
+  fixed
+}
+
+enum CouponScope {
+  global
+  seller
+  product
+}
+
+enum CouponCreatorRole {
+  admin
+  seller
+}
+
 model UserFavorite {
   id        String   @id @default(uuid())
   userId    String
@@ -117,6 +171,7 @@ model Product {
   aiSummary           String?
   ProductVariation    ProductVariation[]
   UserFavorite        UserFavorite[]
+  ProductQuestion     ProductQuestion[]
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @default(now())
 }
@@ -159,6 +214,19 @@ model ReviewProduct {
   user                 User             @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
   createdAt            DateTime         @default(now())
   updatedAt            DateTime         @default(now())
+}
+
+model ProductQuestion {
+  id            String    @id @default(uuid())
+  product_id    String
+  product       Product   @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  buyer_user_id String
+  buyer         User      @relation(fields: [buyer_user_id], references: [id], onDelete: Cascade)
+  question      String
+  answer        String?
+  answeredAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now())
 }
 
 // This is your Prisma schema file,
@@ -210,6 +278,8 @@ model User {
   UserSearchHistory UserSearchHistory[]
   UserProductClick  UserProductClick[]
   Order             Order[]
+  ProductQuestion   ProductQuestion[]
+  CouponUsage       CouponUsage[]
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @default(now())
 }

@@ -1,4 +1,4 @@
-import { IProductUpdateDTO, ProductRepository } from "src/modules/product/repositories/ProductRepository"
+import { IProductFilter, IProductUpdateDTO, ProductRepository } from "src/modules/product/repositories/ProductRepository"
 import { PrismaProductMapper } from "../mappers/PrismaProduct"
 import { Product } from "src/modules/product/entities/Product"
 import { PrismaService } from "../prisma.service"
@@ -10,6 +10,9 @@ interface IProductDTO {
     status: boolean
     category_product_id: string
     seller_user_id: string
+    brand_id: string
+    thumbnail: string
+    warrantyInformation: string
     createdAt: Date
     updatedAt: Date
 }
@@ -26,19 +29,27 @@ export class PrismaProductRepository implements ProductRepository {
         })
     }
 
-    async findMany(): Promise<IProductDTO[]> {
-        const products = await this.prisma.product.findMany({})
-        return products.map(({ id, title, status, category_product_id, seller_user_id, createdAt, updatedAt }) => ({
-            id, title, status, category_product_id, seller_user_id, createdAt, updatedAt
+    async findMany(filter?: IProductFilter): Promise<IProductDTO[]> {
+        const products = await this.prisma.product.findMany({
+            where: filter?.sellerUserId ? { seller_user_id: filter.sellerUserId } : undefined,
+        })
+        return products.map(({ id, title, status, category_product_id, seller_user_id, brand_id, thumbnail, warrantyInformation, createdAt, updatedAt }) => ({
+            id, title, status, category_product_id, seller_user_id, brand_id, thumbnail, warrantyInformation, createdAt, updatedAt
         }))
     }
 
     async update(dataProduct: IProductUpdateDTO): Promise<void> {
-        const { id, title, status } = dataProduct
+        const { id, title, status, thumbnail } = dataProduct
 
         await this.prisma.product.update({
             where: { id },
-            data: { title, status }
+            data: { title, status, thumbnail }
+        })
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.prisma.product.delete({
+            where: { id }
         })
     }
 

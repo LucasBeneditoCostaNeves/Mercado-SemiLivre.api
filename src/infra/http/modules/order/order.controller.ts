@@ -36,6 +36,7 @@ export class OrderController {
       shippingCarrier: body.shippingCarrier,
       shippingService: body.shippingService,
       shippingPrice: body.shippingPrice,
+      couponCode: body.couponCode,
     });
   }
 
