@@ -151,6 +151,29 @@ exports.Prisma.UserProductClickScalarFieldEnum = {
   clickedAt: 'clickedAt'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  stripeSessionId: 'stripeSessionId',
+  status: 'status',
+  shippingCarrier: 'shippingCarrier',
+  shippingService: 'shippingService',
+  shippingPrice: 'shippingPrice',
+  totalAmount: 'totalAmount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productVariationId: 'productVariationId',
+  title: 'title',
+  imageUrl: 'imageUrl',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice'
+};
+
 exports.Prisma.CategoryProductsScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -272,6 +295,13 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  PENDING: 'PENDING',
+  PAID: 'PAID',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Gender = exports.$Enums.Gender = {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
@@ -284,6 +314,8 @@ exports.Prisma.ModelName = {
   UserFavorite: 'UserFavorite',
   UserSearchHistory: 'UserSearchHistory',
   UserProductClick: 'UserProductClick',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
   CategoryProducts: 'CategoryProducts',
   Brand: 'Brand',
   Product: 'Product',

@@ -47,6 +47,44 @@ model UserProductClick {
   @@map("UserProductClicks")
 }
 
+model Order {
+  id              String      @id @default(uuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeSessionId String      @unique
+  status          OrderStatus @default(PENDING)
+  shippingCarrier String
+  shippingService String
+  shippingPrice   Decimal
+  totalAmount     Decimal
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
+
+  items OrderItem[]
+
+  @@map("Orders")
+}
+
+model OrderItem {
+  id                 String  @id @default(uuid())
+  orderId            String
+  order              Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productVariationId String
+  title              String
+  imageUrl           String
+  quantity           Int
+  unitPrice          Decimal
+
+  @@map("OrderItems")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+}
+
 model CategoryProducts {
   id        String    @id @default(uuid())
   name      String    @unique
@@ -171,6 +209,7 @@ model User {
   UserFavorite      UserFavorite[]
   UserSearchHistory UserSearchHistory[]
   UserProductClick  UserProductClick[]
+  Order             Order[]
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @default(now())
 }

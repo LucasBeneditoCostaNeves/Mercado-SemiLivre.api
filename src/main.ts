@@ -5,7 +5,9 @@ import { AppModule } from './app.module';
 import { DomainExceptionFilter } from './infra/http/errors/DomainExcepionFilter';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    rawBody: true,
+  });
   app.enableCors({
     origin: process.env.FRONTEND_URL ?? 'http://localhost:3000',
   });

@@ -26,6 +26,7 @@ model User {
   UserFavorite      UserFavorite[]
   UserSearchHistory UserSearchHistory[]
   UserProductClick  UserProductClick[]
+  Order             Order[]
   createdAt         DateTime      @default(now())
   updatedAt     DateTime      @default(now())
 }

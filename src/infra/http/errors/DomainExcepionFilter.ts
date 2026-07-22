@@ -16,6 +16,9 @@ import { PersonalDataNotFoundError } from 'src/domain/errors/personalData/Person
 import { AddressNotFoundError } from 'src/domain/errors/address/AddressNotFoundError';
 import { AddressForbiddenError } from 'src/domain/errors/address/AddressForbiddenError';
 import { ShippingQuoteUnavailableError } from 'src/domain/errors/shipping/ShippingQuoteUnavailableError';
+import { CheckoutSessionCreationError } from 'src/domain/errors/order/CheckoutSessionCreationError';
+import { OrderNotFoundError } from 'src/domain/errors/order/OrderNotFoundError';
+import { InvalidWebhookSignatureError } from 'src/domain/errors/order/InvalidWebhookSignatureError';
 
 @Catch()
 export class DomainExceptionFilter implements ExceptionFilter {
@@ -49,6 +52,15 @@ export class DomainExceptionFilter implements ExceptionFilter {
     }
     if (error instanceof ShippingQuoteUnavailableError) {
       return response.status(503).json({ message: error.message });
+    }
+    if (error instanceof CheckoutSessionCreationError) {
+      return response.status(502).json({ message: error.message });
+    }
+    if (error instanceof OrderNotFoundError) {
+      return response.status(404).json({ message: error.message });
+    }
+    if (error instanceof InvalidWebhookSignatureError) {
+      return response.status(400).json({ message: error.message });
     }
 
     if (error instanceof ZodValidationException) {
