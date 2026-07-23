@@ -102,17 +102,23 @@ model UserProductClick {
 }
 
 model Order {
-  id              String      @id @default(uuid())
-  userId          String
-  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  stripeSessionId String      @unique
-  status          OrderStatus @default(PENDING)
-  shippingCarrier String
-  shippingService String
-  shippingPrice   Decimal
-  totalAmount     Decimal
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @default(now())
+  id                 String      @id @default(uuid())
+  userId             String
+  user               User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stripeSessionId    String      @unique
+  status             OrderStatus @default(PENDING)
+  shippingCarrier    String
+  shippingService    String
+  shippingPrice      Decimal
+  shippingCep        String?
+  shippingState      String?
+  shippingCity       String?
+  shippingStreet     String?
+  shippingNumber     String?
+  shippingComplement String?
+  totalAmount        Decimal
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @default(now())
 
   items OrderItem[]
 
@@ -120,14 +126,19 @@ model Order {
 }
 
 model OrderItem {
-  id                 String  @id @default(uuid())
+  id                 String            @id @default(uuid())
   orderId            String
-  order              Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  order              Order             @relation(fields: [orderId], references: [id], onDelete: Cascade)
   productVariationId String
   title              String
   imageUrl           String
   quantity           Int
   unitPrice          Decimal
+  fulfillmentStatus  FulfillmentStatus @default(PENDING)
+  inProductionAt     DateTime?
+  shippedAt          DateTime?
+  receivedAt         DateTime?
+  review             ReviewProduct?
 
   @@map("OrderItems")
 }
@@ -137,6 +148,13 @@ enum OrderStatus {
   PAID
   FAILED
   CANCELLED
+}
+
+enum FulfillmentStatus {
+  PENDING
+  IN_PRODUCTION
+  SHIPPED
+  RECEIVED
 }
 
 model CategoryProducts {
@@ -212,6 +230,8 @@ model ReviewProduct {
   productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
   reviewer_id          String
   user                 User             @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
+  order_item_id        String?          @unique
+  orderItem            OrderItem?       @relation(fields: [order_item_id], references: [id], onDelete: SetNull)
   createdAt            DateTime         @default(now())
   updatedAt            DateTime         @default(now())
 }

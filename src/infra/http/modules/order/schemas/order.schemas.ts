@@ -16,3 +16,8 @@ export const SELLER_SALES_PERIODS = ['7d', '30d', '90d'] as const;
 export const sellerSalesSummaryQuerySchema = z.object({
   period: z.enum(SELLER_SALES_PERIODS).default('30d'),
 });
+
+export const createOrderItemReviewSchema = z.object({
+  rating: z.number().int().min(1).max(5),
+  comment: z.string().trim().min(1).optional(),
+});

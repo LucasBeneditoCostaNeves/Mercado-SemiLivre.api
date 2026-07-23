@@ -9,19 +9,19 @@ model Profile {
 }
 
 model User {
-  id            String        @id @default(uuid())
-  name          String
-  lastName      String
-  email         String        @unique
-  password      String
-  status        Boolean
-  avatarUrl     String?
-  profile       Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
-  profileId     String
-  Product       Product[]
-  PersonalData  PersonalData?
-  Address       Address[]
-  ReviewProduct ReviewProduct[]
+  id                String              @id @default(uuid())
+  name              String
+  lastName          String
+  email             String              @unique
+  password          String
+  status            Boolean
+  avatarUrl         String?
+  profile           Profile             @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profileId         String
+  Product           Product[]
+  PersonalData      PersonalData?
+  Address           Address[]
+  ReviewProduct     ReviewProduct[]
   CartItem          CartItem[]
   UserFavorite      UserFavorite[]
   UserSearchHistory UserSearchHistory[]
@@ -29,8 +29,8 @@ model User {
   Order             Order[]
   ProductQuestion   ProductQuestion[]
   CouponUsage       CouponUsage[]
-  createdAt         DateTime      @default(now())
-  updatedAt     DateTime      @default(now())
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now())
 }
 
 enum Gender {

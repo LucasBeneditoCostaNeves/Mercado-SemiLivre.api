@@ -189,6 +189,12 @@ exports.Prisma.OrderScalarFieldEnum = {
   shippingCarrier: 'shippingCarrier',
   shippingService: 'shippingService',
   shippingPrice: 'shippingPrice',
+  shippingCep: 'shippingCep',
+  shippingState: 'shippingState',
+  shippingCity: 'shippingCity',
+  shippingStreet: 'shippingStreet',
+  shippingNumber: 'shippingNumber',
+  shippingComplement: 'shippingComplement',
   totalAmount: 'totalAmount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -201,7 +207,11 @@ exports.Prisma.OrderItemScalarFieldEnum = {
   title: 'title',
   imageUrl: 'imageUrl',
   quantity: 'quantity',
-  unitPrice: 'unitPrice'
+  unitPrice: 'unitPrice',
+  fulfillmentStatus: 'fulfillmentStatus',
+  inProductionAt: 'inProductionAt',
+  shippedAt: 'shippedAt',
+  receivedAt: 'receivedAt'
 };
 
 exports.Prisma.CategoryProductsScalarFieldEnum = {
@@ -262,6 +272,7 @@ exports.Prisma.ReviewProductScalarFieldEnum = {
   country: 'country',
   product_variation_id: 'product_variation_id',
   reviewer_id: 'reviewer_id',
+  order_item_id: 'order_item_id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -357,6 +368,13 @@ exports.OrderStatus = exports.$Enums.OrderStatus = {
   PAID: 'PAID',
   FAILED: 'FAILED',
   CANCELLED: 'CANCELLED'
+};
+
+exports.FulfillmentStatus = exports.$Enums.FulfillmentStatus = {
+  PENDING: 'PENDING',
+  IN_PRODUCTION: 'IN_PRODUCTION',
+  SHIPPED: 'SHIPPED',
+  RECEIVED: 'RECEIVED'
 };
 
 exports.Gender = exports.$Enums.Gender = {

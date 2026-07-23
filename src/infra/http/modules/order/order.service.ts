@@ -2,15 +2,30 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 import { GetAddressUseCase } from 'src/modules/address/useCases/getAddressUseCase/getAddressUseCase';
 import { OrderNotFoundError } from 'src/domain/errors/order/OrderNotFoundError';
+import { OrderItemForbiddenError } from 'src/domain/errors/order/OrderItemForbiddenError';
+import { InvalidFulfillmentTransitionError } from 'src/domain/errors/order/InvalidFulfillmentTransitionError';
+import { OrderItemReviewAlreadyExistsError } from 'src/domain/errors/order/OrderItemReviewAlreadyExistsError';
 import { CouponService } from '../coupon/coupon.service';
 import { PaymentGateway } from './gateway/PaymentGateway';
 import {
   CheckoutSession,
   CheckoutSessionMetadata,
+  CreateOrderItemReviewInput,
+  CustomerOrder,
+  FulfillmentItem,
+  FulfillmentStatus,
+  OrderItemReview,
+  SellerOrderGroup,
   SellerSalesPeriod,
   SellerSalesSummary,
   SellerTopProduct,
 } from './order.types';
+
+const SELLER_NEXT_STATUS: Partial<Record<FulfillmentStatus, FulfillmentStatus>> =
+  {
+    PENDING: 'IN_PRODUCTION',
+    IN_PRODUCTION: 'SHIPPED',
+  };
 
 const PERIOD_DAYS: Record<SellerSalesPeriod, number> = {
   '7d': 7,
@@ -68,6 +83,7 @@ export class OrderService {
 
     return this.paymentGateway.createCheckoutSession({
       userId: request.userId,
+      addressId: request.addressId,
       cartItemIds: cartItems.map((item) => item.id),
       shippingCarrier: request.shippingCarrier,
       shippingService: request.shippingService,
@@ -154,6 +170,189 @@ export class OrderService {
     };
   }
 
+  async getSellerOrderItems(sellerUserId: string): Promise<SellerOrderGroup[]> {
+    const variations = await this.prisma.productVariation.findMany({
+      where: { product: { seller_user_id: sellerUserId } },
+      select: { id: true },
+    });
+    const variationIds = variations.map((variation) => variation.id);
+    if (variationIds.length === 0) return [];
+
+    const items = await this.prisma.orderItem.findMany({
+      where: {
+        productVariationId: { in: variationIds },
+        order: { status: 'PAID' },
+      },
+      include: { order: { include: { user: true } } },
+      orderBy: { order: { createdAt: 'desc' } },
+    });
+
+    const groups = new Map<string, SellerOrderGroup>();
+    for (const item of items) {
+      let group = groups.get(item.orderId);
+      if (!group) {
+        group = {
+          orderId: item.order.id,
+          createdAt: item.order.createdAt,
+          buyerName: `${item.order.user.name} ${item.order.user.lastName}`.trim(),
+          shippingAddress: {
+            cep: item.order.shippingCep,
+            state: item.order.shippingState,
+            city: item.order.shippingCity,
+            street: item.order.shippingStreet,
+            number: item.order.shippingNumber,
+            complement: item.order.shippingComplement,
+          },
+          items: [],
+        };
+        groups.set(item.orderId, group);
+      }
+      group.items.push(this.toFulfillmentItem(item));
+    }
+
+    return Array.from(groups.values());
+  }
+
+  async advanceOrderItem(
+    itemId: string,
+    sellerUserId: string,
+  ): Promise<FulfillmentItem> {
+    const item = await this.prisma.orderItem.findUnique({
+      where: { id: itemId },
+    });
+    if (!item) throw new OrderNotFoundError();
+
+    const variation = await this.prisma.productVariation.findUnique({
+      where: { id: item.productVariationId },
+      select: { product: { select: { seller_user_id: true } } },
+    });
+    if (!variation || variation.product.seller_user_id !== sellerUserId) {
+      throw new OrderItemForbiddenError();
+    }
+
+    const next = SELLER_NEXT_STATUS[item.fulfillmentStatus];
+    if (!next) throw new InvalidFulfillmentTransitionError();
+
+    const updated = await this.prisma.orderItem.update({
+      where: { id: itemId },
+      data: {
+        fulfillmentStatus: next,
+        ...(next === 'IN_PRODUCTION' ? { inProductionAt: new Date() } : {}),
+        ...(next === 'SHIPPED' ? { shippedAt: new Date() } : {}),
+      },
+    });
+
+    return this.toFulfillmentItem(updated);
+  }
+
+  async receiveOrderItem(
+    itemId: string,
+    userId: string,
+  ): Promise<FulfillmentItem> {
+    const item = await this.prisma.orderItem.findUnique({
+      where: { id: itemId },
+      include: { order: { select: { userId: true } } },
+    });
+    if (!item) throw new OrderNotFoundError();
+    if (item.order.userId !== userId) throw new OrderItemForbiddenError();
+    if (item.fulfillmentStatus !== 'SHIPPED') {
+      throw new InvalidFulfillmentTransitionError();
+    }
+
+    const updated = await this.prisma.orderItem.update({
+      where: { id: itemId },
+      data: { fulfillmentStatus: 'RECEIVED', receivedAt: new Date() },
+    });
+
+    return this.toFulfillmentItem(updated);
+  }
+
+  async getMyOrders(userId: string): Promise<CustomerOrder[]> {
+    const orders = await this.prisma.order.findMany({
+      where: { userId, status: 'PAID' },
+      include: { items: { include: { review: true } } },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return orders.map((order) => ({
+      id: order.id,
+      status: order.status,
+      shippingCarrier: order.shippingCarrier,
+      shippingService: order.shippingService,
+      shippingPrice: toNumber(order.shippingPrice),
+      totalAmount: toNumber(order.totalAmount),
+      createdAt: order.createdAt,
+      items: order.items.map((item) =>
+        this.toFulfillmentItem(item, item.review),
+      ),
+    }));
+  }
+
+  async createOrderItemReview(
+    input: CreateOrderItemReviewInput,
+  ): Promise<OrderItemReview> {
+    const item = await this.prisma.orderItem.findUnique({
+      where: { id: input.orderItemId },
+      include: { order: { select: { userId: true } }, review: true },
+    });
+    if (!item) throw new OrderNotFoundError();
+    if (item.order.userId !== input.userId) {
+      throw new OrderItemForbiddenError();
+    }
+    if (item.fulfillmentStatus !== 'RECEIVED') {
+      throw new InvalidFulfillmentTransitionError();
+    }
+    if (item.review) throw new OrderItemReviewAlreadyExistsError();
+
+    const review = await this.prisma.reviewProduct.create({
+      data: {
+        rating: input.rating,
+        comment: input.comment ?? '',
+        product_variation_id: item.productVariationId,
+        reviewer_id: input.userId,
+        order_item_id: item.id,
+      },
+    });
+
+    return {
+      id: review.id,
+      rating: toNumber(review.rating),
+      comment: review.comment || null,
+    };
+  }
+
+  private toFulfillmentItem(
+    item: {
+      id: string;
+      productVariationId: string;
+      title: string;
+      imageUrl: string;
+      quantity: number;
+      unitPrice: { toNumber(): number } | number;
+      fulfillmentStatus: FulfillmentStatus;
+      inProductionAt: Date | null;
+      shippedAt: Date | null;
+      receivedAt: Date | null;
+    },
+    review?: { id: string; rating: { toNumber(): number } | number } | null,
+  ): FulfillmentItem {
+    return {
+      id: item.id,
+      productVariationId: item.productVariationId,
+      title: item.title,
+      imageUrl: item.imageUrl,
+      quantity: item.quantity,
+      unitPrice: toNumber(item.unitPrice),
+      fulfillmentStatus: item.fulfillmentStatus,
+      inProductionAt: item.inProductionAt,
+      shippedAt: item.shippedAt,
+      receivedAt: item.receivedAt,
+      reviewed: !!review,
+      reviewId: review?.id ?? null,
+      reviewRating: review ? toNumber(review.rating) : null,
+    };
+  }
+
   async handleWebhookEvent(rawBody: Buffer, signature: string): Promise<void> {
     const event = await this.paymentGateway.parseWebhookEvent(
       rawBody,
@@ -209,6 +408,12 @@ export class OrderService {
 
     const discountAmount = metadata.discountAmount ?? 0;
 
+    const address = metadata.addressId
+      ? await this.prisma.address.findUnique({
+          where: { id: metadata.addressId },
+        })
+      : null;
+
     const order = await this.prisma.order.create({
       data: {
         userId: metadata.userId,
@@ -217,6 +422,12 @@ export class OrderService {
         shippingCarrier: metadata.shippingCarrier,
         shippingService: metadata.shippingService,
         shippingPrice: metadata.shippingPrice,
+        shippingCep: address?.cep ?? null,
+        shippingState: address?.state ?? null,
+        shippingCity: address?.city ?? null,
+        shippingStreet: address?.street ?? null,
+        shippingNumber: address?.number ?? null,
+        shippingComplement: address?.complement ?? null,
         totalAmount: Math.max(
           itemsTotal + metadata.shippingPrice - discountAmount,
           0,

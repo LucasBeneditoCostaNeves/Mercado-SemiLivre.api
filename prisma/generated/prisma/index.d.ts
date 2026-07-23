@@ -148,6 +148,16 @@ export const OrderStatus: {
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 
+export const FulfillmentStatus: {
+  PENDING: 'PENDING',
+  IN_PRODUCTION: 'IN_PRODUCTION',
+  SHIPPED: 'SHIPPED',
+  RECEIVED: 'RECEIVED'
+};
+
+export type FulfillmentStatus = (typeof FulfillmentStatus)[keyof typeof FulfillmentStatus]
+
+
 export const Gender: {
   MALE: 'MALE',
   FEMALE: 'FEMALE',
@@ -174,6 +184,10 @@ export const CouponCreatorRole: typeof $Enums.CouponCreatorRole
 export type OrderStatus = $Enums.OrderStatus
 
 export const OrderStatus: typeof $Enums.OrderStatus
+
+export type FulfillmentStatus = $Enums.FulfillmentStatus
+
+export const FulfillmentStatus: typeof $Enums.FulfillmentStatus
 
 export type Gender = $Enums.Gender
 
@@ -9669,6 +9683,12 @@ export namespace Prisma {
     shippingCarrier: string | null
     shippingService: string | null
     shippingPrice: Decimal | null
+    shippingCep: string | null
+    shippingState: string | null
+    shippingCity: string | null
+    shippingStreet: string | null
+    shippingNumber: string | null
+    shippingComplement: string | null
     totalAmount: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9682,6 +9702,12 @@ export namespace Prisma {
     shippingCarrier: string | null
     shippingService: string | null
     shippingPrice: Decimal | null
+    shippingCep: string | null
+    shippingState: string | null
+    shippingCity: string | null
+    shippingStreet: string | null
+    shippingNumber: string | null
+    shippingComplement: string | null
     totalAmount: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9695,6 +9721,12 @@ export namespace Prisma {
     shippingCarrier: number
     shippingService: number
     shippingPrice: number
+    shippingCep: number
+    shippingState: number
+    shippingCity: number
+    shippingStreet: number
+    shippingNumber: number
+    shippingComplement: number
     totalAmount: number
     createdAt: number
     updatedAt: number
@@ -9720,6 +9752,12 @@ export namespace Prisma {
     shippingCarrier?: true
     shippingService?: true
     shippingPrice?: true
+    shippingCep?: true
+    shippingState?: true
+    shippingCity?: true
+    shippingStreet?: true
+    shippingNumber?: true
+    shippingComplement?: true
     totalAmount?: true
     createdAt?: true
     updatedAt?: true
@@ -9733,6 +9771,12 @@ export namespace Prisma {
     shippingCarrier?: true
     shippingService?: true
     shippingPrice?: true
+    shippingCep?: true
+    shippingState?: true
+    shippingCity?: true
+    shippingStreet?: true
+    shippingNumber?: true
+    shippingComplement?: true
     totalAmount?: true
     createdAt?: true
     updatedAt?: true
@@ -9746,6 +9790,12 @@ export namespace Prisma {
     shippingCarrier?: true
     shippingService?: true
     shippingPrice?: true
+    shippingCep?: true
+    shippingState?: true
+    shippingCity?: true
+    shippingStreet?: true
+    shippingNumber?: true
+    shippingComplement?: true
     totalAmount?: true
     createdAt?: true
     updatedAt?: true
@@ -9846,6 +9896,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal
+    shippingCep: string | null
+    shippingState: string | null
+    shippingCity: string | null
+    shippingStreet: string | null
+    shippingNumber: string | null
+    shippingComplement: string | null
     totalAmount: Decimal
     createdAt: Date
     updatedAt: Date
@@ -9878,6 +9934,12 @@ export namespace Prisma {
     shippingCarrier?: boolean
     shippingService?: boolean
     shippingPrice?: boolean
+    shippingCep?: boolean
+    shippingState?: boolean
+    shippingCity?: boolean
+    shippingStreet?: boolean
+    shippingNumber?: boolean
+    shippingComplement?: boolean
     totalAmount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9894,6 +9956,12 @@ export namespace Prisma {
     shippingCarrier?: boolean
     shippingService?: boolean
     shippingPrice?: boolean
+    shippingCep?: boolean
+    shippingState?: boolean
+    shippingCity?: boolean
+    shippingStreet?: boolean
+    shippingNumber?: boolean
+    shippingComplement?: boolean
     totalAmount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9908,6 +9976,12 @@ export namespace Prisma {
     shippingCarrier?: boolean
     shippingService?: boolean
     shippingPrice?: boolean
+    shippingCep?: boolean
+    shippingState?: boolean
+    shippingCity?: boolean
+    shippingStreet?: boolean
+    shippingNumber?: boolean
+    shippingComplement?: boolean
     totalAmount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9922,12 +9996,18 @@ export namespace Prisma {
     shippingCarrier?: boolean
     shippingService?: boolean
     shippingPrice?: boolean
+    shippingCep?: boolean
+    shippingState?: boolean
+    shippingCity?: boolean
+    shippingStreet?: boolean
+    shippingNumber?: boolean
+    shippingComplement?: boolean
     totalAmount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "stripeSessionId" | "status" | "shippingCarrier" | "shippingService" | "shippingPrice" | "totalAmount" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "stripeSessionId" | "status" | "shippingCarrier" | "shippingService" | "shippingPrice" | "shippingCep" | "shippingState" | "shippingCity" | "shippingStreet" | "shippingNumber" | "shippingComplement" | "totalAmount" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     items?: boolean | Order$itemsArgs<ExtArgs>
@@ -9954,6 +10034,12 @@ export namespace Prisma {
       shippingCarrier: string
       shippingService: string
       shippingPrice: Prisma.Decimal
+      shippingCep: string | null
+      shippingState: string | null
+      shippingCity: string | null
+      shippingStreet: string | null
+      shippingNumber: string | null
+      shippingComplement: string | null
       totalAmount: Prisma.Decimal
       createdAt: Date
       updatedAt: Date
@@ -10389,6 +10475,12 @@ export namespace Prisma {
     readonly shippingCarrier: FieldRef<"Order", 'String'>
     readonly shippingService: FieldRef<"Order", 'String'>
     readonly shippingPrice: FieldRef<"Order", 'Decimal'>
+    readonly shippingCep: FieldRef<"Order", 'String'>
+    readonly shippingState: FieldRef<"Order", 'String'>
+    readonly shippingCity: FieldRef<"Order", 'String'>
+    readonly shippingStreet: FieldRef<"Order", 'String'>
+    readonly shippingNumber: FieldRef<"Order", 'String'>
+    readonly shippingComplement: FieldRef<"Order", 'String'>
     readonly totalAmount: FieldRef<"Order", 'Decimal'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
@@ -10865,6 +10957,10 @@ export namespace Prisma {
     imageUrl: string | null
     quantity: number | null
     unitPrice: Decimal | null
+    fulfillmentStatus: $Enums.FulfillmentStatus | null
+    inProductionAt: Date | null
+    shippedAt: Date | null
+    receivedAt: Date | null
   }
 
   export type OrderItemMaxAggregateOutputType = {
@@ -10875,6 +10971,10 @@ export namespace Prisma {
     imageUrl: string | null
     quantity: number | null
     unitPrice: Decimal | null
+    fulfillmentStatus: $Enums.FulfillmentStatus | null
+    inProductionAt: Date | null
+    shippedAt: Date | null
+    receivedAt: Date | null
   }
 
   export type OrderItemCountAggregateOutputType = {
@@ -10885,6 +10985,10 @@ export namespace Prisma {
     imageUrl: number
     quantity: number
     unitPrice: number
+    fulfillmentStatus: number
+    inProductionAt: number
+    shippedAt: number
+    receivedAt: number
     _all: number
   }
 
@@ -10907,6 +11011,10 @@ export namespace Prisma {
     imageUrl?: true
     quantity?: true
     unitPrice?: true
+    fulfillmentStatus?: true
+    inProductionAt?: true
+    shippedAt?: true
+    receivedAt?: true
   }
 
   export type OrderItemMaxAggregateInputType = {
@@ -10917,6 +11025,10 @@ export namespace Prisma {
     imageUrl?: true
     quantity?: true
     unitPrice?: true
+    fulfillmentStatus?: true
+    inProductionAt?: true
+    shippedAt?: true
+    receivedAt?: true
   }
 
   export type OrderItemCountAggregateInputType = {
@@ -10927,6 +11039,10 @@ export namespace Prisma {
     imageUrl?: true
     quantity?: true
     unitPrice?: true
+    fulfillmentStatus?: true
+    inProductionAt?: true
+    shippedAt?: true
+    receivedAt?: true
     _all?: true
   }
 
@@ -11024,6 +11140,10 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal
+    fulfillmentStatus: $Enums.FulfillmentStatus
+    inProductionAt: Date | null
+    shippedAt: Date | null
+    receivedAt: Date | null
     _count: OrderItemCountAggregateOutputType | null
     _avg: OrderItemAvgAggregateOutputType | null
     _sum: OrderItemSumAggregateOutputType | null
@@ -11053,7 +11173,12 @@ export namespace Prisma {
     imageUrl?: boolean
     quantity?: boolean
     unitPrice?: boolean
+    fulfillmentStatus?: boolean
+    inProductionAt?: boolean
+    shippedAt?: boolean
+    receivedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
+    review?: boolean | OrderItem$reviewArgs<ExtArgs>
   }, ExtArgs["result"]["orderItem"]>
 
   export type OrderItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11064,6 +11189,10 @@ export namespace Prisma {
     imageUrl?: boolean
     quantity?: boolean
     unitPrice?: boolean
+    fulfillmentStatus?: boolean
+    inProductionAt?: boolean
+    shippedAt?: boolean
+    receivedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orderItem"]>
 
@@ -11075,6 +11204,10 @@ export namespace Prisma {
     imageUrl?: boolean
     quantity?: boolean
     unitPrice?: boolean
+    fulfillmentStatus?: boolean
+    inProductionAt?: boolean
+    shippedAt?: boolean
+    receivedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["orderItem"]>
 
@@ -11086,11 +11219,16 @@ export namespace Prisma {
     imageUrl?: boolean
     quantity?: boolean
     unitPrice?: boolean
+    fulfillmentStatus?: boolean
+    inProductionAt?: boolean
+    shippedAt?: boolean
+    receivedAt?: boolean
   }
 
-  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productVariationId" | "title" | "imageUrl" | "quantity" | "unitPrice", ExtArgs["result"]["orderItem"]>
+  export type OrderItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "productVariationId" | "title" | "imageUrl" | "quantity" | "unitPrice" | "fulfillmentStatus" | "inProductionAt" | "shippedAt" | "receivedAt", ExtArgs["result"]["orderItem"]>
   export type OrderItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
+    review?: boolean | OrderItem$reviewArgs<ExtArgs>
   }
   export type OrderItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -11103,6 +11241,7 @@ export namespace Prisma {
     name: "OrderItem"
     objects: {
       order: Prisma.$OrderPayload<ExtArgs>
+      review: Prisma.$ReviewProductPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11112,6 +11251,10 @@ export namespace Prisma {
       imageUrl: string
       quantity: number
       unitPrice: Prisma.Decimal
+      fulfillmentStatus: $Enums.FulfillmentStatus
+      inProductionAt: Date | null
+      shippedAt: Date | null
+      receivedAt: Date | null
     }, ExtArgs["result"]["orderItem"]>
     composites: {}
   }
@@ -11507,6 +11650,7 @@ export namespace Prisma {
   export interface Prisma__OrderItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     order<T extends OrderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrderDefaultArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    review<T extends OrderItem$reviewArgs<ExtArgs> = {}>(args?: Subset<T, OrderItem$reviewArgs<ExtArgs>>): Prisma__ReviewProductClient<$Result.GetResult<Prisma.$ReviewProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11543,6 +11687,10 @@ export namespace Prisma {
     readonly imageUrl: FieldRef<"OrderItem", 'String'>
     readonly quantity: FieldRef<"OrderItem", 'Int'>
     readonly unitPrice: FieldRef<"OrderItem", 'Decimal'>
+    readonly fulfillmentStatus: FieldRef<"OrderItem", 'FulfillmentStatus'>
+    readonly inProductionAt: FieldRef<"OrderItem", 'DateTime'>
+    readonly shippedAt: FieldRef<"OrderItem", 'DateTime'>
+    readonly receivedAt: FieldRef<"OrderItem", 'DateTime'>
   }
     
 
@@ -11941,6 +12089,25 @@ export namespace Prisma {
      * Limit how many OrderItems to delete.
      */
     limit?: number
+  }
+
+  /**
+   * OrderItem.review
+   */
+  export type OrderItem$reviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReviewProduct
+     */
+    select?: ReviewProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReviewProduct
+     */
+    omit?: ReviewProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewProductInclude<ExtArgs> | null
+    where?: ReviewProductWhereInput
   }
 
   /**
@@ -17688,6 +17855,7 @@ export namespace Prisma {
     country: string | null
     product_variation_id: string | null
     reviewer_id: string | null
+    order_item_id: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -17699,6 +17867,7 @@ export namespace Prisma {
     country: string | null
     product_variation_id: string | null
     reviewer_id: string | null
+    order_item_id: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -17711,6 +17880,7 @@ export namespace Prisma {
     country: number
     product_variation_id: number
     reviewer_id: number
+    order_item_id: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -17732,6 +17902,7 @@ export namespace Prisma {
     country?: true
     product_variation_id?: true
     reviewer_id?: true
+    order_item_id?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -17743,6 +17914,7 @@ export namespace Prisma {
     country?: true
     product_variation_id?: true
     reviewer_id?: true
+    order_item_id?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -17755,6 +17927,7 @@ export namespace Prisma {
     country?: true
     product_variation_id?: true
     reviewer_id?: true
+    order_item_id?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -17854,6 +18027,7 @@ export namespace Prisma {
     country: string | null
     product_variation_id: string
     reviewer_id: string
+    order_item_id: string | null
     createdAt: Date
     updatedAt: Date
     _count: ReviewProductCountAggregateOutputType | null
@@ -17885,10 +18059,12 @@ export namespace Prisma {
     country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
+    order_item_id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }, ExtArgs["result"]["reviewProduct"]>
 
   export type ReviewProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17899,10 +18075,12 @@ export namespace Prisma {
     country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
+    order_item_id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }, ExtArgs["result"]["reviewProduct"]>
 
   export type ReviewProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -17913,10 +18091,12 @@ export namespace Prisma {
     country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
+    order_item_id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }, ExtArgs["result"]["reviewProduct"]>
 
   export type ReviewProductSelectScalar = {
@@ -17927,22 +18107,26 @@ export namespace Prisma {
     country?: boolean
     product_variation_id?: boolean
     reviewer_id?: boolean
+    order_item_id?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ReviewProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rating" | "comment" | "photos" | "country" | "product_variation_id" | "reviewer_id" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewProduct"]>
+  export type ReviewProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "rating" | "comment" | "photos" | "country" | "product_variation_id" | "reviewer_id" | "order_item_id" | "createdAt" | "updatedAt", ExtArgs["result"]["reviewProduct"]>
   export type ReviewProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }
   export type ReviewProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }
   export type ReviewProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     productVariation?: boolean | ProductVariationDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
+    orderItem?: boolean | ReviewProduct$orderItemArgs<ExtArgs>
   }
 
   export type $ReviewProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17950,6 +18134,7 @@ export namespace Prisma {
     objects: {
       productVariation: Prisma.$ProductVariationPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
+      orderItem: Prisma.$OrderItemPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -17959,6 +18144,7 @@ export namespace Prisma {
       country: string | null
       product_variation_id: string
       reviewer_id: string
+      order_item_id: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["reviewProduct"]>
@@ -18357,6 +18543,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     productVariation<T extends ProductVariationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductVariationDefaultArgs<ExtArgs>>): Prisma__ProductVariationClient<$Result.GetResult<Prisma.$ProductVariationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    orderItem<T extends ReviewProduct$orderItemArgs<ExtArgs> = {}>(args?: Subset<T, ReviewProduct$orderItemArgs<ExtArgs>>): Prisma__OrderItemClient<$Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18393,6 +18580,7 @@ export namespace Prisma {
     readonly country: FieldRef<"ReviewProduct", 'String'>
     readonly product_variation_id: FieldRef<"ReviewProduct", 'String'>
     readonly reviewer_id: FieldRef<"ReviewProduct", 'String'>
+    readonly order_item_id: FieldRef<"ReviewProduct", 'String'>
     readonly createdAt: FieldRef<"ReviewProduct", 'DateTime'>
     readonly updatedAt: FieldRef<"ReviewProduct", 'DateTime'>
   }
@@ -18793,6 +18981,25 @@ export namespace Prisma {
      * Limit how many ReviewProducts to delete.
      */
     limit?: number
+  }
+
+  /**
+   * ReviewProduct.orderItem
+   */
+  export type ReviewProduct$orderItemArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderItem
+     */
+    select?: OrderItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OrderItem
+     */
+    omit?: OrderItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderItemInclude<ExtArgs> | null
+    where?: OrderItemWhereInput
   }
 
   /**
@@ -24763,6 +24970,12 @@ export namespace Prisma {
     shippingCarrier: 'shippingCarrier',
     shippingService: 'shippingService',
     shippingPrice: 'shippingPrice',
+    shippingCep: 'shippingCep',
+    shippingState: 'shippingState',
+    shippingCity: 'shippingCity',
+    shippingStreet: 'shippingStreet',
+    shippingNumber: 'shippingNumber',
+    shippingComplement: 'shippingComplement',
     totalAmount: 'totalAmount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -24778,7 +24991,11 @@ export namespace Prisma {
     title: 'title',
     imageUrl: 'imageUrl',
     quantity: 'quantity',
-    unitPrice: 'unitPrice'
+    unitPrice: 'unitPrice',
+    fulfillmentStatus: 'fulfillmentStatus',
+    inProductionAt: 'inProductionAt',
+    shippedAt: 'shippedAt',
+    receivedAt: 'receivedAt'
   };
 
   export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
@@ -24857,6 +25074,7 @@ export namespace Prisma {
     country: 'country',
     product_variation_id: 'product_variation_id',
     reviewer_id: 'reviewer_id',
+    order_item_id: 'order_item_id',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -25080,6 +25298,20 @@ export namespace Prisma {
    * Reference to a field of type 'OrderStatus[]'
    */
   export type ListEnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'FulfillmentStatus'
+   */
+  export type EnumFulfillmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FulfillmentStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FulfillmentStatus[]'
+   */
+  export type ListEnumFulfillmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FulfillmentStatus[]'>
     
 
 
@@ -25537,6 +25769,12 @@ export namespace Prisma {
     shippingCarrier?: StringFilter<"Order"> | string
     shippingService?: StringFilter<"Order"> | string
     shippingPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    shippingCep?: StringNullableFilter<"Order"> | string | null
+    shippingState?: StringNullableFilter<"Order"> | string | null
+    shippingCity?: StringNullableFilter<"Order"> | string | null
+    shippingStreet?: StringNullableFilter<"Order"> | string | null
+    shippingNumber?: StringNullableFilter<"Order"> | string | null
+    shippingComplement?: StringNullableFilter<"Order"> | string | null
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -25552,6 +25790,12 @@ export namespace Prisma {
     shippingCarrier?: SortOrder
     shippingService?: SortOrder
     shippingPrice?: SortOrder
+    shippingCep?: SortOrderInput | SortOrder
+    shippingState?: SortOrderInput | SortOrder
+    shippingCity?: SortOrderInput | SortOrder
+    shippingStreet?: SortOrderInput | SortOrder
+    shippingNumber?: SortOrderInput | SortOrder
+    shippingComplement?: SortOrderInput | SortOrder
     totalAmount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25570,6 +25814,12 @@ export namespace Prisma {
     shippingCarrier?: StringFilter<"Order"> | string
     shippingService?: StringFilter<"Order"> | string
     shippingPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    shippingCep?: StringNullableFilter<"Order"> | string | null
+    shippingState?: StringNullableFilter<"Order"> | string | null
+    shippingCity?: StringNullableFilter<"Order"> | string | null
+    shippingStreet?: StringNullableFilter<"Order"> | string | null
+    shippingNumber?: StringNullableFilter<"Order"> | string | null
+    shippingComplement?: StringNullableFilter<"Order"> | string | null
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -25585,6 +25835,12 @@ export namespace Prisma {
     shippingCarrier?: SortOrder
     shippingService?: SortOrder
     shippingPrice?: SortOrder
+    shippingCep?: SortOrderInput | SortOrder
+    shippingState?: SortOrderInput | SortOrder
+    shippingCity?: SortOrderInput | SortOrder
+    shippingStreet?: SortOrderInput | SortOrder
+    shippingNumber?: SortOrderInput | SortOrder
+    shippingComplement?: SortOrderInput | SortOrder
     totalAmount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -25606,6 +25862,12 @@ export namespace Prisma {
     shippingCarrier?: StringWithAggregatesFilter<"Order"> | string
     shippingService?: StringWithAggregatesFilter<"Order"> | string
     shippingPrice?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    shippingCep?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingState?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingCity?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingStreet?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingNumber?: StringNullableWithAggregatesFilter<"Order"> | string | null
+    shippingComplement?: StringNullableWithAggregatesFilter<"Order"> | string | null
     totalAmount?: DecimalWithAggregatesFilter<"Order"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
@@ -25622,7 +25884,12 @@ export namespace Prisma {
     imageUrl?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFilter<"OrderItem"> | $Enums.FulfillmentStatus
+    inProductionAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    shippedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    receivedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
+    review?: XOR<ReviewProductNullableScalarRelationFilter, ReviewProductWhereInput> | null
   }
 
   export type OrderItemOrderByWithRelationInput = {
@@ -25633,7 +25900,12 @@ export namespace Prisma {
     imageUrl?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
+    fulfillmentStatus?: SortOrder
+    inProductionAt?: SortOrderInput | SortOrder
+    shippedAt?: SortOrderInput | SortOrder
+    receivedAt?: SortOrderInput | SortOrder
     order?: OrderOrderByWithRelationInput
+    review?: ReviewProductOrderByWithRelationInput
   }
 
   export type OrderItemWhereUniqueInput = Prisma.AtLeast<{
@@ -25647,7 +25919,12 @@ export namespace Prisma {
     imageUrl?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFilter<"OrderItem"> | $Enums.FulfillmentStatus
+    inProductionAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    shippedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    receivedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
+    review?: XOR<ReviewProductNullableScalarRelationFilter, ReviewProductWhereInput> | null
   }, "id">
 
   export type OrderItemOrderByWithAggregationInput = {
@@ -25658,6 +25935,10 @@ export namespace Prisma {
     imageUrl?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
+    fulfillmentStatus?: SortOrder
+    inProductionAt?: SortOrderInput | SortOrder
+    shippedAt?: SortOrderInput | SortOrder
+    receivedAt?: SortOrderInput | SortOrder
     _count?: OrderItemCountOrderByAggregateInput
     _avg?: OrderItemAvgOrderByAggregateInput
     _max?: OrderItemMaxOrderByAggregateInput
@@ -25676,6 +25957,10 @@ export namespace Prisma {
     imageUrl?: StringWithAggregatesFilter<"OrderItem"> | string
     quantity?: IntWithAggregatesFilter<"OrderItem"> | number
     unitPrice?: DecimalWithAggregatesFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusWithAggregatesFilter<"OrderItem"> | $Enums.FulfillmentStatus
+    inProductionAt?: DateTimeNullableWithAggregatesFilter<"OrderItem"> | Date | string | null
+    shippedAt?: DateTimeNullableWithAggregatesFilter<"OrderItem"> | Date | string | null
+    receivedAt?: DateTimeNullableWithAggregatesFilter<"OrderItem"> | Date | string | null
   }
 
   export type CategoryProductsWhereInput = {
@@ -26040,10 +26325,12 @@ export namespace Prisma {
     country?: StringNullableFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringFilter<"ReviewProduct"> | string
     reviewer_id?: StringFilter<"ReviewProduct"> | string
+    order_item_id?: StringNullableFilter<"ReviewProduct"> | string | null
     createdAt?: DateTimeFilter<"ReviewProduct"> | Date | string
     updatedAt?: DateTimeFilter<"ReviewProduct"> | Date | string
     productVariation?: XOR<ProductVariationScalarRelationFilter, ProductVariationWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    orderItem?: XOR<OrderItemNullableScalarRelationFilter, OrderItemWhereInput> | null
   }
 
   export type ReviewProductOrderByWithRelationInput = {
@@ -26054,14 +26341,17 @@ export namespace Prisma {
     country?: SortOrderInput | SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
+    order_item_id?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     productVariation?: ProductVariationOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
+    orderItem?: OrderItemOrderByWithRelationInput
   }
 
   export type ReviewProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    order_item_id?: string
     AND?: ReviewProductWhereInput | ReviewProductWhereInput[]
     OR?: ReviewProductWhereInput[]
     NOT?: ReviewProductWhereInput | ReviewProductWhereInput[]
@@ -26075,7 +26365,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ReviewProduct"> | Date | string
     productVariation?: XOR<ProductVariationScalarRelationFilter, ProductVariationWhereInput>
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+    orderItem?: XOR<OrderItemNullableScalarRelationFilter, OrderItemWhereInput> | null
+  }, "id" | "order_item_id">
 
   export type ReviewProductOrderByWithAggregationInput = {
     id?: SortOrder
@@ -26085,6 +26376,7 @@ export namespace Prisma {
     country?: SortOrderInput | SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
+    order_item_id?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ReviewProductCountOrderByAggregateInput
@@ -26105,6 +26397,7 @@ export namespace Prisma {
     country?: StringNullableWithAggregatesFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringWithAggregatesFilter<"ReviewProduct"> | string
     reviewer_id?: StringWithAggregatesFilter<"ReviewProduct"> | string
+    order_item_id?: StringNullableWithAggregatesFilter<"ReviewProduct"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ReviewProduct"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ReviewProduct"> | Date | string
   }
@@ -26930,6 +27223,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26945,6 +27244,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26958,6 +27263,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26973,6 +27284,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26987,6 +27304,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26999,6 +27322,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27012,6 +27341,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27024,7 +27359,12 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
     order: OrderCreateNestedOneWithoutItemsInput
+    review?: ReviewProductCreateNestedOneWithoutOrderItemInput
   }
 
   export type OrderItemUncheckedCreateInput = {
@@ -27035,6 +27375,11 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
+    review?: ReviewProductUncheckedCreateNestedOneWithoutOrderItemInput
   }
 
   export type OrderItemUpdateInput = {
@@ -27044,7 +27389,12 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     order?: OrderUpdateOneRequiredWithoutItemsNestedInput
+    review?: ReviewProductUpdateOneWithoutOrderItemNestedInput
   }
 
   export type OrderItemUncheckedUpdateInput = {
@@ -27055,6 +27405,11 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    review?: ReviewProductUncheckedUpdateOneWithoutOrderItemNestedInput
   }
 
   export type OrderItemCreateManyInput = {
@@ -27065,6 +27420,10 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
   }
 
   export type OrderItemUpdateManyMutationInput = {
@@ -27074,6 +27433,10 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type OrderItemUncheckedUpdateManyInput = {
@@ -27084,6 +27447,10 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CategoryProductsCreateInput = {
@@ -27473,6 +27840,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     productVariation: ProductVariationCreateNestedOneWithoutReviewProductInput
     user: UserCreateNestedOneWithoutReviewProductInput
+    orderItem?: OrderItemCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewProductUncheckedCreateInput = {
@@ -27483,6 +27851,7 @@ export namespace Prisma {
     country?: string | null
     product_variation_id: string
     reviewer_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27497,6 +27866,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productVariation?: ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput
     user?: UserUpdateOneRequiredWithoutReviewProductNestedInput
+    orderItem?: OrderItemUpdateOneWithoutReviewNestedInput
   }
 
   export type ReviewProductUncheckedUpdateInput = {
@@ -27507,6 +27877,7 @@ export namespace Prisma {
     country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     reviewer_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -27519,6 +27890,7 @@ export namespace Prisma {
     country?: string | null
     product_variation_id: string
     reviewer_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -27541,6 +27913,7 @@ export namespace Prisma {
     country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
     reviewer_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -28553,6 +28926,12 @@ export namespace Prisma {
     shippingCarrier?: SortOrder
     shippingService?: SortOrder
     shippingPrice?: SortOrder
+    shippingCep?: SortOrder
+    shippingState?: SortOrder
+    shippingCity?: SortOrder
+    shippingStreet?: SortOrder
+    shippingNumber?: SortOrder
+    shippingComplement?: SortOrder
     totalAmount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -28571,6 +28950,12 @@ export namespace Prisma {
     shippingCarrier?: SortOrder
     shippingService?: SortOrder
     shippingPrice?: SortOrder
+    shippingCep?: SortOrder
+    shippingState?: SortOrder
+    shippingCity?: SortOrder
+    shippingStreet?: SortOrder
+    shippingNumber?: SortOrder
+    shippingComplement?: SortOrder
     totalAmount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -28584,6 +28969,12 @@ export namespace Prisma {
     shippingCarrier?: SortOrder
     shippingService?: SortOrder
     shippingPrice?: SortOrder
+    shippingCep?: SortOrder
+    shippingState?: SortOrder
+    shippingCity?: SortOrder
+    shippingStreet?: SortOrder
+    shippingNumber?: SortOrder
+    shippingComplement?: SortOrder
     totalAmount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -28604,9 +28995,21 @@ export namespace Prisma {
     _max?: NestedEnumOrderStatusFilter<$PrismaModel>
   }
 
+  export type EnumFulfillmentStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FulfillmentStatus | EnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFulfillmentStatusFilter<$PrismaModel> | $Enums.FulfillmentStatus
+  }
+
   export type OrderScalarRelationFilter = {
     is?: OrderWhereInput
     isNot?: OrderWhereInput
+  }
+
+  export type ReviewProductNullableScalarRelationFilter = {
+    is?: ReviewProductWhereInput | null
+    isNot?: ReviewProductWhereInput | null
   }
 
   export type OrderItemCountOrderByAggregateInput = {
@@ -28617,6 +29020,10 @@ export namespace Prisma {
     imageUrl?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
+    fulfillmentStatus?: SortOrder
+    inProductionAt?: SortOrder
+    shippedAt?: SortOrder
+    receivedAt?: SortOrder
   }
 
   export type OrderItemAvgOrderByAggregateInput = {
@@ -28632,6 +29039,10 @@ export namespace Prisma {
     imageUrl?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
+    fulfillmentStatus?: SortOrder
+    inProductionAt?: SortOrder
+    shippedAt?: SortOrder
+    receivedAt?: SortOrder
   }
 
   export type OrderItemMinOrderByAggregateInput = {
@@ -28642,11 +29053,25 @@ export namespace Prisma {
     imageUrl?: SortOrder
     quantity?: SortOrder
     unitPrice?: SortOrder
+    fulfillmentStatus?: SortOrder
+    inProductionAt?: SortOrder
+    shippedAt?: SortOrder
+    receivedAt?: SortOrder
   }
 
   export type OrderItemSumOrderByAggregateInput = {
     quantity?: SortOrder
     unitPrice?: SortOrder
+  }
+
+  export type EnumFulfillmentStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FulfillmentStatus | EnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFulfillmentStatusWithAggregatesFilter<$PrismaModel> | $Enums.FulfillmentStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFulfillmentStatusFilter<$PrismaModel>
+    _max?: NestedEnumFulfillmentStatusFilter<$PrismaModel>
   }
 
   export type ProductListRelationFilter = {
@@ -28899,6 +29324,11 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type OrderItemNullableScalarRelationFilter = {
+    is?: OrderItemWhereInput | null
+    isNot?: OrderItemWhereInput | null
+  }
+
   export type ReviewProductCountOrderByAggregateInput = {
     id?: SortOrder
     rating?: SortOrder
@@ -28907,6 +29337,7 @@ export namespace Prisma {
     country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
+    order_item_id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28922,6 +29353,7 @@ export namespace Prisma {
     country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
+    order_item_id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -28933,6 +29365,7 @@ export namespace Prisma {
     country?: SortOrder
     product_variation_id?: SortOrder
     reviewer_id?: SortOrder
+    order_item_id?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -29470,12 +29903,48 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput
   }
 
+  export type ReviewProductCreateNestedOneWithoutOrderItemInput = {
+    create?: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
+    connectOrCreate?: ReviewProductCreateOrConnectWithoutOrderItemInput
+    connect?: ReviewProductWhereUniqueInput
+  }
+
+  export type ReviewProductUncheckedCreateNestedOneWithoutOrderItemInput = {
+    create?: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
+    connectOrCreate?: ReviewProductCreateOrConnectWithoutOrderItemInput
+    connect?: ReviewProductWhereUniqueInput
+  }
+
+  export type EnumFulfillmentStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FulfillmentStatus
+  }
+
   export type OrderUpdateOneRequiredWithoutItemsNestedInput = {
     create?: XOR<OrderCreateWithoutItemsInput, OrderUncheckedCreateWithoutItemsInput>
     connectOrCreate?: OrderCreateOrConnectWithoutItemsInput
     upsert?: OrderUpsertWithoutItemsInput
     connect?: OrderWhereUniqueInput
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutItemsInput, OrderUpdateWithoutItemsInput>, OrderUncheckedUpdateWithoutItemsInput>
+  }
+
+  export type ReviewProductUpdateOneWithoutOrderItemNestedInput = {
+    create?: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
+    connectOrCreate?: ReviewProductCreateOrConnectWithoutOrderItemInput
+    upsert?: ReviewProductUpsertWithoutOrderItemInput
+    disconnect?: ReviewProductWhereInput | boolean
+    delete?: ReviewProductWhereInput | boolean
+    connect?: ReviewProductWhereUniqueInput
+    update?: XOR<XOR<ReviewProductUpdateToOneWithWhereWithoutOrderItemInput, ReviewProductUpdateWithoutOrderItemInput>, ReviewProductUncheckedUpdateWithoutOrderItemInput>
+  }
+
+  export type ReviewProductUncheckedUpdateOneWithoutOrderItemNestedInput = {
+    create?: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
+    connectOrCreate?: ReviewProductCreateOrConnectWithoutOrderItemInput
+    upsert?: ReviewProductUpsertWithoutOrderItemInput
+    disconnect?: ReviewProductWhereInput | boolean
+    delete?: ReviewProductWhereInput | boolean
+    connect?: ReviewProductWhereUniqueInput
+    update?: XOR<XOR<ReviewProductUpdateToOneWithWhereWithoutOrderItemInput, ReviewProductUpdateWithoutOrderItemInput>, ReviewProductUncheckedUpdateWithoutOrderItemInput>
   }
 
   export type ProductCreateNestedManyWithoutCategoryProductsInput = {
@@ -29900,6 +30369,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type OrderItemCreateNestedOneWithoutReviewInput = {
+    create?: XOR<OrderItemCreateWithoutReviewInput, OrderItemUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: OrderItemCreateOrConnectWithoutReviewInput
+    connect?: OrderItemWhereUniqueInput
+  }
+
   export type ReviewProductUpdatephotosInput = {
     set?: string[]
     push?: string | string[]
@@ -29919,6 +30394,16 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutReviewProductInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewProductInput, UserUpdateWithoutReviewProductInput>, UserUncheckedUpdateWithoutReviewProductInput>
+  }
+
+  export type OrderItemUpdateOneWithoutReviewNestedInput = {
+    create?: XOR<OrderItemCreateWithoutReviewInput, OrderItemUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: OrderItemCreateOrConnectWithoutReviewInput
+    upsert?: OrderItemUpsertWithoutReviewInput
+    disconnect?: OrderItemWhereInput | boolean
+    delete?: OrderItemWhereInput | boolean
+    connect?: OrderItemWhereUniqueInput
+    update?: XOR<XOR<OrderItemUpdateToOneWithWhereWithoutReviewInput, OrderItemUpdateWithoutReviewInput>, OrderItemUncheckedUpdateWithoutReviewInput>
   }
 
   export type ProductCreateNestedOneWithoutProductQuestionInput = {
@@ -30810,6 +31295,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumOrderStatusFilter<$PrismaModel>
     _max?: NestedEnumOrderStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFulfillmentStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FulfillmentStatus | EnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFulfillmentStatusFilter<$PrismaModel> | $Enums.FulfillmentStatus
+  }
+
+  export type NestedEnumFulfillmentStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FulfillmentStatus | EnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FulfillmentStatus[] | ListEnumFulfillmentStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFulfillmentStatusWithAggregatesFilter<$PrismaModel> | $Enums.FulfillmentStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFulfillmentStatusFilter<$PrismaModel>
+    _max?: NestedEnumFulfillmentStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumGenderFilter<$PrismaModel = never> = {
@@ -31737,6 +32239,11 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
+    review?: ReviewProductCreateNestedOneWithoutOrderItemInput
   }
 
   export type OrderItemUncheckedCreateWithoutOrderInput = {
@@ -31746,6 +32253,11 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
+    review?: ReviewProductUncheckedCreateNestedOneWithoutOrderItemInput
   }
 
   export type OrderItemCreateOrConnectWithoutOrderInput = {
@@ -31842,6 +32354,10 @@ export namespace Prisma {
     imageUrl?: StringFilter<"OrderItem"> | string
     quantity?: IntFilter<"OrderItem"> | number
     unitPrice?: DecimalFilter<"OrderItem"> | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFilter<"OrderItem"> | $Enums.FulfillmentStatus
+    inProductionAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    shippedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
+    receivedAt?: DateTimeNullableFilter<"OrderItem"> | Date | string | null
   }
 
   export type OrderCreateWithoutItemsInput = {
@@ -31851,6 +32367,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31865,6 +32387,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -31873,6 +32401,35 @@ export namespace Prisma {
   export type OrderCreateOrConnectWithoutItemsInput = {
     where: OrderWhereUniqueInput
     create: XOR<OrderCreateWithoutItemsInput, OrderUncheckedCreateWithoutItemsInput>
+  }
+
+  export type ReviewProductCreateWithoutOrderItemInput = {
+    id?: string
+    rating: Decimal | DecimalJsLike | number | string
+    comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    productVariation: ProductVariationCreateNestedOneWithoutReviewProductInput
+    user: UserCreateNestedOneWithoutReviewProductInput
+  }
+
+  export type ReviewProductUncheckedCreateWithoutOrderItemInput = {
+    id?: string
+    rating: Decimal | DecimalJsLike | number | string
+    comment: string
+    photos?: ReviewProductCreatephotosInput | string[]
+    country?: string | null
+    product_variation_id: string
+    reviewer_id: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ReviewProductCreateOrConnectWithoutOrderItemInput = {
+    where: ReviewProductWhereUniqueInput
+    create: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
   }
 
   export type OrderUpsertWithoutItemsInput = {
@@ -31893,6 +32450,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -31907,7 +32470,48 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReviewProductUpsertWithoutOrderItemInput = {
+    update: XOR<ReviewProductUpdateWithoutOrderItemInput, ReviewProductUncheckedUpdateWithoutOrderItemInput>
+    create: XOR<ReviewProductCreateWithoutOrderItemInput, ReviewProductUncheckedCreateWithoutOrderItemInput>
+    where?: ReviewProductWhereInput
+  }
+
+  export type ReviewProductUpdateToOneWithWhereWithoutOrderItemInput = {
+    where?: ReviewProductWhereInput
+    data: XOR<ReviewProductUpdateWithoutOrderItemInput, ReviewProductUncheckedUpdateWithoutOrderItemInput>
+  }
+
+  export type ReviewProductUpdateWithoutOrderItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    productVariation?: ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput
+    user?: UserUpdateOneRequiredWithoutReviewProductNestedInput
+  }
+
+  export type ReviewProductUncheckedUpdateWithoutOrderItemInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    comment?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewProductUpdatephotosInput | string[]
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    product_variation_id?: StringFieldUpdateOperationsInput | string
+    reviewer_id?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -32471,6 +33075,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutReviewProductInput
+    orderItem?: OrderItemCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewProductUncheckedCreateWithoutProductVariationInput = {
@@ -32480,6 +33085,7 @@ export namespace Prisma {
     photos?: ReviewProductCreatephotosInput | string[]
     country?: string | null
     reviewer_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -32614,6 +33220,7 @@ export namespace Prisma {
     country?: StringNullableFilter<"ReviewProduct"> | string | null
     product_variation_id?: StringFilter<"ReviewProduct"> | string
     reviewer_id?: StringFilter<"ReviewProduct"> | string
+    order_item_id?: StringNullableFilter<"ReviewProduct"> | string | null
     createdAt?: DateTimeFilter<"ReviewProduct"> | Date | string
     updatedAt?: DateTimeFilter<"ReviewProduct"> | Date | string
   }
@@ -32835,6 +33442,39 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutReviewProductInput, UserUncheckedCreateWithoutReviewProductInput>
   }
 
+  export type OrderItemCreateWithoutReviewInput = {
+    id?: string
+    productVariationId: string
+    title: string
+    imageUrl: string
+    quantity: number
+    unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
+    order: OrderCreateNestedOneWithoutItemsInput
+  }
+
+  export type OrderItemUncheckedCreateWithoutReviewInput = {
+    id?: string
+    orderId: string
+    productVariationId: string
+    title: string
+    imageUrl: string
+    quantity: number
+    unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
+  }
+
+  export type OrderItemCreateOrConnectWithoutReviewInput = {
+    where: OrderItemWhereUniqueInput
+    create: XOR<OrderItemCreateWithoutReviewInput, OrderItemUncheckedCreateWithoutReviewInput>
+  }
+
   export type ProductVariationUpsertWithoutReviewProductInput = {
     update: XOR<ProductVariationUpdateWithoutReviewProductInput, ProductVariationUncheckedUpdateWithoutReviewProductInput>
     create: XOR<ProductVariationCreateWithoutReviewProductInput, ProductVariationUncheckedCreateWithoutReviewProductInput>
@@ -32931,6 +33571,45 @@ export namespace Prisma {
     Order?: OrderUncheckedUpdateManyWithoutUserNestedInput
     ProductQuestion?: ProductQuestionUncheckedUpdateManyWithoutBuyerNestedInput
     CouponUsage?: CouponUsageUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type OrderItemUpsertWithoutReviewInput = {
+    update: XOR<OrderItemUpdateWithoutReviewInput, OrderItemUncheckedUpdateWithoutReviewInput>
+    create: XOR<OrderItemCreateWithoutReviewInput, OrderItemUncheckedCreateWithoutReviewInput>
+    where?: OrderItemWhereInput
+  }
+
+  export type OrderItemUpdateToOneWithWhereWithoutReviewInput = {
+    where?: OrderItemWhereInput
+    data: XOR<OrderItemUpdateWithoutReviewInput, OrderItemUncheckedUpdateWithoutReviewInput>
+  }
+
+  export type OrderItemUpdateWithoutReviewInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productVariationId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    order?: OrderUpdateOneRequiredWithoutItemsNestedInput
+  }
+
+  export type OrderItemUncheckedUpdateWithoutReviewInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    orderId?: StringFieldUpdateOperationsInput | string
+    productVariationId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    quantity?: IntFieldUpdateOperationsInput | number
+    unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ProductCreateWithoutProductQuestionInput = {
@@ -33340,6 +34019,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     productVariation: ProductVariationCreateNestedOneWithoutReviewProductInput
+    orderItem?: OrderItemCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewProductUncheckedCreateWithoutUserInput = {
@@ -33349,6 +34029,7 @@ export namespace Prisma {
     photos?: ReviewProductCreatephotosInput | string[]
     country?: string | null
     product_variation_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -33464,6 +34145,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -33477,6 +34164,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -33782,6 +34475,12 @@ export namespace Prisma {
     shippingCarrier?: StringFilter<"Order"> | string
     shippingService?: StringFilter<"Order"> | string
     shippingPrice?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
+    shippingCep?: StringNullableFilter<"Order"> | string | null
+    shippingState?: StringNullableFilter<"Order"> | string | null
+    shippingCity?: StringNullableFilter<"Order"> | string | null
+    shippingStreet?: StringNullableFilter<"Order"> | string | null
+    shippingNumber?: StringNullableFilter<"Order"> | string | null
+    shippingComplement?: StringNullableFilter<"Order"> | string | null
     totalAmount?: DecimalFilter<"Order"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
@@ -34074,6 +34773,10 @@ export namespace Prisma {
     imageUrl: string
     quantity: number
     unitPrice: Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: $Enums.FulfillmentStatus
+    inProductionAt?: Date | string | null
+    shippedAt?: Date | string | null
+    receivedAt?: Date | string | null
   }
 
   export type OrderItemUpdateWithoutOrderInput = {
@@ -34083,6 +34786,11 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    review?: ReviewProductUpdateOneWithoutOrderItemNestedInput
   }
 
   export type OrderItemUncheckedUpdateWithoutOrderInput = {
@@ -34092,6 +34800,11 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    review?: ReviewProductUncheckedUpdateOneWithoutOrderItemNestedInput
   }
 
   export type OrderItemUncheckedUpdateManyWithoutOrderInput = {
@@ -34101,6 +34814,10 @@ export namespace Prisma {
     imageUrl?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
     unitPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    fulfillmentStatus?: EnumFulfillmentStatusFieldUpdateOperationsInput | $Enums.FulfillmentStatus
+    inProductionAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    shippedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ProductCreateManyCategoryProductsInput = {
@@ -34344,6 +35061,7 @@ export namespace Prisma {
     photos?: ReviewProductCreatephotosInput | string[]
     country?: string | null
     reviewer_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34372,6 +35090,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewProductNestedInput
+    orderItem?: OrderItemUpdateOneWithoutReviewNestedInput
   }
 
   export type ReviewProductUncheckedUpdateWithoutProductVariationInput = {
@@ -34381,6 +35100,7 @@ export namespace Prisma {
     photos?: ReviewProductUpdatephotosInput | string[]
     country?: NullableStringFieldUpdateOperationsInput | string | null
     reviewer_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34392,6 +35112,7 @@ export namespace Prisma {
     photos?: ReviewProductUpdatephotosInput | string[]
     country?: NullableStringFieldUpdateOperationsInput | string | null
     reviewer_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34544,6 +35265,7 @@ export namespace Prisma {
     photos?: ReviewProductCreatephotosInput | string[]
     country?: string | null
     product_variation_id: string
+    order_item_id?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -34582,6 +35304,12 @@ export namespace Prisma {
     shippingCarrier: string
     shippingService: string
     shippingPrice: Decimal | DecimalJsLike | number | string
+    shippingCep?: string | null
+    shippingState?: string | null
+    shippingCity?: string | null
+    shippingStreet?: string | null
+    shippingNumber?: string | null
+    shippingComplement?: string | null
     totalAmount: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -34698,6 +35426,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     productVariation?: ProductVariationUpdateOneRequiredWithoutReviewProductNestedInput
+    orderItem?: OrderItemUpdateOneWithoutReviewNestedInput
   }
 
   export type ReviewProductUncheckedUpdateWithoutUserInput = {
@@ -34707,6 +35436,7 @@ export namespace Prisma {
     photos?: ReviewProductUpdatephotosInput | string[]
     country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34718,6 +35448,7 @@ export namespace Prisma {
     photos?: ReviewProductUpdatephotosInput | string[]
     country?: NullableStringFieldUpdateOperationsInput | string | null
     product_variation_id?: StringFieldUpdateOperationsInput | string
+    order_item_id?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34810,6 +35541,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34823,6 +35560,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -34836,6 +35579,12 @@ export namespace Prisma {
     shippingCarrier?: StringFieldUpdateOperationsInput | string
     shippingService?: StringFieldUpdateOperationsInput | string
     shippingPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    shippingCep?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingState?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingCity?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingStreet?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    shippingComplement?: NullableStringFieldUpdateOperationsInput | string | null
     totalAmount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
