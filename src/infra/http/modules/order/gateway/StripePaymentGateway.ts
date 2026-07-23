@@ -65,6 +65,7 @@ export class StripePaymentGateway extends PaymentGateway {
         cancel_url: `${frontendUrl}/checkout/pagamento`,
         metadata: {
           userId: input.userId,
+          addressId: input.addressId,
           cartItemIds: input.cartItemIds.join(','),
           shippingCarrier: input.shippingCarrier,
           shippingService: input.shippingService,
@@ -139,6 +140,7 @@ export class StripePaymentGateway extends PaymentGateway {
 
     return {
       userId: metadata.userId,
+      addressId: metadata.addressId ?? '',
       cartItemIds: metadata.cartItemIds.split(',').filter(Boolean),
       shippingCarrier: metadata.shippingCarrier ?? '',
       shippingService: metadata.shippingService ?? '',

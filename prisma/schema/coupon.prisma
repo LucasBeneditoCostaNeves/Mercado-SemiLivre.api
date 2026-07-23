@@ -1,24 +1,24 @@
 model Coupon {
-  id                 String    @id @default(uuid())
-  code               String    @unique
-  discountType       CouponDiscountType
-  discountValue      Decimal
-  scope              CouponScope
-  createdByRole      CouponCreatorRole
-  createdById        String
-  sellerId           String?
-  productId          String?
-  minOrderValue      Decimal?
-  maxDiscountValue   Decimal?
-  usageLimit         Int?
-  usageLimitPerUser  Int?
-  startsAt           DateTime
-  expiresAt          DateTime?
-  isActive           Boolean   @default(true)
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @default(now())
+  id                String             @id @default(uuid())
+  code              String             @unique
+  discountType      CouponDiscountType
+  discountValue     Decimal
+  scope             CouponScope
+  createdByRole     CouponCreatorRole
+  createdById       String
+  sellerId          String?
+  productId         String?
+  minOrderValue     Decimal?
+  maxDiscountValue  Decimal?
+  usageLimit        Int?
+  usageLimitPerUser Int?
+  startsAt          DateTime
+  expiresAt         DateTime?
+  isActive          Boolean            @default(true)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @default(now())
 
-  usages             CouponUsage[]
+  usages CouponUsage[]
 
   @@map("Coupons")
 }

@@ -1,12 +1,12 @@
 model ProductQuestion {
-  id              String    @id @default(uuid())
-  product_id      String
-  product         Product   @relation(fields: [product_id], references: [id], onDelete: Cascade)
-  buyer_user_id   String
-  buyer           User      @relation(fields: [buyer_user_id], references: [id], onDelete: Cascade)
-  question        String
-  answer          String?
-  answeredAt      DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @default(now())
+  id            String    @id @default(uuid())
+  product_id    String
+  product       Product   @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  buyer_user_id String
+  buyer         User      @relation(fields: [buyer_user_id], references: [id], onDelete: Cascade)
+  question      String
+  answer        String?
+  answeredAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now())
 }
