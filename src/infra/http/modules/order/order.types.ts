@@ -32,6 +32,25 @@ export interface CheckoutSessionMetadata {
   discountAmount?: number;
 }
 
+export type SellerSalesPeriod = '7d' | '30d' | '90d';
+
+export interface SellerTopProduct {
+  productId: string;
+  title: string;
+  thumbnail: string;
+  quantitySold: number;
+  revenue: number;
+}
+
+export interface SellerSalesSummary {
+  period: SellerSalesPeriod;
+  totalRevenue: number;
+  orderCount: number;
+  itemsSold: number;
+  averageTicket: number;
+  topProducts: SellerTopProduct[];
+}
+
 export type PaymentWebhookEvent =
   | {
       type: 'checkout.session.completed';

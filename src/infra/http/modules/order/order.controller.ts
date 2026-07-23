@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
   Req,
   UsePipes,
 } from '@nestjs/common';
@@ -16,8 +17,12 @@ import { Public } from '../auth/decorators/isPublic';
 import { CurrentUser } from '../auth/decorators/currentUser.decorator';
 import type { AuthenticatedUser } from '../auth/models/authRequestModel';
 import { OrderService } from './order.service';
-import { CreateCheckoutSessionDto } from './dto/order.dto';
+import {
+  CreateCheckoutSessionDto,
+  SellerSalesSummaryQueryDto,
+} from './dto/order.dto';
 import { OrderViewModel } from './viewModel/OrderViewModel';
+import { SellerSalesSummaryViewModel } from './viewModel/SellerSalesSummaryViewModel';
 
 @Controller('orders')
 export class OrderController {
@@ -51,6 +56,19 @@ export class OrderController {
 
     await this.orderService.handleWebhookEvent(req.rawBody, signature);
     return { received: true };
+  }
+
+  @Get('seller/summary')
+  @UsePipes(ZodValidationPipe)
+  async getSellerSalesSummary(
+    @CurrentUser() user: AuthenticatedUser,
+    @Query() query: SellerSalesSummaryQueryDto,
+  ) {
+    const summary = await this.orderService.getSellerSalesSummary(
+      user.id,
+      query.period,
+    );
+    return SellerSalesSummaryViewModel.toHTTP(summary);
   }
 
   @Get('by-session/:sessionId')

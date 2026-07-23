@@ -4,7 +4,21 @@ import { GetAddressUseCase } from 'src/modules/address/useCases/getAddressUseCas
 import { OrderNotFoundError } from 'src/domain/errors/order/OrderNotFoundError';
 import { CouponService } from '../coupon/coupon.service';
 import { PaymentGateway } from './gateway/PaymentGateway';
-import { CheckoutSession, CheckoutSessionMetadata } from './order.types';
+import {
+  CheckoutSession,
+  CheckoutSessionMetadata,
+  SellerSalesPeriod,
+  SellerSalesSummary,
+  SellerTopProduct,
+} from './order.types';
+
+const PERIOD_DAYS: Record<SellerSalesPeriod, number> = {
+  '7d': 7,
+  '30d': 30,
+  '90d': 90,
+};
+
+const TOP_PRODUCTS_LIMIT = 5;
 
 function toNumber(value: { toNumber(): number } | number): number {
   return typeof value === 'number' ? value : value.toNumber();
@@ -70,6 +84,76 @@ export class OrderService {
     });
   }
 
+  async getSellerSalesSummary(
+    sellerUserId: string,
+    period: SellerSalesPeriod,
+  ): Promise<SellerSalesSummary> {
+    const since = new Date();
+    since.setDate(since.getDate() - PERIOD_DAYS[period]);
+
+    const variations = await this.prisma.productVariation.findMany({
+      where: { product: { seller_user_id: sellerUserId } },
+      select: {
+        id: true,
+        product: { select: { id: true, title: true, thumbnail: true } },
+      },
+    });
+
+    const variationToProduct = new Map(
+      variations.map((variation) => [variation.id, variation.product]),
+    );
+
+    const items = await this.prisma.orderItem.findMany({
+      where: {
+        order: { status: 'PAID', createdAt: { gte: since } },
+        productVariationId: { in: Array.from(variationToProduct.keys()) },
+      },
+    });
+
+    let totalRevenue = 0;
+    let itemsSold = 0;
+    const orderIds = new Set<string>();
+    const productTotals = new Map<string, SellerTopProduct>();
+
+    for (const item of items) {
+      const product = variationToProduct.get(item.productVariationId);
+      if (!product) continue;
+
+      const revenue = toNumber(item.unitPrice) * item.quantity;
+      totalRevenue += revenue;
+      itemsSold += item.quantity;
+      orderIds.add(item.orderId);
+
+      const current = productTotals.get(product.id);
+      if (current) {
+        current.quantitySold += item.quantity;
+        current.revenue += revenue;
+      } else {
+        productTotals.set(product.id, {
+          productId: product.id,
+          title: product.title,
+          thumbnail: product.thumbnail,
+          quantitySold: item.quantity,
+          revenue,
+        });
+      }
+    }
+
+    const orderCount = orderIds.size;
+    const topProducts = Array.from(productTotals.values())
+      .sort((a, b) => b.quantitySold - a.quantitySold)
+      .slice(0, TOP_PRODUCTS_LIMIT);
+
+    return {
+      period,
+      totalRevenue,
+      orderCount,
+      itemsSold,
+      averageTicket: orderCount > 0 ? totalRevenue / orderCount : 0,
+      topProducts,
+    };
+  }
+
   async handleWebhookEvent(rawBody: Buffer, signature: string): Promise<void> {
     const event = await this.paymentGateway.parseWebhookEvent(
       rawBody,
@@ -133,7 +217,10 @@ export class OrderService {
         shippingCarrier: metadata.shippingCarrier,
         shippingService: metadata.shippingService,
         shippingPrice: metadata.shippingPrice,
-        totalAmount: Math.max(itemsTotal + metadata.shippingPrice - discountAmount, 0),
+        totalAmount: Math.max(
+          itemsTotal + metadata.shippingPrice - discountAmount,
+          0,
+        ),
         items: {
           create: cartItems.map((item) => ({
             productVariationId: item.productVariationId,

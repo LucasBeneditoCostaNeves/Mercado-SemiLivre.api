@@ -1,6 +1,13 @@
 import { createZodDto } from 'nestjs-zod';
-import { createCheckoutSessionSchema } from '../schemas/order.schemas';
+import {
+  createCheckoutSessionSchema,
+  sellerSalesSummaryQuerySchema,
+} from '../schemas/order.schemas';
 
 export class CreateCheckoutSessionDto extends createZodDto(
   createCheckoutSessionSchema,
+) {}
+
+export class SellerSalesSummaryQueryDto extends createZodDto(
+  sellerSalesSummaryQuerySchema,
 ) {}

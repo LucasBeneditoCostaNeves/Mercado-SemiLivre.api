@@ -10,3 +10,9 @@ export const createCheckoutSessionSchema = z.object({
   shippingPrice: z.number().min(0),
   couponCode: z.string().trim().min(1).optional(),
 });
+
+export const SELLER_SALES_PERIODS = ['7d', '30d', '90d'] as const;
+
+export const sellerSalesSummaryQuerySchema = z.object({
+  period: z.enum(SELLER_SALES_PERIODS).default('30d'),
+});

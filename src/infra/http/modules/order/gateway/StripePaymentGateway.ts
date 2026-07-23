@@ -27,7 +27,9 @@ export class StripePaymentGateway extends PaymentGateway {
           unit_amount: Math.round(item.unitPrice * 100),
           product_data: {
             name: item.title,
-            images: /^https?:\/\//i.test(item.imageUrl) ? [item.imageUrl] : undefined,
+            images: /^https?:\/\//i.test(item.imageUrl)
+              ? [item.imageUrl]
+              : undefined,
           },
         },
       }));
@@ -68,7 +70,9 @@ export class StripePaymentGateway extends PaymentGateway {
           shippingService: input.shippingService,
           shippingPrice: String(input.shippingPrice),
           couponCode: input.couponCode ?? '',
-          discountAmount: input.discountAmount ? String(input.discountAmount) : '',
+          discountAmount: input.discountAmount
+            ? String(input.discountAmount)
+            : '',
         },
       });
 
@@ -140,7 +144,9 @@ export class StripePaymentGateway extends PaymentGateway {
       shippingService: metadata.shippingService ?? '',
       shippingPrice: Number(metadata.shippingPrice ?? 0),
       couponCode: metadata.couponCode || undefined,
-      discountAmount: metadata.discountAmount ? Number(metadata.discountAmount) : undefined,
+      discountAmount: metadata.discountAmount
+        ? Number(metadata.discountAmount)
+        : undefined,
     };
   }
 }
