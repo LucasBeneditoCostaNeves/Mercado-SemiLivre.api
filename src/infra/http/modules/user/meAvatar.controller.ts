@@ -31,8 +31,7 @@ export class MeAvatarController {
       throw new BadRequestException('Nenhum arquivo enviado.');
     }
 
-    const appUrl = process.env.APP_URL ?? 'http://localhost:3001';
-    const avatarUrl = `${appUrl}/uploads/avatars/${file.filename}`;
+    const avatarUrl = `/uploads/avatars/${file.filename}`;
 
     return this.uploadAvatarUseCase.execute({ userId: user.id, avatarUrl });
   }

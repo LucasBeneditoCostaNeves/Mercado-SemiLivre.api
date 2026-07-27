@@ -1,88 +1,103 @@
-import { randomUUID } from "node:crypto"
-import { Replace } from "src/utils/replace"
+import { randomUUID } from 'node:crypto';
+import { Replace } from 'src/utils/replace';
 
 interface ProductVariationSchema {
-    title: string,
-    price: number,
-    quantity: number,
-    description: string,
-    product_id: string,
-    status?: boolean,
-    createdAt: Date,
-    updatedAt: Date
+  title: string;
+  price: number;
+  quantity: number;
+  description: string;
+  product_id: string;
+  discountPercentage: number;
+  status?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class ProductVariation {
-    private _id: string
-    private props: ProductVariationSchema
+  private _id: string;
+  private props: ProductVariationSchema;
 
-    constructor(props: Replace<ProductVariationSchema, { createdAt?: Date, updatedAt?: Date }>, id?: string) {
-        this.props = {
-            ...props,
-            status: props.status || true,
-            createdAt: props.createdAt || new Date(),
-            updatedAt: props.updatedAt || new Date()
-        }
-        this._id = id || randomUUID()
-    }
+  constructor(
+    props: Replace<
+      ProductVariationSchema,
+      { createdAt?: Date; updatedAt?: Date }
+    >,
+    id?: string,
+  ) {
+    this.props = {
+      ...props,
+      status: props.status || true,
+      createdAt: props.createdAt || new Date(),
+      updatedAt: props.updatedAt || new Date(),
+    };
+    this._id = id || randomUUID();
+  }
 
-    get id(): string {
-        return this._id
-    }
+  get id(): string {
+    return this._id;
+  }
 
-    get title(): string {
-        return this.props.title
-    }
+  get title(): string {
+    return this.props.title;
+  }
 
-    set title(title: string) {
-        this.props.title = title
-    }
+  set title(title: string) {
+    this.props.title = title;
+  }
 
-    get price(): number {
-        return this.props.price
-    }
+  get price(): number {
+    return this.props.price;
+  }
 
-    set price(price: number) {
-        this.props.price = price
-    }
+  set price(price: number) {
+    this.props.price = price;
+  }
 
-    get quantity(): number {
-        return this.props.quantity
-    }
+  get quantity(): number {
+    return this.props.quantity;
+  }
 
-    set quantity(quantity: number) {
-        this.props.quantity = quantity
-    }
+  set quantity(quantity: number) {
+    this.props.quantity = quantity;
+  }
 
-    get description(): string {
-        return this.props.description
-    }
+  get description(): string {
+    return this.props.description;
+  }
 
-    set description(description: string) {
-        this.props.description = description
-    }
+  set description(description: string) {
+    this.props.description = description;
+  }
 
-    get product_id(): string {
-        return this.props.product_id
-    }
+  get product_id(): string {
+    return this.props.product_id;
+  }
 
-    set product_id(product_id: string) {
-        this.props.product_id = product_id
-    }
+  set product_id(product_id: string) {
+    this.props.product_id = product_id;
+  }
 
-    get status(): boolean | undefined {
-        return this.props.status
-    }
+  get discountPercentage(): number {
+    return this.props.discountPercentage;
+  }
 
-    set status(status: boolean) {
-        this.props.status = status ? status : true
-    }
+  set discountPercentage(discountPercentage: number) {
+    this.props.discountPercentage = discountPercentage;
+  }
 
-    get createdAt(): Date {
-        return this.props.createdAt
-    }
+  get status(): boolean | undefined {
+    return this.props.status;
+  }
 
-    get updatedAt(): Date {
-        return this.props.updatedAt
-    }
+  set status(status: boolean) {
+    this.props.status = status ? status : true;
+  }
+
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 }

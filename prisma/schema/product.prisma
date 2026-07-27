@@ -16,22 +16,23 @@ model Brand {
 }
 
 model Product {
-  id                    String           @id @default(uuid())
-  title                 String
-  status                Boolean          @default(true)
-  category_product_id   String
-  categoryProducts      CategoryProducts @relation(fields: [category_product_id], references: [id], onDelete: Cascade)
-  seller_user_id        String
-  user                  User             @relation(fields: [seller_user_id], references: [id], onDelete: Cascade)
-  brand_id              String
-  brand                 Brand            @relation(fields: [brand_id], references: [id], onDelete: Cascade)
-  thumbnail             String
-  warrantyInformation   String
-  aiSummary             String?
-  ProductVariation      ProductVariation[]
-  UserFavorite          UserFavorite[]
-  createdAt             DateTime         @default(now())
-  updatedAt             DateTime         @default(now())
+  id                  String             @id @default(uuid())
+  title               String
+  status              Boolean            @default(true)
+  category_product_id String
+  categoryProducts    CategoryProducts   @relation(fields: [category_product_id], references: [id], onDelete: Cascade)
+  seller_user_id      String
+  user                User               @relation(fields: [seller_user_id], references: [id], onDelete: Cascade)
+  brand_id            String
+  brand               Brand              @relation(fields: [brand_id], references: [id], onDelete: Cascade)
+  thumbnail           String
+  warrantyInformation String
+  aiSummary           String?
+  ProductVariation    ProductVariation[]
+  UserFavorite        UserFavorite[]
+  ProductQuestion     ProductQuestion[]
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @default(now())
 }
 
 model ProductVariation {
@@ -61,15 +62,17 @@ model productVariationImages {
 }
 
 model ReviewProduct {
-  id                      String           @id @default(uuid())
-  rating                  Decimal
-  comment                 String
-  photos                  String[]
-  country                 String?
-  product_variation_id    String
-  productVariation        ProductVariation  @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
-  reviewer_id             String
-  user                    User             @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
-  createdAt               DateTime         @default(now())
-  updatedAt               DateTime         @default(now())
+  id                   String           @id @default(uuid())
+  rating               Decimal
+  comment              String
+  photos               String[]
+  country              String?
+  product_variation_id String
+  productVariation     ProductVariation @relation(fields: [product_variation_id], references: [id], onDelete: Cascade)
+  reviewer_id          String
+  user                 User             @relation(fields: [reviewer_id], references: [id], onDelete: Cascade)
+  order_item_id        String?          @unique
+  orderItem            OrderItem?       @relation(fields: [order_item_id], references: [id], onDelete: SetNull)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @default(now())
 }

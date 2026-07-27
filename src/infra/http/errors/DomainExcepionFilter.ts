@@ -8,6 +8,8 @@ import {
 import { ZodValidationException } from 'nestjs-zod';
 import { ZodError } from 'zod';
 import { ProductNotFoundError } from 'src/domain/errors/product/ProductNotFoundError';
+import { ProductForbiddenError } from 'src/domain/errors/product/ProductForbiddenError';
+import { ProductVariationNotFoundError } from 'src/domain/errors/product/ProductVariationNotFoundError';
 import { NoFieldsToUpdateError } from 'src/domain/errors/NoFieldsToUpdateError';
 import { EmailAlreadyInUseError } from 'src/domain/errors/user/EmailAlreadyInUseError';
 import { UserNotFoundError } from 'src/domain/errors/user/UserNotFoundError';
@@ -19,6 +21,9 @@ import { ShippingQuoteUnavailableError } from 'src/domain/errors/shipping/Shippi
 import { CheckoutSessionCreationError } from 'src/domain/errors/order/CheckoutSessionCreationError';
 import { OrderNotFoundError } from 'src/domain/errors/order/OrderNotFoundError';
 import { InvalidWebhookSignatureError } from 'src/domain/errors/order/InvalidWebhookSignatureError';
+import { OrderItemForbiddenError } from 'src/domain/errors/order/OrderItemForbiddenError';
+import { InvalidFulfillmentTransitionError } from 'src/domain/errors/order/InvalidFulfillmentTransitionError';
+import { OrderItemReviewAlreadyExistsError } from 'src/domain/errors/order/OrderItemReviewAlreadyExistsError';
 
 @Catch()
 export class DomainExceptionFilter implements ExceptionFilter {
@@ -27,6 +32,12 @@ export class DomainExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse();
 
     if (error instanceof ProductNotFoundError) {
+      return response.status(404).json({ message: error.message });
+    }
+    if (error instanceof ProductForbiddenError) {
+      return response.status(403).json({ message: error.message });
+    }
+    if (error instanceof ProductVariationNotFoundError) {
       return response.status(404).json({ message: error.message });
     }
     if (error instanceof NoFieldsToUpdateError) {
@@ -61,6 +72,15 @@ export class DomainExceptionFilter implements ExceptionFilter {
     }
     if (error instanceof InvalidWebhookSignatureError) {
       return response.status(400).json({ message: error.message });
+    }
+    if (error instanceof OrderItemForbiddenError) {
+      return response.status(403).json({ message: error.message });
+    }
+    if (error instanceof InvalidFulfillmentTransitionError) {
+      return response.status(409).json({ message: error.message });
+    }
+    if (error instanceof OrderItemReviewAlreadyExistsError) {
+      return response.status(409).json({ message: error.message });
     }
 
     if (error instanceof ZodValidationException) {

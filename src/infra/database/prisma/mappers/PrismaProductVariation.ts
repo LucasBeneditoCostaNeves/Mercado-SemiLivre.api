@@ -3,7 +3,7 @@ import { Prisma, ProductVariation as ProductVariationRaw } from "@prisma/client"
 
 export class PrismaProductVariationMapper {
 
-    static toPrisma({ id, title, price, quantity, description, product_id, status, createdAt, updatedAt }: ProductVariation) {
+    static toPrisma({ id, title, price, quantity, description, product_id, discountPercentage, status, createdAt, updatedAt }: ProductVariation) {
         return {
             id,
             title,
@@ -11,6 +11,7 @@ export class PrismaProductVariationMapper {
             quantity,
             description,
             product_id,
+            discountPercentage: new Prisma.Decimal(discountPercentage),
             status: status ?? true,
             createdAt,
             updatedAt,
@@ -25,6 +26,7 @@ export class PrismaProductVariationMapper {
                 quantity: data.quantity,
                 description: data.description,
                 product_id: data.product_id,
+                discountPercentage: Number(data.discountPercentage),
                 status: data.status,
                 createdAt: data.createdAt,
                 updatedAt: data.updatedAt,

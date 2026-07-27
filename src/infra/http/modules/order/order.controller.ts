@@ -5,7 +5,9 @@ import {
   Get,
   HttpCode,
   Param,
+  Patch,
   Post,
+  Query,
   Req,
   UsePipes,
 } from '@nestjs/common';
@@ -16,8 +18,17 @@ import { Public } from '../auth/decorators/isPublic';
 import { CurrentUser } from '../auth/decorators/currentUser.decorator';
 import type { AuthenticatedUser } from '../auth/models/authRequestModel';
 import { OrderService } from './order.service';
-import { CreateCheckoutSessionDto } from './dto/order.dto';
+import {
+  CreateCheckoutSessionDto,
+  CreateOrderItemReviewDto,
+  SellerSalesSummaryQueryDto,
+} from './dto/order.dto';
 import { OrderViewModel } from './viewModel/OrderViewModel';
+import { SellerSalesSummaryViewModel } from './viewModel/SellerSalesSummaryViewModel';
+import { SellerOrderItemViewModel } from './viewModel/SellerOrderItemViewModel';
+import { CustomerOrderViewModel } from './viewModel/CustomerOrderViewModel';
+import { FulfillmentItemViewModel } from './viewModel/FulfillmentItemViewModel';
+import { OrderItemReviewViewModel } from './viewModel/OrderItemReviewViewModel';
 
 @Controller('orders')
 export class OrderController {
@@ -36,6 +47,7 @@ export class OrderController {
       shippingCarrier: body.shippingCarrier,
       shippingService: body.shippingService,
       shippingPrice: body.shippingPrice,
+      couponCode: body.couponCode,
     });
   }
 
@@ -52,6 +64,19 @@ export class OrderController {
     return { received: true };
   }
 
+  @Get('seller/summary')
+  @UsePipes(ZodValidationPipe)
+  async getSellerSalesSummary(
+    @CurrentUser() user: AuthenticatedUser,
+    @Query() query: SellerSalesSummaryQueryDto,
+  ) {
+    const summary = await this.orderService.getSellerSalesSummary(
+      user.id,
+      query.period,
+    );
+    return SellerSalesSummaryViewModel.toHTTP(summary);
+  }
+
   @Get('by-session/:sessionId')
   async getBySessionId(
     @CurrentUser() user: AuthenticatedUser,
@@ -59,5 +84,51 @@ export class OrderController {
   ) {
     const order = await this.orderService.findBySessionId(sessionId, user.id);
     return OrderViewModel.toHTTP(order);
+  }
+
+  @Get('seller/items')
+  async getSellerOrderItems(@CurrentUser() user: AuthenticatedUser) {
+    const groups = await this.orderService.getSellerOrderItems(user.id);
+    return groups.map((group) => SellerOrderItemViewModel.toHTTP(group));
+  }
+
+  @Get('mine')
+  async getMyOrders(@CurrentUser() user: AuthenticatedUser) {
+    const orders = await this.orderService.getMyOrders(user.id);
+    return orders.map((order) => CustomerOrderViewModel.toHTTP(order));
+  }
+
+  @Patch('items/:itemId/advance')
+  async advanceOrderItem(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('itemId') itemId: string,
+  ) {
+    const item = await this.orderService.advanceOrderItem(itemId, user.id);
+    return FulfillmentItemViewModel.toHTTP(item);
+  }
+
+  @Patch('items/:itemId/receive')
+  async receiveOrderItem(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('itemId') itemId: string,
+  ) {
+    const item = await this.orderService.receiveOrderItem(itemId, user.id);
+    return FulfillmentItemViewModel.toHTTP(item);
+  }
+
+  @Post('items/:orderItemId/reviews')
+  @UsePipes(ZodValidationPipe)
+  async createOrderItemReview(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('orderItemId') orderItemId: string,
+    @Body() body: CreateOrderItemReviewDto,
+  ) {
+    const review = await this.orderService.createOrderItemReview({
+      orderItemId,
+      userId: user.id,
+      rating: body.rating,
+      comment: body.comment,
+    });
+    return OrderItemReviewViewModel.toHTTP(review);
   }
 }

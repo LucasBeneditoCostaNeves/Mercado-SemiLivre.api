@@ -27,7 +27,9 @@ export class StripePaymentGateway extends PaymentGateway {
           unit_amount: Math.round(item.unitPrice * 100),
           product_data: {
             name: item.title,
-            images: item.imageUrl ? [item.imageUrl] : undefined,
+            images: /^https?:\/\//i.test(item.imageUrl)
+              ? [item.imageUrl]
+              : undefined,
           },
         },
       }));
@@ -43,18 +45,35 @@ export class StripePaymentGateway extends PaymentGateway {
       },
     };
 
+    let discounts: Stripe.Checkout.SessionCreateParams.Discount[] | undefined;
+    if (input.couponCode && input.discountAmount && input.discountAmount > 0) {
+      const stripeCoupon = await this.stripe.coupons.create({
+        amount_off: Math.round(input.discountAmount * 100),
+        currency: 'brl',
+        duration: 'once',
+        name: input.couponCode,
+      });
+      discounts = [{ coupon: stripeCoupon.id }];
+    }
+
     try {
       const session = await this.stripe.checkout.sessions.create({
         mode: 'payment',
         line_items: [...productLineItems, shippingLineItem],
+        discounts,
         success_url: `${frontendUrl}/checkout/confirmacao?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${frontendUrl}/checkout/pagamento`,
         metadata: {
           userId: input.userId,
+          addressId: input.addressId,
           cartItemIds: input.cartItemIds.join(','),
           shippingCarrier: input.shippingCarrier,
           shippingService: input.shippingService,
           shippingPrice: String(input.shippingPrice),
+          couponCode: input.couponCode ?? '',
+          discountAmount: input.discountAmount
+            ? String(input.discountAmount)
+            : '',
         },
       });
 
@@ -121,10 +140,15 @@ export class StripePaymentGateway extends PaymentGateway {
 
     return {
       userId: metadata.userId,
+      addressId: metadata.addressId ?? '',
       cartItemIds: metadata.cartItemIds.split(',').filter(Boolean),
       shippingCarrier: metadata.shippingCarrier ?? '',
       shippingService: metadata.shippingService ?? '',
       shippingPrice: Number(metadata.shippingPrice ?? 0),
+      couponCode: metadata.couponCode || undefined,
+      discountAmount: metadata.discountAmount
+        ? Number(metadata.discountAmount)
+        : undefined,
     };
   }
 }

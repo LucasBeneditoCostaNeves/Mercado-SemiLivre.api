@@ -4,11 +4,12 @@ import { DatabaseModule } from "src/infra/database/database.module"
 import { CreateProductUseCase } from "src/modules/product/useCases/createProductUseCase/createProductUseCase"
 import { ListManyProductUseCase } from "src/modules/product/useCases/listManyProductUseCase/listManyProductUseCase"
 import { UpdateProductUseCase } from "src/modules/product/useCases/updateProductUseCase/updateProductUseCase"
+import { DeleteProductUseCase } from "src/modules/product/useCases/deleteProductUseCase/deleteProductUseCase"
 
 @Module({
     imports: [DatabaseModule],
     controllers: [ProductController],
-    providers: [CreateProductUseCase, ListManyProductUseCase, UpdateProductUseCase],
+    providers: [CreateProductUseCase, ListManyProductUseCase, UpdateProductUseCase, DeleteProductUseCase],
 })
 
 export class ProductModule { }

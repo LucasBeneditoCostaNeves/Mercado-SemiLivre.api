@@ -18,9 +18,12 @@ import { HistoryModule } from './infra/http/modules/history/history.module'
 import { HealthModule } from './infra/http/modules/health/health.module'
 import { ShippingModule } from './infra/http/modules/shipping/shipping.module'
 import { OrderModule } from './infra/http/modules/order/order.module'
+import { BrandModule } from './infra/http/modules/brand/brand.module'
+import { ProductQuestionModule } from './infra/http/modules/productQuestion/productQuestion.module'
+import { CouponModule } from './infra/http/modules/coupon/coupon.module'
 
 @Module({
-  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule, FavoritesModule, HistoryModule, HealthModule, ShippingModule, OrderModule],
+  imports: [DatabaseModule, UserModule, AuthModule, ProfileModule, CategoryProductModule, ProductModule, ProductVariationModule, PersonalDataModule, AddressModule, SeedModule, CatalogModule, CartModule, FavoritesModule, HistoryModule, HealthModule, ShippingModule, OrderModule, BrandModule, ProductQuestionModule, CouponModule],
   controllers: [],
   providers: [
     {
