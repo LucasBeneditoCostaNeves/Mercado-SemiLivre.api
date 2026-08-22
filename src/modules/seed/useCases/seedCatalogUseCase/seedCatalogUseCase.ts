@@ -1,7 +1,10 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common'
 import { PrismaService } from 'src/infra/database/prisma/prisma.service'
+import { hash } from 'bcrypt'
 
-const FIXED_USER_ID = '06d772fe-4df5-4476-820f-41a4795dc1b2'
+const FIXED_USER_ID = '6dd87639-f43d-4a7d-84d1-2627b7275ddd'
+const FIXED_USER_EMAIL = 'lucas@gmail.com'
+const FIXED_USER_PASSWORD = '123456'
 
 interface ReviewInput {
   rating: number
@@ -37,6 +40,8 @@ export class SeedCatalogUseCase {
   constructor(private prisma: PrismaService) {}
 
   async execute(products: ProductInput[]): Promise<SeedCatalogResult> {
+    await this.ensureFixedUserExists()
+
     const uniqueBrandNames = [...new Set(products.map((p) => p.brand ?? 'Generic'))]
     const uniqueCategoryNames = [
       ...new Set(products.map((p) => p.category[0].toUpperCase() + p.category.slice(1))),
@@ -125,5 +130,26 @@ export class SeedCatalogUseCase {
       const message = err instanceof Error ? err.message : String(err)
       throw new UnprocessableEntityException(`Falha ao inserir dados de seed: ${message}`)
     }
+  }
+
+  private async ensureFixedUserExists(): Promise<void> {
+    const existingUser = await this.prisma.user.findUnique({ where: { id: FIXED_USER_ID } })
+    if (existingUser) return
+
+    const seedProfile =
+      (await this.prisma.profile.findFirst({ where: { name: 'seed-bot' } })) ??
+      (await this.prisma.profile.create({ data: { name: 'seed-bot' } }))
+
+    await this.prisma.user.create({
+      data: {
+        id: FIXED_USER_ID,
+        name: 'Seed',
+        lastName: 'Bot',
+        email: FIXED_USER_EMAIL,
+        password: await hash(FIXED_USER_PASSWORD, 10),
+        status: true,
+        profileId: seedProfile.id,
+      },
+    })
   }
 }
